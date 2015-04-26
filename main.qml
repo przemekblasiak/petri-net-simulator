@@ -14,15 +14,23 @@ ApplicationWindow {
         RowLayout {
             anchors.fill: parent
             ToolButton {
-                iconSource: "qrc:/images/images/add.svg"
+                iconSource: "qrc:/images/images/new_project.svg"
+                tooltip: "Start new project"
             }
             ToolButton {
-                iconSource: "qrc:/images/images/save.svg"
+                iconSource: "qrc:/images/images/save_project.svg"
+                tooltip: "Save project"
             }
             ToolButton {
-                iconSource: "qrc:/images/images/open.svg"
+                iconSource: "qrc:/images/images/open_project.svg"
+                tooltip: "Open existing project"
             }
-            Item { Layout.fillWidth: true }
+            ToolButton {
+                iconSource: "qrc:/images/images/run_simulation.svg"
+                anchors.horizontalCenter: parent.horizontalCenter
+                tooltip: "Start simulation"
+            }
+            Item { Layout.fillWidth: true; }
         }
     }
 }

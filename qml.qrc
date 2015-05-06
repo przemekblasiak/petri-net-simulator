@@ -2,6 +2,7 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>NetBoard.qml</file>
+        <file>BoardContextMenu.qml</file>
     </qresource>
     <qresource prefix="/images">
         <file>images/new_project.svg</file>

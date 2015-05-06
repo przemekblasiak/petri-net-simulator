@@ -33,4 +33,8 @@ ApplicationWindow {
             Item { Layout.fillWidth: true; }
         }
     }
+
+    NetBoard{
+        anchors.fill: parent
+    }
 }

@@ -8,26 +8,26 @@ Node::Node()
 //GETTERS
 int Node::id() const
 {
-    return id;
+    return _id;
 }
 
 int Node::location_x() const
 {
-    return location_x;
+    return _location_x;
 }
 
 int Node::location_y() const
 {
-    return location_y;
+    return _location_y;
 }
 
 //SETTERS
 void Node::setLocation_x(int value)
 {
-    location_x = value;
+    _location_x = value;
 }
 
 void Node::setLocation_y(int value)
 {
-    location_y = value;
+    _location_y = value;
 }

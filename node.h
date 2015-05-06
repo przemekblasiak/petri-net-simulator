@@ -17,9 +17,9 @@ public:
     void setLocation_y(int value);
 
 private:
-    int id;
-    int location_x;
-    int location_y;
+    int _id;
+    int _location_x;
+    int _location_y;
 };
 
 #endif // NODE_H

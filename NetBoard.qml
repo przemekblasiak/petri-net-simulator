@@ -41,7 +41,7 @@ Flickable {
                     ymouse=mouseY;
                     contextMenu.popup()
                 } else if (mouse.button === Qt.LeftButton) {
-                    console.log(board.childAt(xmouse, ymouse).objectName)
+                    console.log(board.childAt(mouseX, mouseY).objectName)
                     arrowCanvas.requestPaint()
                 }
             }

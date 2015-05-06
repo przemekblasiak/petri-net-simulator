@@ -1,8 +1,10 @@
 #include "node.h"
+#include <cstdlib>
+#include <cassert>
 
 Node::Node()
 {
-    _id = 0;
+    _id = rand()*(RAND_MAX+1) + rand();
 }
 
 //GETTERS
@@ -22,6 +24,11 @@ int Node::location_y() const
 }
 
 //SETTERS
+void Node::setID(int value)
+{
+    _id = value;
+}
+
 void Node::setLocation_x(int value)
 {
     _location_x = value;

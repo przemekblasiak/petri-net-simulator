@@ -7,12 +7,15 @@ public:
     Node();
 
     int id() const;
+    void setID(int value);
 
     int location_x() const;
     void setLocation_x(int value);
 
     int location_y() const;
     void setLocation_y(int value);
+
+
 
 private:
     int _id;

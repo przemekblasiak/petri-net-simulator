@@ -5,7 +5,8 @@ QT += qml quick widgets
 SOURCES += main.cpp \
     node.cpp \
     place.cpp \
-    transition.cpp
+    transition.cpp \
+    arrow.cpp
 
 RESOURCES += qml.qrc
 
@@ -18,4 +19,5 @@ include(deployment.pri)
 HEADERS += \
     node.h \
     place.h \
-    transition.h
+    transition.h \
+    arrow.h

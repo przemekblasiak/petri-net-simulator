@@ -1,7 +1,9 @@
 #ifndef NODE_H
 #define NODE_H
 
-class Node
+#include <QObject>
+
+class Node: public QObject
 {
 public:
     Node();

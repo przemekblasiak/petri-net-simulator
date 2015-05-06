@@ -1,4 +1,5 @@
 import QtQuick 2.3
+import com.net.petri 1.0
 
 Flickable {
     contentWidth: 1920
@@ -9,6 +10,8 @@ Flickable {
         z: 2
         anchors.fill: parent
         clip: true
+
+        property Arrow arr;
 
         function createPlace(x,y){
             var component= Qt.createComponent("Place.qml");
@@ -55,23 +58,19 @@ Flickable {
             anchors.fill: parent
             z: 1
 
-            property int x1
-            property int x2
-            property int y1
-            property int y2
-
             onPaint: {
+
                 var context = getContext("2d");
                 context.reset();
 
-                var x1 = 10, y1 = 10;
-                var x2 = 100, y2 = 100;
+                var beginX, beginY;
+                var endX, endY;
 
                 context.beginPath();
                 context.lineWidth = 5;
                 context.strokeStyle = "black";
-                context.moveTo(x1, y1);
-                context.lineTo(mouseArea.mouseX, mouseArea.mouseY);
+                context.moveTo(beginX, beginY);
+                context.lineTo(endX, endY);
                 context.stroke();
             }
         }

@@ -1,5 +1,7 @@
 #include <QApplication>
 #include <QQmlApplicationEngine>
+#include <QtQml>
+#include "arrow.h"
 
 //#include "node.h"
 #include "place.h"
@@ -12,6 +14,7 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
+    qmlRegisterType<Arrow>("com.net.petri", 1, 0, "Arrow");
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     srand(time(NULL));
 

@@ -2,7 +2,7 @@
 
 Node::Node()
 {
-    id = 0;
+    _id = 0;
 }
 
 //GETTERS

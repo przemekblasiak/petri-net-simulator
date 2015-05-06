@@ -39,6 +39,8 @@ Flickable {
                     xmouse=mouseX;
                     ymouse=mouseY;
                     contextMenu.popup()
+                } else if (mouse.button === Qt.LeftButton) {
+                    arrowCanvas.requestPaint()
                 }
             }
         }
@@ -62,7 +64,7 @@ Flickable {
                 context.lineWidth = 5;
                 context.strokeStyle = "black";
                 context.moveTo(x1, y1);
-                context.lineTo(x2, y2);
+                context.lineTo(mouseArea.mouseX, mouseArea.mouseY);
                 context.stroke();
             }
         }

@@ -5,5 +5,8 @@ Rectangle {
     radius: 25
     width: 50
     height: 50
+
+    objectName: "Place"
+
 }
 

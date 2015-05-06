@@ -11,14 +11,14 @@ Flickable {
         anchors.fill: parent
         clip: true
 
-        function createPlace(x,y){
+        function createPlace(x,y) {
             var component= Qt.createComponent("Place.qml");
             var place=component.createObject(board)
             place.x=x-place.width/2;
             place.y=y-place.height/2;
         }
 
-        function createTransition(x,y){
+        function createTransition(x,y) {
             var component= Qt.createComponent("Transition.qml");
             var transition=component.createObject(board)
             transition.x=x-transition.width/2;
@@ -61,8 +61,8 @@ Flickable {
                 var context = getContext("2d");
                 context.reset();
 
-                var beginX, beginY;
-                var endX, endY;
+                var beginX = 0, beginY = 0;
+                var endX = 100, endY = 100;
 
                 context.beginPath();
                 context.lineWidth = 5;

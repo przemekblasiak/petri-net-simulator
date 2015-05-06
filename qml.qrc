@@ -3,6 +3,8 @@
         <file>main.qml</file>
         <file>NetBoard.qml</file>
         <file>BoardContextMenu.qml</file>
+        <file>Place.qml</file>
+        <file>Transition.qml</file>
     </qresource>
     <qresource prefix="/images">
         <file>images/new_project.svg</file>

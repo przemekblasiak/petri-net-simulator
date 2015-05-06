@@ -6,6 +6,7 @@ Flickable {
 
     Rectangle{
         id: board
+        z: 2
         anchors.fill: parent
         clip: true
 
@@ -47,6 +48,7 @@ Flickable {
         Canvas{
             id: arrowCanvas
             anchors.fill: parent
+            z: 1
 
             property int x1
             property int x2

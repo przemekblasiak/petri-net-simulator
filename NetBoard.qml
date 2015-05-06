@@ -11,8 +11,6 @@ Flickable {
         anchors.fill: parent
         clip: true
 
-        property Arrow arr;
-
         function createPlace(x,y){
             var component= Qt.createComponent("Place.qml");
             var place=component.createObject(board)

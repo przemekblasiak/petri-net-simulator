@@ -3,25 +3,35 @@
 
 #include <QObject>
 
-class Node: public QObject
+class Node : public QObject
 {
+    Q_OBJECT
+    Q_PROPERTY(int uuid READ uuid WRITE setUuid NOTIFY uuidChanged)
+    Q_PROPERTY(int location_x READ location_x WRITE setLocation_x NOTIFY location_xChanged)
+    Q_PROPERTY(int location_y READ location_y WRITE setLocation_y NOTIFY location_yChanged)
+
 public:
     Node();
-    Node(int id, int loc_x, int loc_y);
+    Node(int loc_x, int loc_y);
+    Node(int uuid, int loc_x, int loc_y);
+    virtual ~Node();
 
-    int id() const;
-    void setID(int value);
-
+    int uuid() const;
     int location_x() const;
-    void setLocation_x(int value);
-
     int location_y() const;
+
+signals:
+    void uuidChanged(int uuid);
+    void location_xChanged(int x);
+    void location_yChanged(int y);
+
+public slots:
+    void setUuid(int value);
+    void setLocation_x(int value);
     void setLocation_y(int value);
 
-
-
 private:
-    int _id;
+    int _uuid;
     int _location_x;
     int _location_y;
 };

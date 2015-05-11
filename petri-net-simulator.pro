@@ -2,6 +2,8 @@ TEMPLATE = app
 
 QT += qml quick widgets
 
+QMAKE_CXXFLAGS += -std=c++11
+
 SOURCES += main.cpp \
     node.cpp \
     place.cpp \

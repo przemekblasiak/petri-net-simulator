@@ -21,10 +21,10 @@ int main(int argc, char *argv[])
     srand(time(NULL));
 
     Node *place = new Place();
-    qDebug() << place->id();
+    qDebug() << place->uuid();
 
     Node *trans = new Transition();
-    qDebug() << trans->id();
+    qDebug() << trans->uuid();
 
     delete(place);
     delete(trans);

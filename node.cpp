@@ -4,20 +4,29 @@
 
 Node::Node()
 {
-    _id = rand()*(RAND_MAX+1) + rand();
+    _uuid = rand()*(RAND_MAX+1) + rand();
 }
 
-Node::Node(int id, int loc_x, int loc_y)
+Node::Node(int loc_x, int loc_y) : Node()
 {
-    _id = id;
     _location_x = loc_x;
     _location_y = loc_y;
 }
 
-//GETTERS
-int Node::id() const
+Node::Node(int uuid, int loc_x, int loc_y) : Node(loc_x, loc_y)
 {
-    return _id;
+    _uuid = uuid;
+}
+
+Node::~Node()
+{
+
+}
+
+//GETTERS
+int Node::uuid() const
+{
+    return _uuid;
 }
 
 int Node::location_x() const
@@ -31,9 +40,9 @@ int Node::location_y() const
 }
 
 //SETTERS
-void Node::setID(int value)
+void Node::setUuid(int value)
 {
-    _id = value;
+    _uuid = value;
 }
 
 void Node::setLocation_x(int value)

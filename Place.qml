@@ -7,6 +7,5 @@ Rectangle {
     height: 50
 
     objectName: "Place"
-
 }
 

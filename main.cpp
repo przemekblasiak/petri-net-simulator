@@ -6,28 +6,24 @@
 //#include "node.h"
 #include "place.h"
 #include "transition.h"
-#include "QDebug"
+#include "engine.h"
+#include <QQmlContext>
 #include <ctime>
 
 int main(int argc, char *argv[])
 {
+    srand(time(NULL));
+
     QApplication app(argc, argv);
 
-    QQmlApplicationEngine engine;
+    QQmlApplicationEngine appEngine;
+    Engine engine;
+
     qmlRegisterType<Arrow>("com.net.petri", 1, 0, "Arrow");
     qmlRegisterType<Place>("com.net.petri", 1, 0, "Place");
     qmlRegisterType<Transition>("com.net.petri", 1, 0, "Transition");
-    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
-    srand(time(NULL));
-
-    Node *place = new Place();
-    qDebug() << place->uuid();
-
-    Node *trans = new Transition();
-    qDebug() << trans->uuid();
-
-    delete(place);
-    delete(trans);
+    appEngine.rootContext()->setContextProperty("engine", &engine);
+    appEngine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     return app.exec();
 }

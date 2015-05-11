@@ -12,7 +12,13 @@ Rectangle {
 
     Place{
         id: place;
+        Component.onCompleted: {
+            var list = engine.getPlaces();
+            //list.append(place);
+            list[0] = place;
+            var list2 = engine.getPlaces();
+            console.log(list2);
+        }
     }
 
 }
-

@@ -8,7 +8,8 @@ SOURCES += main.cpp \
     node.cpp \
     place.cpp \
     transition.cpp \
-    arrow.cpp
+    arrow.cpp \
+    engine.cpp
 
 RESOURCES += qml.qrc
 
@@ -22,4 +23,5 @@ HEADERS += \
     node.h \
     place.h \
     transition.h \
-    arrow.h
+    arrow.h \
+    engine.h

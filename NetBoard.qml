@@ -47,29 +47,52 @@ Flickable {
                     contextMenu.popup()
                 } else if (mouse.button === Qt.LeftButton) {
                     console.log(board.childAt(mouseX, mouseY).objectName)
+
+                    // Pull new shiny arrows from quiver
+                    if (arrowCanvas.isFirstPoint) {
+                        var newArrow = quiver.pullAnArrow()
+                        newArrow.x1 = mouseX
+                        newArrow.y1 = mouseY
+                        arrowCanvas.tmpArrow = newArrow
+                    } else {
+                        var arrow = arrowCanvas.tmpArrow
+                        arrow.x2 = mouseX
+                        arrow.y2 = mouseY
+                        var newIndex = arrowCanvas.arrows.length
+                        arrowCanvas.arrows[newIndex] = arrow
+                    }
+                    arrowCanvas.isFirstPoint = !arrowCanvas.isFirstPoint
+                    //
+
                     arrowCanvas.requestPaint()
                 }
             }
         }
+        Arrow{
+            id: quiver
+        }
+
         Canvas{
             id: arrowCanvas
             anchors.fill: parent
             z: 1
+            property bool isFirstPoint: true
+            property var tmpArrow
+            property var arrows: []
 
             onPaint: {
-
                 var context = getContext("2d");
                 context.reset();
 
-                var beginX = 0, beginY = 0;
-                var endX = 100, endY = 100;
-
-                context.beginPath();
-                context.lineWidth = 5;
-                context.strokeStyle = "black";
-                context.moveTo(beginX, beginY);
-                context.lineTo(endX, endY);
-                context.stroke();
+                for (var i = 0; i < arrowCanvas.arrows.length; ++i) {
+                    var arrow = arrowCanvas.arrows[i]
+                    context.beginPath();
+                    context.lineWidth = 5;
+                    context.strokeStyle = "black";
+                    context.moveTo(arrow.x1, arrow.y1);
+                    context.lineTo(arrow.x2, arrow.y2);
+                    context.stroke();
+                }
             }
         }
     }

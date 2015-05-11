@@ -8,6 +8,11 @@ Arrow::Arrow(QObject *parent) : QObject(parent)
     this->my2 = 0;
 }
 
+Arrow *Arrow::pullAnArrow()
+{
+    return new Arrow();
+}
+
 int Arrow::x1() const
 {
     return mx1;

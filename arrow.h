@@ -13,18 +13,12 @@ class Arrow : public QObject
 
 public:
     explicit Arrow(QObject *parent = 0);
+    Q_INVOKABLE Arrow* pullAnArrow();
 
     int x1() const;
-    void setX1(int value);
-
     int x2() const;
-    void setX2(int value);
-
     int y1() const;
-    void setY1(int value);
-
     int y2() const;
-    void setY2(int value);
 
 signals:
     void x1Changed(int x);
@@ -33,6 +27,10 @@ signals:
     void y2Changed(int y);
 
 public slots:
+    void setX1(int value);
+    void setX2(int value);
+    void setY1(int value);
+    void setY2(int value);
 
 private:
     int mx1, mx2;

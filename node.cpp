@@ -7,6 +7,13 @@ Node::Node()
     _id = rand()*(RAND_MAX+1) + rand();
 }
 
+Node::Node(int id, int loc_x, int loc_y)
+{
+    _id = id;
+    _location_x = loc_x;
+    _location_y = loc_y;
+}
+
 //GETTERS
 int Node::id() const
 {

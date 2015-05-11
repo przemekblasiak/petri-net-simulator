@@ -7,6 +7,7 @@ class Node: public QObject
 {
 public:
     Node();
+    Node(int id, int loc_x, int loc_y);
 
     int id() const;
     void setID(int value);

@@ -15,6 +15,8 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
     qmlRegisterType<Arrow>("com.net.petri", 1, 0, "Arrow");
+    qmlRegisterType<Place>("com.net.petri", 1, 0, "Place");
+    qmlRegisterType<Transition>("com.net.petri", 1, 0, "Transition");
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     srand(time(NULL));
 

@@ -12,14 +12,14 @@ Flickable {
         clip: true
 
         function createPlace(x,y) {
-            var component= Qt.createComponent("Place.qml");
+            var component= Qt.createComponent("PNSPlace.qml");
             var place=component.createObject(board)
             place.x=x-place.width/2;
             place.y=y-place.height/2;
         }
 
         function createTransition(x,y) {
-            var component= Qt.createComponent("Transition.qml");
+            var component= Qt.createComponent("PNSTransition.qml");
             var transition=component.createObject(board)
             transition.x=x-transition.width/2;
             transition.y=y-transition.height/2;

@@ -23,6 +23,7 @@ public:
     int getY2() const;
     void setY2(int value);
 
+public slots:
 private:
     int x1;
     int x2;

@@ -12,10 +12,10 @@
 class Engine : public QObject
 {
     Q_OBJECT
-    //Q_PROPERTY(type name READ name WRITE setName NOTIFY nameChanged)
+
 public:
     explicit Engine(QObject *parent = 0);
-    Q_INVOKABLE QList<QObject *> getPlaces()
+    QList<QObject *> getPlaces()
     {
         return places;
     }

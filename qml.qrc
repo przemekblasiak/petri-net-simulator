@@ -1,11 +1,4 @@
 <RCC>
-    <qresource prefix="/">
-        <file>main.qml</file>
-        <file>NetBoard.qml</file>
-        <file>BoardContextMenu.qml</file>
-        <file>PNSPlace.qml</file>
-        <file>PNSTransition.qml</file>
-    </qresource>
     <qresource prefix="/images">
         <file>images/new_project.svg</file>
         <file>images/open_project.svg</file>

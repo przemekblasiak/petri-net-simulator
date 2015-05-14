@@ -5,24 +5,25 @@ Place::Place()
 
 }
 
-Place::Place(int uuid, int loc_x, int loc_y, int liveness) : Node(uuid, loc_x, loc_y)
+Place::Place(int id, int x, int y, int liveness) :
+    Node(id, x, y),
+    liveness(liveness)
 {
-    _liveness = liveness;
+
 }
 
 Place::~Place()
 {
 
 }
-
-int Place::liveness() const
+int Place::getLiveness() const
 {
-    return _liveness;
+    return liveness;
 }
 
-void Place::setLiveness(int liveness)
+void Place::setLiveness(int value)
 {
-    _liveness = liveness;
+    liveness = value;
 }
 
 

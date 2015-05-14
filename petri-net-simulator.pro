@@ -19,6 +19,8 @@ SOURCES += main.cpp \
 # Default rules for deployment.
 include(deployment.pri)
 
+INCLUDEPATH += $$PWD/json/include
+
 HEADERS += \
     node.h \
     place.h \

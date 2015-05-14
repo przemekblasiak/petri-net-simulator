@@ -9,7 +9,7 @@ class Place : public Node
     Q_OBJECT
 
 public:
-    Place();
+    Place(int x, int y);
     Place(int x, int y, int liveness);
     Place(int id, int x, int y, int liveness);
 

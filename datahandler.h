@@ -22,7 +22,7 @@ public:
 
 private:
     Json::Reader reader;
-    Json::StyledStreamWriter writer;
+    Json::StyledWriter writer;
     std::string saveFilePath;
 };
 

@@ -1,6 +1,4 @@
 #include "node.h"
-#include <cstdlib>
-#include <cassert>
 
 Node::Node()
 {

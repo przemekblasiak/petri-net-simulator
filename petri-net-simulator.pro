@@ -12,7 +12,10 @@ SOURCES += main.cpp \
     engine.cpp \
     mainwindow.cpp \
     matejkocanvas.cpp \
-    datahandler.cpp
+    datahandler.cpp \
+    json/src/json_reader.cpp \
+    json/src/json_value.cpp \
+    json/src/json_writer.cpp
 
 # Default rules for deployment.
 include(deployment.pri)
@@ -27,7 +30,16 @@ HEADERS += \
     engine.h \
     mainwindow.h \
     matejkocanvas.h \
-    datahandler.h
+    datahandler.h \
+    json/include/json/autolink.h \
+    json/include/json/config.h \
+    json/include/json/features.h \
+    json/include/json/forwards.h \
+    json/include/json/json.h \
+    json/include/json/reader.h \
+    json/include/json/value.h \
+    json/include/json/writer.h \
+    json/src/json_batchallocator.h
 
 FORMS += \
     mainwindow.ui

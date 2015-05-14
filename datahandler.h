@@ -1,11 +1,11 @@
 #ifndef DATAHANDLER_H
 #define DATAHANDLER_H
 
-#include <json/reader.h>
-#include <json/writer.h>
-#include <json/value.h>
+#include <json/include/json/reader.h>
+#include <json/include/json/writer.h>
+#include <json/include/json/value.h>
 
-#include <json/json.h>
+#include <json/include/json/json.h>
 
 #include "place.h"
 #include "transition.h"

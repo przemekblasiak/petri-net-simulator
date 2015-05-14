@@ -2,7 +2,7 @@
 
 DataHandler::DataHandler()
 {
-    saveFilePath = "C:\save.json";
+    saveFilePath = "save.json";
 }
 
 void DataHandler::saveData()

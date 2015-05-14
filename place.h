@@ -2,6 +2,7 @@
 #define PLACE_H
 
 #include "node.h"
+#include <QtGui>
 
 class Place : public Node
 {
@@ -9,7 +10,11 @@ class Place : public Node
 
 public:
     Place();
-    Place(int id, int x, int y, int liveness=0);
+    Place(int x, int y, int liveness);
+    Place(int id, int x, int y, int liveness);
+
+    void draw(QPainter *painter);
+
     int liveness;
 };
 

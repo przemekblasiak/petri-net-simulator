@@ -2,6 +2,7 @@
 #define MATEJKOCANVAS_H
 
 #include <QWidget>
+#include "place.h"
 
 class MatejkoCanvas : public QWidget
 {
@@ -15,6 +16,9 @@ signals:
 public slots:
 private:
     void paintEvent(QPaintEvent *);
+
+    // TODO: Brac z engine
+    QList<Place *> places;
 };
 
 #endif // MATEJKOCANVAS_H

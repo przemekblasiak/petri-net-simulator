@@ -2,10 +2,15 @@
 
 #include <QtGui>
 #include <QApplication>
+#include <QList>
 
 MatejkoCanvas::MatejkoCanvas(QWidget *parent) : QWidget(parent)
 {
     this->setupPalette();
+
+    // Example list of Places
+    this->places.append(new Place(200, 200, 5));
+    this->places.append(new Place(140, 300, 0));
 }
 
 void MatejkoCanvas::setupPalette() {
@@ -19,5 +24,9 @@ void MatejkoCanvas::paintEvent(QPaintEvent *)
     // Painting test
     QPainter painter(this);
     painter.setPen(Qt::darkGreen);
-    painter.drawEllipse(QPoint(200, 200), 50, 50);
+
+    // Draw places
+    for (int i = 0; i < this->places.count(); ++i) {
+        places[i]->draw(&painter);
+    }
 }

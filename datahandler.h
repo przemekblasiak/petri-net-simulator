@@ -1,0 +1,29 @@
+#ifndef DATAHANDLER_H
+#define DATAHANDLER_H
+
+#include <json/reader.h>
+#include <json/writer.h>
+#include <json/value.h>
+
+#include <json/json.h>
+
+#include "place.h"
+#include "transition.h"
+#include <iostream>
+#include <fstream>
+
+class DataHandler
+{
+public:
+    DataHandler();
+
+    void saveData();
+    void loadData();
+
+private:
+    Json::Reader reader;
+    Json::StyledStreamWriter writer;
+    std::string saveFilePath;
+};
+
+#endif // DATAHANDLER_H

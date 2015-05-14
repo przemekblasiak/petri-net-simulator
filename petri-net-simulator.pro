@@ -11,7 +11,8 @@ SOURCES += main.cpp \
     arrow.cpp \
     engine.cpp \
     mainwindow.cpp \
-    matejkocanvas.cpp
+    matejkocanvas.cpp \
+    datahandler.cpp
 
 # Default rules for deployment.
 include(deployment.pri)
@@ -25,7 +26,8 @@ HEADERS += \
     arrow.h \
     engine.h \
     mainwindow.h \
-    matejkocanvas.h
+    matejkocanvas.h \
+    datahandler.h
 
 FORMS += \
     mainwindow.ui

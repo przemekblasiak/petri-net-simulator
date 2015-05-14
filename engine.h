@@ -15,16 +15,7 @@ class Engine : public QObject
 
 public:
     explicit Engine(QObject *parent = 0);
-    QList<QObject *> getPlaces()
-    {
-        return places;
-    }
 
-signals:
-
-public slots:
-
-private:
     QList<QObject *> places;
     QList<QObject *> transitions;
     QList<QObject *> arrows;

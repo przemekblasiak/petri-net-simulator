@@ -10,12 +10,6 @@ class Place : public Node
 public:
     Place();
     Place(int id, int x, int y, int liveness=0);
-    virtual ~Place();
-
-    int getLiveness() const;
-    void setLiveness(int value);
-
-private:
     int liveness;
 };
 

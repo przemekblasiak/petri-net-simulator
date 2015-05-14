@@ -8,7 +8,7 @@ Place::Place()
 Place::Place(int x, int y, int liveness):
     liveness(liveness)
 {
-    // wyliczanie id
+    // TODO: wyliczanie id + przeniesc do node
     this->x = x;
     this->y = y;
     this->id = id;

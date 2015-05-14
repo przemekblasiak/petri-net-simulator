@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "place.h"
+#include "transition.h"
 
 class MatejkoCanvas : public QWidget
 {
@@ -16,9 +17,11 @@ signals:
 public slots:
 private:
     void paintEvent(QPaintEvent *);
+    void mousePressEvent(QMouseEvent *event);
 
     // TODO: Brac z engine
     QList<Place *> places;
+    QList<Transition *> transitions;
 };
 
 #endif // MATEJKOCANVAS_H

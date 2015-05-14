@@ -34,7 +34,7 @@ void DataHandler::saveData()
     places.append(place3);
 
     root["places"] = places;
-    std::ofstream saveFile = std::ofstream(saveFilePath, std::ofstream::out);
-    writer.write(saveFile, root);
+//    std::ofstream saveFile = std::ofstream(saveFilePath, std::ofstream::out);
+//    writer.write(saveFile, root);
 }
 

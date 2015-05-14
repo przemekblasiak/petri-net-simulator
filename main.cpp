@@ -7,8 +7,8 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-    DataHandler dh;
-    dh.saveData();
+//    DataHandler dh;
+//    dh.saveData();
 
     MainWindow window;
     window.show();

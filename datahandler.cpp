@@ -2,10 +2,10 @@
 
 DataHandler::DataHandler()
 {
-    saveFilePath = "save.json";
+    fileName = "save.json";
 }
 
-void DataHandler::saveData()
+void DataHandler::saveData(std::string fileName)
 {
     Json::Value root;
     Json::Value places(Json::arrayValue);
@@ -43,8 +43,12 @@ void DataHandler::saveData()
     delete p3;
 
     std::ofstream saveFile;
-    saveFile.open(saveFilePath.c_str());
+    saveFile.open(fileName.c_str());
     saveFile << writer.write(root);
     saveFile.close();
 }
 
+void DataHandler::loadData(std::string fileName)
+{
+
+}

@@ -1,47 +1,52 @@
 #include "datahandler.h"
-#include <QDebug>
 
 DataHandler::DataHandler()
 {
 
 }
 
-void DataHandler::save(std::string fileName, QList<Place *> &places, QList<Transition *> &transitions, QList<Arrow *> &arrows)
+void DataHandler::save(std::string fileName, const QList<Place *> &places, const QList<Transition *> &transitions, const QList<Arrow *> &arrows)
 {
+    std::cout << places.size() << std::endl;
+    Json::Value json_places(Json::arrayValue);
+    for(int i = 0; i < places.size(); ++i)
+    {
+        Place *place = places.at(i);
+        Json::Value json_place;
+        json_place["id"] = place->id;
+        json_place["x"] = place->x;
+        json_place["y"] = place->y;
+        json_place["liveness"] = place->liveness;
+        json_places.append(json_place);
+    }
+
+    Json::Value json_transitions(Json::arrayValue);
+    for(int i = 0; i < transitions.size(); ++i)
+    {
+        Transition *transition = transitions.at(i);
+        Json::Value json_transition;
+        json_transition["id"] = transition->id;
+        json_transition["x"] = transition->x;
+        json_transition["y"] = transition->y;
+        json_transitions.append(json_transition);
+    }
+
+    Json::Value json_arrows(Json::arrayValue);
+    for(int i = 0; i < arrows.size(); ++i)
+    {
+        Arrow *arrow = arrows.at(i);
+        Json::Value json_arrow;
+        json_arrow["x1"] = arrow->x1;
+        json_arrow["x2"] = arrow->x2;
+        json_arrow["y1"] = arrow->y1;
+        json_arrow["y2"] = arrow->y2;
+        json_arrows.append(json_arrow);
+    }
+
     Json::Value root;
-    Json::Value p(Json::arrayValue);
-
-    Place *p1 = new Place(23, 45, 0);
-    Place *p2 = new Place(34, 4545, 0);
-    Place *p3 = new Place(345, 33, 0);
-
-    Json::Value place1;
-    place1["id"] = p1->id;
-    place1["x"] = p1->x;
-    place1["y"] = p1->y;
-    place1["liveness"] = p1->liveness;
-
-    Json::Value place2;
-    place2["id"] = p2->id;
-    place2["x"] = p2->x;
-    place2["y"] = p2->y;
-    place2["liveness"] = p2->liveness;
-
-    Json::Value place3;
-    place3["id"] = p3->id;
-    place3["x"] = p3->x;
-    place3["y"] = p3->y;
-    place3["liveness"] = p3->liveness;
-
-    p.append(place1);
-    p.append(place2);
-    p.append(place3);
-
-    root["places"] = p;
-
-    delete p1;
-    delete p2;
-    delete p3;
+    root["places"] = json_places;
+    root["transitions"] = json_transitions;
+    root["arrows"] = json_arrows;
 
     std::ofstream saveFile;
     saveFile.open(fileName.c_str());
@@ -51,10 +56,9 @@ void DataHandler::save(std::string fileName, QList<Place *> &places, QList<Trans
 
 void DataHandler::load(std::string fileName, QList<Place *> &places, QList<Transition *> &transitions, QList<Arrow *> &arrows)
 {
-        //TODO clearfunction private
-    places.clear();
-    transitions.clear();
-    arrows.clear();
+    clearList(places);
+    clearList(transitions);
+    clearList(arrows);
 
     Json::Value root;
     std::ifstream loadFile(fileName.c_str());
@@ -106,6 +110,7 @@ void DataHandler::load(std::string fileName, QList<Place *> &places, QList<Trans
         arrows.append(temp);
     }
 
+    //DEBUG INFORMATION
     std::cout << "Places:" << std::endl;
     std::cout << noOfPlaces << std::endl;
     for (int i = 0; i < places.size(); ++i)
@@ -126,4 +131,14 @@ void DataHandler::load(std::string fileName, QList<Place *> &places, QList<Trans
     {
         std::cout << arrows.at(i)->x1 << ", " << arrows.at(i)->x2 << ", " << arrows.at(i)->y1 << ", " << arrows.at(i)->y2 << std::endl;
     }
+}
+
+template <typename T>
+void DataHandler::clearList(QList<T *> &list)
+{
+    for(int i = 0; i < list.size(); ++i)
+    {
+        delete list.at(i);
+    }
+    list.clear();
 }

@@ -17,12 +17,12 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionNew_Project_triggered()
 {
-    currentProjectFilePath = QFileDialog::getSaveFileName(this, "Open Image", ".", "JSON Files (*.json)");
+    currentProjectFilePath = QFileDialog::getSaveFileName(this, "Open JSON", ".", "JSON Files (*.json)");
 }
 
 void MainWindow::on_actionOpen_project_triggered()
 {
-    QString filename = QFileDialog::getOpenFileName(this, "Open Image", ".", "JSON Files (*.json)");
+    QString filename = QFileDialog::getOpenFileName(this, "Open JSON", ".", "JSON Files (*.json)");
     currentProjectFilePath=filename;
     dataHandler.load(currentProjectFilePath.toStdString(), this->places, this->transitions, this->arrows);
 }

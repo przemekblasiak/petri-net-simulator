@@ -24,7 +24,7 @@ private:
     // Mouse
     void mousePressEvent(QMouseEvent *event);
 
-    // TODO: Brac z engine
+    // TODO: Take places and transitions form MainWindow, BITCH!!!!!
     QList<Place *> places;
     QList<Transition *> transitions;
 };

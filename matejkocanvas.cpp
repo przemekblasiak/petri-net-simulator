@@ -53,7 +53,7 @@ void MatejkoCanvas::paintEvent(QPaintEvent *)
     // TODO: zmienic length na count
     for (int i = 0; i < this->places.length(); ++i) {
         this->places[i]->draw(painter);
-        qDebug() << this->places.length();
+        //qDebug() << this->places.length();
     }
 
     // Draw transitions
@@ -70,6 +70,7 @@ void MatejkoCanvas::mousePressEvent(QMouseEvent *event)
 
         // TODO: Move this logic to context menu
         this->places.append(new Place(mouse.x(), mouse.y(), 0));
+        qDebug() << places.last() << ", " << places.size();
         this->update();
     } else if (event->button() == Qt::RightButton){
     }

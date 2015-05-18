@@ -15,3 +15,8 @@ Node::Node(int id, int x, int y) :
     id(id), x(x), y(y)
 {
 }
+
+Node::~Node()
+{
+
+}

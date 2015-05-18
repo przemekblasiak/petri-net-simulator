@@ -2,7 +2,7 @@
 
 DataHandler::DataHandler()
 {
-    fileName = "save.json";
+
 }
 
 void DataHandler::saveData(std::string fileName)
@@ -50,5 +50,14 @@ void DataHandler::saveData(std::string fileName)
 
 void DataHandler::loadData(std::string fileName)
 {
+    Json::Value root;
+    std::ifstream loadFile(fileName);
+    bool parsed = reader.parse(loadFile, root, false);
+    if (!parsed)
+    {
+        // report to the user the failure and their locations in the document.
+        cout  << "Failed to parse configuration\n" << reader.getFormatedErrorMessages();
+    }
+
 
 }

@@ -56,7 +56,7 @@ void DataHandler::loadData(std::string fileName)
     if (!parsed)
     {
         // report to the user the failure and their locations in the document.
-        cout  << "Failed to parse configuration\n" << reader.getFormatedErrorMessages();
+        std::cout  << "Failed to parse configuration\n" << reader.getFormatedErrorMessages();
     }
 
 

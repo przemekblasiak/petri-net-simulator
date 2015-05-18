@@ -19,10 +19,12 @@ public:
 
 private slots:
     void on_actionNew_Project_triggered();
-
     void on_actionOpen_project_triggered();
-
     void on_actionSave_project_triggered();
+
+    QList<QObject *> places;
+    QList<QObject *> transitions;
+    QList<QObject *> arrows;
 
 private:
     Ui::MainWindow *ui;

@@ -1,4 +1,5 @@
 #include "datahandler.h"
+#include <QDebug>
 
 DataHandler::DataHandler()
 {
@@ -59,5 +60,5 @@ void DataHandler::loadData(std::string fileName)
         std::cout  << "Failed to parse configuration\n" << reader.getFormatedErrorMessages();
     }
 
-
+    std::cout << root.asString();
 }

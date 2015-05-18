@@ -13,7 +13,9 @@ class Transition : public Node
 public:
     Transition(int x, int y);
 
-    void draw(QPainter *painter);
+    void draw(QPainter &painter);
+private:
+    int width, height;
 };
 
 #endif // TRANSITION_H

@@ -10,13 +10,18 @@ class MatejkoCanvas : public QWidget
     Q_OBJECT
 public:
     explicit MatejkoCanvas(QWidget *parent = 0);
-    void setupPalette();
 
 signals:
 
 public slots:
+    void showContextMenu(const QPoint &);
+
 private:
+    // Painting
     void paintEvent(QPaintEvent *);
+    void setupPalette();
+
+    // Mouse
     void mousePressEvent(QMouseEvent *event);
 
     // TODO: Brac z engine

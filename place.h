@@ -12,9 +12,11 @@ public:
     Place(int x, int y, int liveness);
     Place(int id, int x, int y, int liveness);
 
-    void draw(QPainter *painter);
+    void draw(QPainter &painter);
 
     int liveness;
+private:
+    int radius;
 };
 
 #endif // PLACE_H

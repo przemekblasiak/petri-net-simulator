@@ -1,6 +1,12 @@
 #include "engine.h"
 
-Engine::Engine(QObject *parent) : QObject(parent)
+Engine &Engine::getInstance()
+{
+    static Engine instance;
+    return instance;
+}
+
+Engine::Engine() : QObject(0)
 {
 
 }

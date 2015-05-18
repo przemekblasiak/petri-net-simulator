@@ -14,11 +14,15 @@ class Engine : public QObject
     Q_OBJECT
 
 public:
-    explicit Engine(QObject *parent = 0);
+    static Engine& getInstance();
 
     QList<QObject *> places;
     QList<QObject *> transitions;
     QList<QObject *> arrows;
+
+
+private:
+    Engine();
 };
 
 #endif // ENGINE_H

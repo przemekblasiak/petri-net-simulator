@@ -6,10 +6,10 @@ DataHandler::DataHandler()
 
 }
 
-void DataHandler::saveData(std::string fileName)
+void DataHandler::save(std::string fileName, QList<Place *> places, QList<Transition *> transitions, QList<Arrow *> arrows)
 {
     Json::Value root;
-    Json::Value places(Json::arrayValue);
+    Json::Value p(Json::arrayValue);
 
     Place *p1 = new Place(23, 45, 0);
     Place *p2 = new Place(34, 4545, 0);
@@ -33,11 +33,11 @@ void DataHandler::saveData(std::string fileName)
     place3["y"] = p3->y;
     place3["liveness"] = p3->liveness;
 
-    places.append(place1);
-    places.append(place2);
-    places.append(place3);
+    p.append(place1);
+    p.append(place2);
+    p.append(place3);
 
-    root["places"] = places;
+    root["places"] = p;
 
     delete p1;
     delete p2;
@@ -49,10 +49,10 @@ void DataHandler::saveData(std::string fileName)
     saveFile.close();
 }
 
-void DataHandler::loadData(std::string fileName)
+void DataHandler::load(std::string fileName, QList<Place *> places, QList<Transition *> transitions, QList<Arrow *> arrows)
 {
     Json::Value root;
-    std::ifstream loadFile(fileName);
+    std::ifstream loadFile(fileName.c_str());
     bool parsed = reader.parse(loadFile, root, false);
     if (!parsed)
     {
@@ -60,5 +60,5 @@ void DataHandler::loadData(std::string fileName)
         std::cout  << "Failed to parse configuration\n" << reader.getFormatedErrorMessages();
     }
 
-    std::cout << root.asString();
+    std::cout << root;
 }

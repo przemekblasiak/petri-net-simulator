@@ -24,10 +24,10 @@ void MainWindow::on_actionOpen_project_triggered()
 {
     QString filename = QFileDialog::getOpenFileName(this, "Open Image", ".", "JSON Files (*.json)");
     currentProjectFilePath=filename;
-    dataHandler.loadData(currentProjectFilePath.toStdString());
+    dataHandler.load(currentProjectFilePath.toStdString(), this->places, this->transitions, this->arrows);
 }
 
 void MainWindow::on_actionSave_project_triggered()
 {
-    dataHandler.saveData(currentProjectFilePath.toStdString());
+    dataHandler.save(currentProjectFilePath.toStdString(), this->places, this->transitions, this->arrows);
 }

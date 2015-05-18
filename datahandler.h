@@ -10,21 +10,23 @@
 #include <iostream>
 #include <fstream>
 
+#include <QList>
+
 #include "place.h"
 #include "transition.h"
+#include "arrow.h"
 
 class DataHandler
 {
 public:
     DataHandler();
 
-    void saveData(std::string fileName);
-    void loadData(std::string fileName);
+    void save(std::string fileName, QList<Place *> places, QList<Transition *> transitions, QList<Arrow *> arrows);
+    void load(std::string fileName, QList<Place *> places, QList<Transition *> transitions, QList<Arrow *> arrows);
 
 private:
     Json::Reader reader;
     Json::StyledWriter writer;
-    std::string fileName;
 };
 
 #endif // DATAHANDLER_H

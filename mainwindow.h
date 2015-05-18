@@ -6,7 +6,7 @@
 
 namespace Ui
 {
-class MainWindow;
+    class MainWindow;
 }
 
 class MainWindow : public QMainWindow
@@ -17,9 +17,9 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    QList<QObject *> places;
-    QList<QObject *> transitions;
-    QList<QObject *> arrows;
+    QList<Place *> places;
+    QList<Transition *> transitions;
+    QList<Arrow *> arrows;
 
 private slots:
     void on_actionNew_Project_triggered();

@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    dataHandler = DataHandler();
 }
 
 MainWindow::~MainWindow()
@@ -23,11 +24,11 @@ void MainWindow::on_actionNew_Project_triggered()
 void MainWindow::on_actionOpen_project_triggered()
 {
     QString filename = QFileDialog::getOpenFileName(this, "Open Image", ".", "Image Files (*.png *.jpg *.bmp)");
-    //    davidLoadOperation(filename);
+    dataHandler.loadData(filename.toStdString());
     currentProjectFilePath=filename;
 }
 
 void MainWindow::on_actionSave_project_triggered()
 {
-    //    davidSaveOperation(currentProjectFilePath);
+    //dataHandler.saveData(filename.toStdString());
 }

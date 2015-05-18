@@ -2,9 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "datahandler.h"
 
-namespace Ui {
-class MainWindow;
+namespace Ui
+{
+    class MainWindow;
 }
 
 class MainWindow : public QMainWindow
@@ -25,6 +27,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QString currentProjectFilePath;
+    DataHandler dataHandler;
 };
 
 #endif // MAINWINDOW_H

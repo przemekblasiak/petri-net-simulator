@@ -2,17 +2,17 @@
 
 DataHandler::DataHandler()
 {
-    saveFilePath = "save.json";
+    fileName = "save.json";
 }
 
-void DataHandler::saveData()
+void DataHandler::saveData(std::string fileName)
 {
     Json::Value root;
     Json::Value places(Json::arrayValue);
 
-    Place *p1 = new Place(23, 45);
-    Place *p2 = new Place(34, 4545);
-    Place *p3 = new Place(345, 33);
+    Place *p1 = new Place(23, 45, 0);
+    Place *p2 = new Place(34, 4545, 0);
+    Place *p3 = new Place(345, 33, 0);
 
     Json::Value place1;
     place1["id"] = p1->id;
@@ -43,8 +43,12 @@ void DataHandler::saveData()
     delete p3;
 
     std::ofstream saveFile;
-    saveFile.open(saveFilePath);
+    saveFile.open(fileName.c_str());
     saveFile << writer.write(root);
     saveFile.close();
 }
 
+void DataHandler::loadData(std::string fileName)
+{
+
+}

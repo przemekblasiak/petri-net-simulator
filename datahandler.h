@@ -7,23 +7,24 @@
 
 #include <json/include/json/json.h>
 
-#include "place.h"
-#include "transition.h"
 #include <iostream>
 #include <fstream>
+
+#include "place.h"
+#include "transition.h"
 
 class DataHandler
 {
 public:
     DataHandler();
 
-    void saveData();
-    void loadData();
+    void saveData(std::string fileName);
+    void loadData(std::string fileName);
 
 private:
     Json::Reader reader;
     Json::StyledWriter writer;
-    std::string saveFilePath;
+    std::string fileName;
 };
 
 #endif // DATAHANDLER_H

@@ -4,6 +4,7 @@
 #include "node.h"
 #include <QtGui>
 
+// x to jest x środka, tak samo y
 class Place : public Node
 {
     Q_OBJECT

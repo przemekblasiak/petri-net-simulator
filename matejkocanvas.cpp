@@ -45,14 +45,19 @@ void MatejkoCanvas::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     painter.setPen(Qt::black);
+    QFont font = painter.font();
+    font.setPointSize(16);
+    painter.setFont(font);
 
     // Draw places
-    for (int i = 0; i < this->places.count(); ++i) {
+    // TODO: zmienic length na count
+    for (int i = 0; i < this->places.length(); ++i) {
         this->places[i]->draw(painter);
+        qDebug() << this->places.length();
     }
 
     // Draw transitions
-    for (int i = 0; i < this->places.count(); ++i) {
+    for (int i = 0; i < this->transitions.length(); ++i) {
         this->transitions[i]->draw(painter);
     }
 }
@@ -62,6 +67,10 @@ void MatejkoCanvas::mousePressEvent(QMouseEvent *event)
     if (event->button() == Qt::LeftButton) {
         QPoint mouse = event->pos();
         qDebug() << "Clicked: x=" << mouse.x() << ", y=" << mouse.y();
+
+        // TODO: Move this logic to context menu
+        this->places.append(new Place(mouse.x(), mouse.y(), 0));
+        this->update();
     } else if (event->button() == Qt::RightButton){
     }
 }

@@ -5,8 +5,8 @@
 Transition::Transition(int x, int y) :
     Node(x, y)
 {
-    this->width = 25;
-    this->height = 50;
+    this->width = 20;
+    this->height = 40;
 }
 
 Transition::Transition(int id, int x, int y) :

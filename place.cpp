@@ -1,11 +1,5 @@
 #include "place.h"
 
-Place::Place(int x, int y) :
-    Node(x, y),
-    liveness(0)
-{
-}
-
 Place::Place(int x, int y, int liveness) :
     Node(x, y),
     liveness(liveness)

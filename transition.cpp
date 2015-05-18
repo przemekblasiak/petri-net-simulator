@@ -2,15 +2,9 @@
 
 #include <QtGui>
 
-Transition::Transition()
-{
-
-}
-
 Transition::Transition(int x, int y):
     Node(x, y)
 {
-
 }
 
 void Transition::draw(QPainter *painter)

@@ -12,6 +12,7 @@ class Transition : public Node
 
 public:
     Transition(int x, int y);
+    Transition(int id, int x, int y);
 
     void draw(QPainter &painter);
 private:

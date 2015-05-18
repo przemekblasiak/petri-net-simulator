@@ -6,7 +6,7 @@ DataHandler::DataHandler()
 
 }
 
-void DataHandler::save(std::string fileName, QList<Place *> places, QList<Transition *> transitions, QList<Arrow *> arrows)
+void DataHandler::save(std::string fileName, QList<Place *> &places, QList<Transition *> &transitions, QList<Arrow *> &arrows)
 {
     Json::Value root;
     Json::Value p(Json::arrayValue);
@@ -49,8 +49,13 @@ void DataHandler::save(std::string fileName, QList<Place *> places, QList<Transi
     saveFile.close();
 }
 
-void DataHandler::load(std::string fileName, QList<Place *> places, QList<Transition *> transitions, QList<Arrow *> arrows)
+void DataHandler::load(std::string fileName, QList<Place *> &places, QList<Transition *> &transitions, QList<Arrow *> &arrows)
 {
+        //TODO clearfunction private
+    places.clear();
+    transitions.clear();
+    arrows.clear();
+
     Json::Value root;
     std::ifstream loadFile(fileName.c_str());
     bool parsed = reader.parse(loadFile, root, false);
@@ -60,5 +65,65 @@ void DataHandler::load(std::string fileName, QList<Place *> places, QList<Transi
         std::cout  << "Failed to parse configuration\n" << reader.getFormatedErrorMessages();
     }
 
-    std::cout << root;
+    const int noOfPlaces = (int) root["places"].size();
+    const Json::Value json_places = root["places"];
+    for (int i = 0; i < noOfPlaces; ++i)
+    {
+        const Json::Value current = json_places[Json::Value::UInt(i)];
+        const int id = current["id"].asInt();
+        const int x = current["x"].asInt();
+        const int y = current["y"].asInt();
+        const int liveness = current["liveness"].asInt();
+
+        Place *tempPlace = new Place(id, x, y, liveness);
+        places.append(tempPlace);
+    }
+
+    const int noOfTransitions = (int) root["transitions"].size();
+    const Json::Value json_transitions = root["transitions"];
+    for (int i = 0; i < noOfTransitions; ++i)
+    {
+        const Json::Value current = json_transitions[Json::Value::UInt(i)];
+        const int id = current["id"].asInt();
+        const int x = current["x"].asInt();
+        const int y = current["y"].asInt();
+
+        Transition *temp = new Transition(id, x, y);
+        transitions.append(temp);
+    }
+
+    const int noOfArrows = (int) root["arrows"].size();
+    const Json::Value json_arrows = root["arrows"];
+    for (int i = 0; i < noOfArrows; ++i)
+    {
+        const Json::Value current = json_arrows[Json::Value::UInt(i)];
+        const int x1 = current["x1"].asInt();
+        const int x2 = current["x2"].asInt();
+        const int y1 = current["y1"].asInt();
+        const int y2 = current["y1"].asInt();
+
+        Arrow *temp = new Arrow(x1, x2, y1, y2);
+        arrows.append(temp);
+    }
+
+    std::cout << "Places:" << std::endl;
+    std::cout << noOfPlaces << std::endl;
+    for (int i = 0; i < places.size(); ++i)
+    {
+        std::cout << places.at(i)->id << ", " << places.at(i)->x << ", " << places.at(i)->y << ", " << places.at(i)->liveness << std::endl;
+    }
+
+    std::cout << std::endl << "Transitions:" << std::endl;
+    std::cout << noOfTransitions << std::endl;
+    for (int i = 0; i < transitions.size(); ++i)
+    {
+        std::cout << transitions.at(i)->id << ", " << transitions.at(i)->x << ", " << transitions.at(i)->y << std::endl;
+    }
+
+    std::cout << std::endl << "Arrows:" << std::endl;
+    std::cout << noOfArrows << std::endl;
+    for (int i = 0; i < arrows.size(); ++i)
+    {
+        std::cout << arrows.at(i)->x1 << ", " << arrows.at(i)->x2 << ", " << arrows.at(i)->y1 << ", " << arrows.at(i)->y2 << std::endl;
+    }
 }

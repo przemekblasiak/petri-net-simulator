@@ -2,8 +2,15 @@
 
 #include <QtGui>
 
-Transition::Transition(int x, int y):
+Transition::Transition(int x, int y) :
     Node(x, y)
+{
+    this->width = 25;
+    this->height = 50;
+}
+
+Transition::Transition(int id, int x, int y) :
+    Node(id, x, y)
 {
     this->width = 25;
     this->height = 50;

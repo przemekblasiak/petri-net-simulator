@@ -9,6 +9,8 @@ class Arrow : public QObject
 
 public:
     explicit Arrow(QObject *parent = 0);
+    Arrow(int x1, int x2, int y1, int y2);
+
     int x1;
     int x2;
     int y1;

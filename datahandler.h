@@ -21,8 +21,8 @@ class DataHandler
 public:
     DataHandler();
 
-    void save(std::string fileName, QList<Place *> places, QList<Transition *> transitions, QList<Arrow *> arrows);
-    void load(std::string fileName, QList<Place *> places, QList<Transition *> transitions, QList<Arrow *> arrows);
+    void save(std::string fileName, QList<Place *> &places, QList<Transition *> &transitions, QList<Arrow *> &arrows);
+    void load(std::string fileName, QList<Place *> &places, QList<Transition *> &transitions, QList<Arrow *> &arrows);
 
 private:
     Json::Reader reader;

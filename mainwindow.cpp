@@ -8,7 +8,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    dataHandler = DataHandler();
 }
 
 MainWindow::~MainWindow()
@@ -18,17 +17,17 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionNew_Project_triggered()
 {
-    currentProjectFilePath = QFileDialog::getSaveFileName(this, "Open Image", ".", "Image Files (*.png *.jpg *.bmp)");
+    currentProjectFilePath = QFileDialog::getSaveFileName(this, "Open Image", ".", "JSON Files (*.json)");
 }
 
 void MainWindow::on_actionOpen_project_triggered()
 {
-    QString filename = QFileDialog::getOpenFileName(this, "Open Image", ".", "Image Files (*.png *.jpg *.bmp)");
-    dataHandler.loadData(filename.toStdString());
+    QString filename = QFileDialog::getOpenFileName(this, "Open Image", ".", "JSON Files (*.json)");
     currentProjectFilePath=filename;
+    dataHandler.loadData(currentProjectFilePath.toStdString());
 }
 
 void MainWindow::on_actionSave_project_triggered()
 {
-    //dataHandler.saveData(filename.toStdString());
+    dataHandler.saveData(currentProjectFilePath.toStdString());
 }

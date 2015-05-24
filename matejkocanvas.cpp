@@ -27,8 +27,10 @@ MatejkoCanvas::MatejkoCanvas(QWidget *parent) : QWidget(parent)
 void MatejkoCanvas::showContextMenu(const QPoint &position) {
     QMenu contextMenu("Context menu", this);
 
-    QAction addPlaceAction("Add place", this);
-    QAction addTransitionAction("Add transition", this);
+    QAction addPlaceAction(this);
+    QAction addTransitionAction(this);
+    addPlaceAction.setText("Add place");
+    addTransitionAction.setText("Add transition");
     addPlaceAction.setData(position);
     addTransitionAction.setData(position);
     contextMenu.addAction(&addPlaceAction);

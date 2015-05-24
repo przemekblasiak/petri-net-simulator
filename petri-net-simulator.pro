@@ -13,7 +13,8 @@ SOURCES += main.cpp \
     json/src/json_reader.cpp \
     json/src/json_value.cpp \
     json/src/json_writer.cpp \
-    place.cpp
+    place.cpp \
+    transition.cpp
 
 # Default rules for deployment.
 include(deployment.pri)
@@ -35,11 +36,13 @@ HEADERS += \
     json/include/json/value.h \
     json/include/json/writer.h \
     json/src/json_batchallocator.h \
-    place.h
+    place.h \
+    transition.h
 
 FORMS += \
     mainwindow.ui \
-    place.ui
+    place.ui \
+    transition.ui
 
 RESOURCES += \
     resources.qrc

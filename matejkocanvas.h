@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "place.h"
+#include "transition.h"
 
 class MatejkoCanvas : public QWidget
 {
@@ -22,6 +23,7 @@ private:
     void mousePressEvent(QMouseEvent *event);
 
     QList<Place *> places;
+    QList<Transition *> transitions;
 
     enum ContextActionType {
         AddPlace,

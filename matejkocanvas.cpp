@@ -50,12 +50,21 @@ void MatejkoCanvas::contextActionTriggered(QAction *action) {
         this->places.append(newPlace);
     } else if (actionType == AddTransition) {
         // TODO: Add transition
+        Transition *newTransition = new Transition(position.x(), position.y(), this);
+        this->transitions.append(newTransition);
     }
 }
 
 void MatejkoCanvas::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton) {
+        // Rozpoznawanie jaki obiekt leży poniżej
+        QObject *object = childAt(event->pos());
+        if (qobject_cast<Place *>(object))
+            qDebug() << "is Place";
+        else if (qobject_cast<Transition *>(object))
+            qDebug() << "is Transition";
+
     } else if (event->button() == Qt::RightButton){
     }
 }

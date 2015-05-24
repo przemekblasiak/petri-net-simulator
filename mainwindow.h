@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "datahandler.h"
 #include "place.h"
+#include "transition.h"
 #include "matejkocanvas.h"
 
 namespace Ui
@@ -20,6 +21,7 @@ public:
     ~MainWindow();
 
     QList<Place *> places;
+    QList<Transition *> transitions;
 
 private slots:
     void on_actionNew_Project_triggered();

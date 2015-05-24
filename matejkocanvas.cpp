@@ -29,10 +29,29 @@ void MatejkoCanvas::showContextMenu(const QPoint &position) {
 
     QAction addPlaceAction("Add place", this);
     QAction addTransitionAction("Add transition", this);
+    addPlaceAction.setData(position);
+    addTransitionAction.setData(position);
     contextMenu.addAction(&addPlaceAction);
     contextMenu.addAction(&addTransitionAction);
+    connect(&contextMenu, SIGNAL(triggered(QAction *)),
+            this, SLOT(contextActionTriggered(QAction *)));
 
     contextMenu.exec(this->mapToGlobal(position));
+}
+
+void MatejkoCanvas::contextActionTriggered(QAction *action) {
+    QPoint position = action->data().toPoint();
+
+    // TODO: Boże, wybacz!
+    if (action->text() == "Add place") {
+        Place *place = new Place(position.x(), position.y(), 0);
+        this->places.append(place);
+    } else if (action->text() == "Add transition") {
+        Transition *transition = new Transition(position.x(), position.y());
+        this->transitions.append(transition);
+    }
+
+    this->update();
 }
 
 void MatejkoCanvas::setupPalette() {

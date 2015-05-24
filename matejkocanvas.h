@@ -15,6 +15,7 @@ signals:
 
 public slots:
     void showContextMenu(const QPoint &);
+    void contextActionTriggered(QAction *);
 
 private:
     // Painting

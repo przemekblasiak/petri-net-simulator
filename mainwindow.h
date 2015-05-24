@@ -26,6 +26,12 @@ private slots:
     void on_actionOpen_project_triggered();
     void on_actionSave_project_triggered();
 
+    void on_actionNextTransition_triggered();
+
+    void on_actionPreviousTransition_triggered();
+
+    void on_actionExecuteTransition_triggered();
+
 private:
     Ui::MainWindow *ui;
     QString currentProjectFilePath;

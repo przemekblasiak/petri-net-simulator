@@ -4,9 +4,7 @@
 #include <QObject>
 #include <QList>
 
-#include "node.h"
 #include "place.h"
-#include "transition.h"
 #include "arrow.h"
 
 class Engine : public QObject
@@ -17,7 +15,6 @@ public:
     static Engine& getInstance();
 
     QList<QObject *> places;
-    QList<QObject *> transitions;
     QList<QObject *> arrows;
 
 

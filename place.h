@@ -1,23 +1,26 @@
 #ifndef PLACE_H
 #define PLACE_H
 
-#include "node.h"
-#include <QtGui>
+#include <QFrame>
 
-// x to jest x środka, tak samo y
-class Place : public Node
+namespace Ui {
+class Place;
+}
+
+class Place : public QFrame
 {
     Q_OBJECT
 
 public:
-    Place(int x, int y, int liveness);
-    Place(int id, int x, int y, int liveness);
-
-    void draw(QPainter &painter);
+    explicit Place(int x, int y, int liveness, QWidget *parent = 0);
+    ~Place();
 
     int liveness;
+    static int defaultWidth;
+    static int defaultHeight;
+
 private:
-    int radius;
+    Ui::Place *ui;
 };
 
 #endif // PLACE_H

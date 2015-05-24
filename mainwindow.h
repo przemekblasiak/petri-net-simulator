@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include "datahandler.h"
+#include "place.h"
+#include "matejkocanvas.h"
 
 namespace Ui
 {
@@ -18,8 +20,6 @@ public:
     ~MainWindow();
 
     QList<Place *> places;
-    QList<Transition *> transitions;
-    QList<Arrow *> arrows;
 
 private slots:
     void on_actionNew_Project_triggered();
@@ -30,6 +30,7 @@ private:
     Ui::MainWindow *ui;
     QString currentProjectFilePath;
     DataHandler dataHandler;
+    MatejkoCanvas *matejkoCanvas;
 };
 
 #endif // MAINWINDOW_H

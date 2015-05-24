@@ -1,21 +1,19 @@
 #include "place.h"
+#include "ui_place.h"
 
-Place::Place(int x, int y, int liveness) :
-    Node(x, y),
-    liveness(liveness)
+int Place::defaultWidth = 30;
+int Place::defaultHeight = 30;
+
+Place::Place(int x, int y, int liveness, QWidget *parent) :
+    QFrame(parent), liveness(liveness),
+    ui(new Ui::Place)
 {
-    this->radius = 10;
+    ui->setupUi(this);
+    this->setGeometry(x - defaultWidth/2, y - defaultHeight/2, defaultWidth, defaultHeight);
+    this->show();
 }
 
-Place::Place(int id, int x, int y, int liveness) :
-    Node(id, x, y),
-    liveness(liveness)
+Place::~Place()
 {
-    this->radius = 10;
-}
-
-void Place::draw(QPainter &painter)
-{
-    painter.drawEllipse(QPoint(this->x - this->radius, this->y - this->radius), this->radius * 2, this->radius * 2);
-    painter.drawText(QPoint(this->x - this->radius, this->y - this->radius), QString::number(this->liveness));
+    delete ui;
 }

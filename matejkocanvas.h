@@ -3,7 +3,6 @@
 
 #include <QWidget>
 #include "place.h"
-#include "transition.h"
 
 class MatejkoCanvas : public QWidget
 {
@@ -18,16 +17,16 @@ public slots:
     void contextActionTriggered(QAction *);
 
 private:
-    // Painting
-    void paintEvent(QPaintEvent *);
-    void setupPalette();
 
     // Mouse
     void mousePressEvent(QMouseEvent *event);
 
-    // TODO: Take places and transitions form MainWindow, BITCH!!!!!
     QList<Place *> places;
-    QList<Transition *> transitions;
+
+    enum ContextActionType {
+        AddPlace,
+        AddTransition
+    };
 };
 
 #endif // MATEJKOCANVAS_H

@@ -5,6 +5,7 @@
 #include <QList>
 #include <QDebug>
 #include <QMenu>
+#include <QIcon>
 
 MatejkoCanvas::MatejkoCanvas(QWidget *parent) : QWidget(parent)
 {

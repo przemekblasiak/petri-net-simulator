@@ -7,5 +7,7 @@
         <file>images/arrow_left.svg</file>
         <file>images/arrow_right.svg</file>
         <file>images/play.svg</file>
+        <file>images/place.svg</file>
+        <file>images/transition.svg</file>
     </qresource>
 </RCC>

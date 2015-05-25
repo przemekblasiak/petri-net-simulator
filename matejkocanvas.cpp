@@ -48,11 +48,10 @@ void MatejkoCanvas::contextActionTriggered(QAction *action) {
 
     if (actionType == AddPlace) {
         Place *newPlace = new Place(position.x(), position.y(), 0, this);
-        this->places.append(newPlace);
+        this->places->append(newPlace);
     } else if (actionType == AddTransition) {
-        // TODO: Add transition
         Transition *newTransition = new Transition(position.x(), position.y(), this);
-        this->transitions.append(newTransition);
+        this->transitions->append(newTransition);
     }
 }
 

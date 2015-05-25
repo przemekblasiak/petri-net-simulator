@@ -5,7 +5,6 @@ QT += gui widgets
 QMAKE_CXXFLAGS += -std=c++11
 
 SOURCES += main.cpp \
-    arrow.cpp \
     engine.cpp \
     mainwindow.cpp \
     matejkocanvas.cpp \
@@ -14,7 +13,8 @@ SOURCES += main.cpp \
     json/src/json_value.cpp \
     json/src/json_writer.cpp \
     place.cpp \
-    transition.cpp
+    transition.cpp \
+    arrow.cpp
 
 # Default rules for deployment.
 include(deployment.pri)
@@ -22,7 +22,6 @@ include(deployment.pri)
 INCLUDEPATH += $$PWD/json/include
 
 HEADERS += \
-    arrow.h \
     engine.h \
     mainwindow.h \
     matejkocanvas.h \
@@ -37,12 +36,14 @@ HEADERS += \
     json/include/json/writer.h \
     json/src/json_batchallocator.h \
     place.h \
-    transition.h
+    transition.h \
+    arrow.h
 
 FORMS += \
     mainwindow.ui \
     place.ui \
-    transition.ui
+    transition.ui \
+    arrow.ui
 
 RESOURCES += \
     resources.qrc

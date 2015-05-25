@@ -6,6 +6,7 @@
 #include "place.h"
 #include "transition.h"
 #include "matejkocanvas.h"
+#include "arrow.h"
 
 namespace Ui
 {
@@ -22,6 +23,8 @@ public:
 
     QList<Place *> places;
     QList<Transition *> transitions;
+    QList<Arrow *> arrows;
+
 
 private slots:
     void on_actionNew_Project_triggered();

@@ -4,12 +4,18 @@
 #include <QWidget>
 #include "place.h"
 #include "transition.h"
+#include "arrow.h"
+
 
 class MatejkoCanvas : public QWidget
 {
     Q_OBJECT
 public:
     explicit MatejkoCanvas(QWidget *parent = 0);
+
+    QList<Place *> *places;
+    QList<Transition *> *transitions;
+    QList<Arrow *> *arrows;
 
 signals:
 
@@ -21,9 +27,6 @@ private:
 
     // Mouse
     void mousePressEvent(QMouseEvent *event);
-
-    QList<Place *> places;
-    QList<Transition *> transitions;
 
     enum ContextActionType {
         AddPlace,

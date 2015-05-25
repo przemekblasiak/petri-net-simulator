@@ -9,5 +9,6 @@
         <file>images/play.svg</file>
         <file>images/place.svg</file>
         <file>images/transition.svg</file>
+        <file>images/arrowhead.svg</file>
     </qresource>
 </RCC>

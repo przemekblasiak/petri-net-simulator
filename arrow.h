@@ -1,20 +1,23 @@
 #ifndef ARROW_H
 #define ARROW_H
 
-#include <QObject>
+#include <QFrame>
 
-class Arrow : public QObject
+namespace Ui {
+class Arrow;
+}
+
+class Arrow : public QFrame
 {
     Q_OBJECT
 
 public:
-    explicit Arrow(QObject *parent = 0);
-    Arrow(int x1, int x2, int y1, int y2);
+    explicit Arrow(int x, int y, int x2, int y2, QWidget *parent = 0);
+    // TODO przerobic klasy zeby uzywaly QPoint
+    ~Arrow();
 
-    int x1;
-    int x2;
-    int y1;
-    int y2;
+private:
+    Ui::Arrow *ui;
 };
 
 #endif // ARROW_H

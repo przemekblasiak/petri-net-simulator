@@ -1,17 +1,17 @@
 #include "arrow.h"
+#include "ui_arrow.h"
 
-Arrow::Arrow(QObject *parent) : QObject(parent)
+Arrow::Arrow(int x, int y, int x2, int y2, QWidget *parent):
+    QFrame(parent),
+    ui(new Ui::Arrow)
 {
-    this->x1 = 0;
-    this->x2 = 0;
-    this->y1 = 0;
-    this->y2 = 0;
+    ui->setupUi(this);
+    setGeometry(x, y, x2-x, this->height());
+
+    this->show();
 }
 
-Arrow::Arrow(int x1, int x2, int y1, int y2)
+Arrow::~Arrow()
 {
-    this->x1 = x1;
-    this->x2 = x2;
-    this->y1 = y1;
-    this->y2 = y2;
+    delete ui;
 }

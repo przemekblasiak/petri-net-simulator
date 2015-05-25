@@ -12,6 +12,7 @@ class MatejkoCanvas : public QWidget
     Q_OBJECT
 public:
     explicit MatejkoCanvas(QWidget *parent = 0);
+    // TODO copy constructor
 
     QList<Place *> *places;
     QList<Transition *> *transitions;
@@ -24,6 +25,7 @@ public slots:
     void contextActionTriggered(QAction *);
 
 private:
+    Arrow tmpArrow;
 
     // Mouse
     void mousePressEvent(QMouseEvent *event);

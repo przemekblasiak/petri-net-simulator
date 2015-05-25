@@ -42,8 +42,7 @@ HEADERS += \
 FORMS += \
     mainwindow.ui \
     place.ui \
-    transition.ui \
-    arrow.ui
+    transition.ui
 
 RESOURCES += \
     resources.qrc

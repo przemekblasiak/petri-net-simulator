@@ -9,9 +9,20 @@ Place::Place(int x, int y, int liveness, QWidget *parent) :
     this->setGeometry(x - this->width()/2, y - this->height()/2, this->width(), this->height());
     ui->livenessLabel->setText(QString::number(liveness));
     this->show();
+    this->makeChildrenNotClickable();
 }
 
 Place::~Place()
 {
     delete ui;
+}
+
+void Place::makeChildrenNotClickable()
+{
+    foreach (QObject* child, this->children()) {
+        QWidget *widget = qobject_cast<QWidget *>(child);
+        if (widget){
+            widget->setAttribute(Qt::WA_TransparentForMouseEvents);
+        }
+    }
 }

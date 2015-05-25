@@ -14,6 +14,7 @@ class Place : public QFrame
 public:
     explicit Place(int x, int y, int liveness, QWidget *parent = 0);
     ~Place();
+    void makeChildrenNotClickable();
 
     int liveness;
     static int defaultWidth;

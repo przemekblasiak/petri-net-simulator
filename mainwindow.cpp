@@ -22,9 +22,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->transitions.append(new Transition(150, 100, matejkoCanvas));
     this->transitions.append(new Transition(100, 40, matejkoCanvas));
 
-    this->arrows.append(new Arrow(40, 40, 100, 100, matejkoCanvas));
-    this->arrows.append(new Arrow(50, 50, 10, 100, matejkoCanvas));
-    this->arrows.append(new Arrow(300, 300, 500, 300, matejkoCanvas));
+
 
     QWidget* leftSpacer = new QWidget(this);
     QWidget* rightSpacer = new QWidget(this);

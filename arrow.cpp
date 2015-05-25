@@ -1,17 +1,20 @@
 #include "arrow.h"
-#include "ui_arrow.h"
 
-Arrow::Arrow(int x, int y, int x2, int y2, QWidget *parent):
-    QFrame(parent),
-    ui(new Ui::Arrow)
+Arrow::Arrow(Place *place, Transition *transition, bool fromPlaceToTransition, QObject *parent):
+    QObject(parent), place(place), transition(transition), fromPlaceToTransition(fromPlaceToTransition)
 {
-    ui->setupUi(this);
-    setGeometry(x, y, x2-x, this->height());
 
-    this->show();
 }
 
-Arrow::~Arrow()
+Arrow::Arrow(QObject *parent): QObject(parent), fromPlaceToTransition(true)
 {
-    delete ui;
+
 }
+
+void Arrow::clear()
+{
+    place = NULL;
+    transition = NULL;
+    fromPlaceToTransition = true;
+}
+

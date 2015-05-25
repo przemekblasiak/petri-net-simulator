@@ -60,10 +60,29 @@ void MatejkoCanvas::mousePressEvent(QMouseEvent *event)
     if (event->button() == Qt::LeftButton) {
         // Rozpoznawanie jaki obiekt leży poniżej
         QObject *object = childAt(event->pos());
-        if (qobject_cast<Place *>(object))
+        Place *place = qobject_cast<Place *>(object);
+        Transition *transition = qobject_cast<Transition *>(object);
+
+        if (place){
             qDebug() << "is Place";
-        else if (qobject_cast<Transition *>(object))
+            if (this->tmpArrow.place){
+                this->tmpArrow.clear();
+            }
+            else if (this->tmpArrow.transition){
+                this->tmpArrow.place=place;
+                // TODO use copy constructor instead
+                Arrow *newArrow = new Arrow(this->tmpArrow.place, this->tmpArrow.transition, this->tmpArrow.fromPlaceToTransition, this);
+                this->tmpArrow.clear();
+            }
+            else {
+                this->tmpArrow.place = place;
+                this->tmpArrow.fromPlaceToTransition = true;
+            }
+        }
+        // TODO transitions
+        else if (transition){
             qDebug() << "is Transition";
+        }
 
     } else if (event->button() == Qt::RightButton){
     }

@@ -1,23 +1,26 @@
 #ifndef ARROW_H
 #define ARROW_H
 
-#include <QFrame>
+#include <QObject>
+#include "place.h"
+#include "transition.h"
 
-namespace Ui {
-class Arrow;
-}
-
-class Arrow : public QFrame
+class Arrow : public QObject
 {
     Q_OBJECT
-
 public:
-    explicit Arrow(int x, int y, int x2, int y2, QWidget *parent = 0);
-    // TODO przerobic klasy zeby uzywaly QPoint
-    ~Arrow();
+    explicit Arrow(Place *place, Transition *transition, bool fromPlaceToTransition, QObject *parent = 0);
+    explicit Arrow(QObject *parent = 0);
+    void clear();
+    Place *place;
+    Transition *transition;
 
-private:
-    Ui::Arrow *ui;
+    bool fromPlaceToTransition;
+
+signals:
+
+public slots:
+
 };
 
 #endif // ARROW_H

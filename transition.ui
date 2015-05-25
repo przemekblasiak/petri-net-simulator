@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>30</width>
-    <height>45</height>
+    <height>50</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,13 +19,13 @@
   <property name="minimumSize">
    <size>
     <width>30</width>
-    <height>45</height>
+    <height>50</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>30</width>
-    <height>45</height>
+    <height>50</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -33,8 +33,9 @@
   </property>
   <property name="styleSheet">
    <string notr="true">border-style: outset;
-border-width: 2;
-border-color: black;</string>
+border-width: 5 1 5 1;
+border-color: black;
+border-radius: 10;</string>
   </property>
   <property name="frameShape">
    <enum>QFrame::NoFrame</enum>

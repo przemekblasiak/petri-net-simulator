@@ -25,8 +25,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>2060</width>
-         <height>2060</height>
+         <width>1932</width>
+         <height>1092</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -72,7 +72,6 @@
    <addaction name="actionNew_Project"/>
    <addaction name="actionOpen_project"/>
    <addaction name="actionSave_project"/>
-   <addaction name="actionRun"/>
   </widget>
   <widget class="QToolBar" name="simulationToolBar">
    <property name="windowTitle">
@@ -93,7 +92,7 @@
   </widget>
   <action name="actionOpen_project">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset theme="document-open" resource="resources.qrc">
      <normaloff>:/images/images/open_project.svg</normaloff>:/images/images/open_project.svg</iconset>
    </property>
    <property name="text">
@@ -105,7 +104,7 @@
   </action>
   <action name="actionSave_project">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset theme="document-save" resource="resources.qrc">
      <normaloff>:/images/images/save_project.svg</normaloff>:/images/images/save_project.svg</iconset>
    </property>
    <property name="text">
@@ -115,24 +114,9 @@
     <string>Save current project</string>
    </property>
   </action>
-  <action name="actionRun">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/images/images/run_simulation.svg</normaloff>:/images/images/run_simulation.svg</iconset>
-   </property>
-   <property name="text">
-    <string>Run</string>
-   </property>
-   <property name="toolTip">
-    <string>Run simulation</string>
-   </property>
-  </action>
   <action name="actionNew_Project">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset theme="document-new" resource="resources.qrc">
      <normaloff>:/images/images/new_project.svg</normaloff>:/images/images/new_project.svg</iconset>
    </property>
    <property name="text">
@@ -144,7 +128,7 @@
   </action>
   <action name="actionNextTransition">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset theme="go-next" resource="resources.qrc">
      <normaloff>:/images/images/arrow_right.svg</normaloff>:/images/images/arrow_right.svg</iconset>
    </property>
    <property name="text">
@@ -156,7 +140,7 @@
   </action>
   <action name="actionPreviousTransition">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset theme="go-previous" resource="resources.qrc">
      <normaloff>:/images/images/arrow_left.svg</normaloff>:/images/images/arrow_left.svg</iconset>
    </property>
    <property name="text">
@@ -168,7 +152,7 @@
   </action>
   <action name="actionExecuteTransition">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset theme="media-playback-start" resource="resources.qrc">
      <normaloff>:/images/images/play.svg</normaloff>:/images/images/play.svg</iconset>
    </property>
    <property name="text">

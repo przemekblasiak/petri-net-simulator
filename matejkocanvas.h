@@ -34,6 +34,9 @@ private:
         AddPlace,
         AddTransition
     };
+    void constructArrow(Place *place, Transition *transition, bool fromPlaceToTransition = true);
+    void paintEvent(QPaintEvent *event);
+    void setupPalette();
 };
 
 #endif // MATEJKOCANVAS_H

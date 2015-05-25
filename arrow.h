@@ -4,6 +4,7 @@
 #include <QObject>
 #include "place.h"
 #include "transition.h"
+#include <QPainter>
 
 class Arrow : public QObject
 {
@@ -11,12 +12,14 @@ class Arrow : public QObject
 public:
     explicit Arrow(Place *place, Transition *transition, bool fromPlaceToTransition, QObject *parent = 0);
     explicit Arrow(QObject *parent = 0);
+    Arrow(const Arrow &arrow);
     void clear();
     Place *place;
     Transition *transition;
 
     bool fromPlaceToTransition;
 
+    void draw(QPainter &painter) const;
 signals:
 
 public slots:

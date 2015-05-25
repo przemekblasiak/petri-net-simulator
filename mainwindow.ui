@@ -157,6 +157,9 @@
    </property>
   </action>
   <action name="actionExecuteTransition">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset theme="media-playback-start" resource="resources.qrc">
      <normaloff>:/images/images/play.svg</normaloff>:/images/images/play.svg</iconset>

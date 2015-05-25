@@ -59,6 +59,7 @@ border-color: black;</string>
     <widget class="QLabel" name="nameLabel">
      <property name="font">
       <font>
+       <family>Helvetica Neue</family>
        <pointsize>8</pointsize>
       </font>
      </property>

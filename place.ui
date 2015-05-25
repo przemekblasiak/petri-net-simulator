@@ -67,6 +67,11 @@ padding: 0;</string>
        <height>10</height>
       </size>
      </property>
+     <property name="font">
+      <font>
+       <family>Helvetica Neue</family>
+      </font>
+     </property>
      <property name="styleSheet">
       <string notr="true">border-style: none;</string>
      </property>
@@ -82,6 +87,11 @@ padding: 0;</string>
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <family>Helvetica Neue</family>
+      </font>
      </property>
      <property name="styleSheet">
       <string notr="true">border-width: 0;</string>
@@ -113,6 +123,7 @@ padding: 0;</string>
      </property>
      <property name="font">
       <font>
+       <family>Helvetica Neue</family>
        <pointsize>8</pointsize>
       </font>
      </property>

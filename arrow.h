@@ -5,6 +5,7 @@
 #include "place.h"
 #include "transition.h"
 #include <QPainter>
+#include <QImage>
 
 class Arrow : public QObject
 {
@@ -24,6 +25,8 @@ signals:
 
 public slots:
 
+private:
+    QImage arrowheadImage;
 };
 
 #endif // ARROW_H

@@ -1,19 +1,22 @@
 #include "arrow.h"
 #include <QDebug>
+#include <QRect>
 
 Arrow::Arrow(Place *place, Transition *transition, bool fromPlaceToTransition, QObject *parent):
     QObject(parent), place(place), transition(transition), fromPlaceToTransition(fromPlaceToTransition)
 {
-
+    arrowheadImage.load(":/images/images/arrowhead.png");
 }
 
 Arrow::Arrow(QObject *parent): QObject(parent), fromPlaceToTransition(true)
 {
-
+    arrowheadImage.load(":/images/images/arrowhead.png");
 }
 
 Arrow::Arrow(const Arrow &arrow)
 {
+    arrowheadImage.load(":/images/images/arrowhead.png");
+
     this->setParent(arrow.parent());
     this->place = arrow.place;
     this->transition = arrow.transition;
@@ -27,7 +30,7 @@ void Arrow::clear()
     fromPlaceToTransition = true;
 }
 
-void Arrow::draw(QPainter &painter) const {    
+void Arrow::draw(QPainter &painter) const {
     QPoint placeMiddle = QPoint(this->place->x() + this->place->width()/2, this->place->y() + this->place->height()/2);
     QPoint transitionMiddle = QPoint(this->transition->x() + this->transition->width()/2, this->transition->y() + this->transition->height()/2);
     QPoint *middle1, *middle2;
@@ -61,6 +64,7 @@ void Arrow::draw(QPainter &painter) const {
         vertical = false;
     }
 
+    // Identify points
     QVector<QPoint> checkPoints(6);
     if (vertical) {
         bool overlapsX = middle1->x() >= (middle2->x() - width2/2) && middle1->x() <= (middle2->x() + width2/2);
@@ -105,6 +109,41 @@ void Arrow::draw(QPainter &painter) const {
         }
     }
 
+    // Draw lines
     painter.drawLines(checkPoints);
+
+    // Rotate and move arrow
+    QPoint secondLast = checkPoints[checkPoints.count() - 2];
+    QPoint last = checkPoints.last();
+    QTransform transformation;
+    QImage arrowhead = this->arrowheadImage;
+    QPoint imagePosition(last.x() - arrowhead.width()/2, last.y() - arrowhead.height()/2);
+    bool verticalDirection = last.x() - secondLast.x() == 0;
+    if (verticalDirection) {
+        bool up = last.y() - secondLast.y() > 0 ? false : true;
+        if (up) {
+            transformation.rotate(90, Qt::ZAxis);
+            arrowhead = arrowhead.transformed(transformation);
+            imagePosition.setY(imagePosition.y() + arrowhead.height()/2);
+        }
+        else {
+            transformation.rotate(-90, Qt::ZAxis);
+            arrowhead = arrowhead.transformed(transformation);
+            imagePosition.setY(imagePosition.y() - arrowhead.height()/2);
+        }
+    }
+    else {
+        bool right = last.x() - secondLast.x() > 0 ? true : false;
+        if (right) {
+            transformation.rotate(180, Qt::YAxis);
+            arrowhead = arrowhead.transformed(transformation);
+            imagePosition.setX(imagePosition.x() - arrowhead.width()/2);
+        } else {
+            imagePosition.setX(imagePosition.x() + arrowhead.width()/2);
+        }
+    }
+
+    // Draw arrow
+    painter.drawImage(imagePosition, arrowhead);
 }
 

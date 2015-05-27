@@ -3,6 +3,9 @@
 
 #include <QFrame>
 
+const QString TransitionStyleSheet = "border-style: outset;"\
+                                     "border-width: 6 1 6 1;";
+
 namespace Ui {
 class Transition;
 }
@@ -16,8 +19,12 @@ public:
     ~Transition();
     void makeChildrenNotClickable();
 
+    bool isClicked() const;
+    void setClicked(bool clicked);
+
 private:
     Ui::Transition *ui;
+    bool clicked;
 };
 
 #endif // TRANSITION_H

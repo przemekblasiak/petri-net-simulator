@@ -87,7 +87,7 @@ void MatejkoCanvas::paintEvent(QPaintEvent *event) {
 
 void MatejkoCanvas::constructArrow(Place *place, Transition *transition, bool fromPlaceToTransition) {
     Arrow *newArrow = NULL;
-
+    qDebug() << this->tmpArrow.place << this->tmpArrow.transition;
     if (place && transition) {
         this->tmpArrow.place = place;
         this->tmpArrow.transition = transition;
@@ -100,12 +100,13 @@ void MatejkoCanvas::constructArrow(Place *place, Transition *transition, bool fr
             this->tmpArrow.clear();
         }
         else if (this->tmpArrow.transition){
-            this->tmpArrow.place=place;
+            this->tmpArrow.place = place;
             newArrow = new Arrow(this->tmpArrow);
             this->tmpArrow.clear();
         }
         else {
             this->tmpArrow.place = place;
+            this->tmpArrow.place->setClicked(true);
             this->tmpArrow.fromPlaceToTransition = true;
         }
     }
@@ -114,12 +115,13 @@ void MatejkoCanvas::constructArrow(Place *place, Transition *transition, bool fr
             this->tmpArrow.clear();
         }
         else if (this->tmpArrow.place){
-            this->tmpArrow.transition=transition;
+            this->tmpArrow.transition = transition;
             newArrow = new Arrow(this->tmpArrow);
             this->tmpArrow.clear();
         }
         else {
             this->tmpArrow.transition = transition;
+            this->tmpArrow.transition->setClicked(true);
             this->tmpArrow.fromPlaceToTransition = false;
         }
     }

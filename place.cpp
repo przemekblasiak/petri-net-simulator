@@ -26,3 +26,17 @@ void Place::makeChildrenNotClickable()
         }
     }
 }
+bool Place::isClicked() const
+{
+    return this->clicked;
+}
+
+void Place::setClicked(bool clicked)
+{
+    if (clicked){
+        this->setStyleSheet(PlaceStyleSheet + "border-color: orange;");
+    }
+    else
+        this->setStyleSheet(PlaceStyleSheet);
+}
+

@@ -8,7 +8,7 @@ Arrow::Arrow(Place *place, Transition *transition, bool fromPlaceToTransition, Q
     arrowheadImage.load(":/images/images/arrowhead.png");
 }
 
-Arrow::Arrow(QObject *parent): QObject(parent), fromPlaceToTransition(true)
+Arrow::Arrow(QObject *parent): QObject(parent), fromPlaceToTransition(true), place(0), transition(0)
 {
     arrowheadImage.load(":/images/images/arrowhead.png");
 }
@@ -25,6 +25,12 @@ Arrow::Arrow(const Arrow &arrow)
 
 void Arrow::clear()
 {
+    if (place){
+        place->setClicked(false);
+    }
+    if (transition){
+        transition->setClicked(false);
+    }
     place = NULL;
     transition = NULL;
     fromPlaceToTransition = true;

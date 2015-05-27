@@ -34,7 +34,7 @@
   <property name="styleSheet">
    <string notr="true">border-style: outset;
 border-width: 6 1 6 1;
-border-color: black;</string>
+</string>
   </property>
   <property name="frameShape">
    <enum>QFrame::NoFrame</enum>

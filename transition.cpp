@@ -26,3 +26,18 @@ void Transition::makeChildrenNotClickable()
         }
     }
 }
+bool Transition::isClicked() const
+{
+    return this->clicked;
+}
+
+void Transition::setClicked(bool clicked)
+{
+    if (clicked){
+        this->setStyleSheet(TransitionStyleSheet + "border-color: orange;");
+    }
+    else
+        this->setStyleSheet(TransitionStyleSheet);
+
+}
+

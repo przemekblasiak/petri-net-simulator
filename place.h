@@ -28,9 +28,22 @@ public:
     bool isClicked() const;
     void setClicked(bool clicked);
 
+public slots:
+    void showContextMenu(const QPoint &pos);
+    void contextActionTriggered(QAction *action);
+
 private:
     Ui::Place *ui;
     bool clicked;
+
+    enum ContextActionType {
+        Edit,
+        Remove
+    };
+
+signals:
+    void removePlaceRequested(Place &place);
+    void modifyPlaceRequested(Place &place);
 };
 
 #endif // PLACE_H

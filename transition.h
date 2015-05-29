@@ -22,9 +22,21 @@ public:
     bool isClicked() const;
     void setClicked(bool clicked);
 
+public slots:
+    void showContextMenu(const QPoint &pos);
+    void contextActionTriggered(QAction *action);
+
+
 private:
     Ui::Transition *ui;
     bool clicked;
+
+    enum ContextActionType {
+        Remove
+    };
+
+signals:
+    void removeTransitionRequested(Transition &transition);
 };
 
 #endif // TRANSITION_H

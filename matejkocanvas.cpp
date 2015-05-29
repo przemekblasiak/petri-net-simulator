@@ -21,19 +21,20 @@ void MatejkoCanvas::showContextMenu(const QPoint &position) {
     QMenu contextMenu("Context menu", this);
 
     QAction addPlaceAction(this);
-    QAction addTransitionAction(this);
     addPlaceAction.setText("Add place");
-    addTransitionAction.setText("Add transition");
     contextMenu.addAction(&addPlaceAction);
+
+    QAction addTransitionAction(this);    
+    addTransitionAction.setText("Add transition");
     contextMenu.addAction(&addTransitionAction);
 
     QMap<QString, QVariant> placeInfo;
-    placeInfo["ActionType"] = QVariant(AddPlace);
+    placeInfo["Type"] = QVariant(AddPlace);
     placeInfo["Position"] = QVariant(position);
     addPlaceAction.setData(placeInfo);
 
     QMap<QString, QVariant> transitionInfo;
-    transitionInfo["ActionType"] = QVariant(AddTransition);
+    transitionInfo["Type"] = QVariant(AddTransition);
     transitionInfo["Position"] = QVariant(position);
     addTransitionAction.setData(transitionInfo);
 
@@ -46,7 +47,7 @@ void MatejkoCanvas::showContextMenu(const QPoint &position) {
 void MatejkoCanvas::contextActionTriggered(QAction *action) {
     QMap<QString, QVariant> actionInfo = action->data().toMap();
     QPoint position = actionInfo["Position"].toPoint();
-    ContextActionType actionType = (ContextActionType)actionInfo["ActionType"].toInt();
+    ContextActionType actionType = (ContextActionType)actionInfo["Type"].toInt();
 
     if (actionType == AddPlace) {
         Place *newPlace = new Place(position.x(), position.y(), 0, this);
@@ -56,6 +57,21 @@ void MatejkoCanvas::contextActionTriggered(QAction *action) {
         Transition *newTransition = new Transition(position.x(), position.y(), this);
         this->transitions->append(newTransition);
     }
+}
+
+void MatejkoCanvas::onRemovePlaceRequested(Place &place)
+{
+    qDebug() << "onRemovePlaceRequested";
+}
+
+void MatejkoCanvas::onModifyPlaceRequested(Place &place)
+{
+    qDebug() << "onModifyPlaceRequested";
+}
+
+void MatejkoCanvas::onRemoveTransitionRequested(Transition &transition)
+{
+    qDebug() << "onRemoveTransitionRequested";
 }
 
 void MatejkoCanvas::mousePressEvent(QMouseEvent *event)

@@ -13,24 +13,12 @@ MainWindow::MainWindow(QWidget *parent) :
     this->matejkoCanvas->transitions = &(this->transitions);
     this->matejkoCanvas->arrows = &(this->arrows);
 
-    // Sample places data
-    this->places.append(new Place(50, 50, 1, matejkoCanvas));
-    this->places.append(new Place(150, 50, 3, matejkoCanvas));
-    this->places.append(new Place(50, 150, 0, matejkoCanvas));
-
-    this->transitions.append(new Transition(100, 100, matejkoCanvas));
-    this->transitions.append(new Transition(150, 100, matejkoCanvas));
-    this->transitions.append(new Transition(100, 40, matejkoCanvas));
-
-
-
     QWidget* leftSpacer = new QWidget(this);
     QWidget* rightSpacer = new QWidget(this);
     leftSpacer->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);
     rightSpacer->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);
     ui->simulationToolBar->insertWidget(ui->actionPreviousTransition, leftSpacer);
     ui->simulationToolBar->addWidget(rightSpacer);
-
 }
 
 MainWindow::~MainWindow()

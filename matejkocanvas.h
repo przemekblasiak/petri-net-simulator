@@ -23,6 +23,9 @@ signals:
 public slots:
     void showContextMenu(const QPoint &);
     void contextActionTriggered(QAction *);
+    void onRemovePlaceRequested(Place &place);
+    void onModifyPlaceRequested(Place &place);
+    void onRemoveTransitionRequested(Transition &transition);
 
 private:
     Arrow tmpArrow;

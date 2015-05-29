@@ -1,5 +1,6 @@
 #include "transition.h"
 #include "ui_transition.h"
+#include <QMenu>
 
 Transition::Transition(int x, int y, QWidget *parent) :
     QFrame(parent),
@@ -9,6 +10,13 @@ Transition::Transition(int x, int y, QWidget *parent) :
     this->setGeometry(x - this->width()/2, y - this->height()/2, this->width(), this->height());
     show();
     this->makeChildrenNotClickable();
+
+    // Context menu
+    this->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(this, SIGNAL(customContextMenuRequested(const QPoint &)),
+            this, SLOT(showContextMenu(const QPoint &)));
+    connect(this, SIGNAL(removeTransitionRequested(Transition&)),
+            this->parent(), SLOT(onRemoveTransitionRequested(Transition&)));
 }
 
 Transition::~Transition()
@@ -39,5 +47,32 @@ void Transition::setClicked(bool clicked)
     else
         this->setStyleSheet(TransitionStyleSheet);
 
+}
+
+void Transition::showContextMenu(const QPoint &pos)
+{
+    QMap<QString, QVariant> actionInfo;
+
+    QAction removeAction("Remove", this);
+    actionInfo["Type"] = QVariant(Remove);
+    removeAction.setData(actionInfo);
+
+    QMenu contextMenu("Context menu");
+    contextMenu.addAction(&removeAction);
+
+    connect(&contextMenu, SIGNAL(triggered(QAction *)),
+            this, SLOT(contextActionTriggered(QAction *)));
+
+    contextMenu.exec(this->mapToGlobal(pos));
+}
+
+void Transition::contextActionTriggered(QAction *action)
+{
+    QMap<QString, QVariant> actionInfo = action->data().toMap();
+    ContextActionType actionType = (ContextActionType)actionInfo["Type"].toInt();
+
+    if (actionType == Remove) {
+        emit removeTransitionRequested(*this);
+    }
 }
 

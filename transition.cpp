@@ -2,6 +2,8 @@
 #include "ui_transition.h"
 #include <QMenu>
 
+int Transition::count = 0;
+
 Transition::Transition(QPoint &origin, QWidget *parent) :
     QFrame(parent),
     ui(new Ui::Transition)
@@ -17,11 +19,15 @@ Transition::Transition(QPoint &origin, QWidget *parent) :
             this, SLOT(showContextMenu(const QPoint &)));
     connect(this, SIGNAL(removeTransitionRequested(Transition&)),
             this->parent(), SLOT(onRemoveTransitionRequested(Transition&)));
+
+    ++Transition::count;
+    this->setNumber(Transition::count);
 }
 
 Transition::~Transition()
 {
     delete ui;
+    --Transition::count;
 }
 
 // TODO use inheritance
@@ -76,3 +82,11 @@ void Transition::contextActionTriggered(QAction *action)
     }
 }
 
+int Transition::number() const {
+    return _number;
+}
+
+void Transition::setNumber(const int number) {
+    _number = number;
+    ui->nameLabel->setText("T" + QString::number(this->number()));
+}

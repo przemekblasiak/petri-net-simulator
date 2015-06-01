@@ -2,13 +2,15 @@
 #include "ui_place.h"
 #include <QMenu>
 
+int Place::count = 0;
+
 Place::Place(QPoint &origin, int liveness, QWidget *parent) :
     QFrame(parent), liveness(liveness),
     ui(new Ui::Place)
 {
     ui->setupUi(this);
-    this->setGeometry(origin.x() - this->width()/2, origin.y() - this->height()/2, this->width(), this->height());
     ui->livenessLabel->setText(QString::number(liveness));
+    this->setGeometry(origin.x() - this->width()/2, origin.y() - this->height()/2, this->width(), this->height());
     this->show();
     this->makeChildrenNotClickable();
 
@@ -20,11 +22,16 @@ Place::Place(QPoint &origin, int liveness, QWidget *parent) :
             this->parent(), SLOT(onRemovePlaceRequested(Place&)));
     connect(this, SIGNAL(modifyPlaceRequested(Place&)),
             this->parent(), SLOT(onModifyPlaceRequested(Place&)));
+
+    ++Place::count;
+    this->setNumber(Place::count);
+    ui->nameLabel->setText("P" + QString::number(this->number()));
 }
 
 Place::~Place()
 {
     delete ui;
+    --Place::count;
 }
 
 void Place::makeChildrenNotClickable()
@@ -85,6 +92,15 @@ void Place::contextActionTriggered(QAction *action)
     else if (actionType == Edit) {
         emit modifyPlaceRequested(*this);
     }
+}
+
+int Place::number() const {
+    return _number;
+}
+
+void Place::setNumber(const int number) {
+    _number = number;
+    ui->nameLabel->setText("P" + QString::number(this->number()));
 }
 
 

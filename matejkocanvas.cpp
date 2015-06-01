@@ -61,7 +61,12 @@ void MatejkoCanvas::contextActionTriggered(QAction *action) {
 
 void MatejkoCanvas::onRemovePlaceRequested(Place &place)
 {
-    qDebug() << "onRemovePlaceRequested";
+    int removedNumber = place.number();
+    // TODO: Usunąć z listy i z pamięci
+    for (int i = removedNumber; i < Place::count; ++i) {
+        Place *placeToUpdate = (*this->places)[i-1];
+        placeToUpdate->setNumber(i);
+    }
 }
 
 void MatejkoCanvas::onModifyPlaceRequested(Place &place)

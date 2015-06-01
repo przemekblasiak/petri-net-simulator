@@ -18,9 +18,12 @@ public:
     explicit Transition(QPoint &origin, QWidget *parent = 0);
     ~Transition();
     void makeChildrenNotClickable();
-
     bool isClicked() const;
     void setClicked(bool clicked);
+    int number() const;
+    void setNumber(const int number);
+
+    static int count;
 
 public slots:
     void showContextMenu(const QPoint &pos);
@@ -30,6 +33,7 @@ public slots:
 private:
     Ui::Transition *ui;
     bool clicked;
+    int _number;
 
     enum ContextActionType {
         Remove

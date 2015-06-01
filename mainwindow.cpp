@@ -45,15 +45,12 @@ void MainWindow::on_actionSave_project_triggered()
 
 void MainWindow::on_actionNextTransition_triggered()
 {
-    qDebug() << "Next transition";
 }
 
 void MainWindow::on_actionPreviousTransition_triggered()
 {
-    qDebug() << "Previous transition";
 }
 
 void MainWindow::on_actionExecuteTransition_triggered()
 {
-    qDebug() << "Execute transition";
 }

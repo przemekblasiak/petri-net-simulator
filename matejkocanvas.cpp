@@ -50,11 +50,11 @@ void MatejkoCanvas::contextActionTriggered(QAction *action) {
     ContextActionType actionType = (ContextActionType)actionInfo["Type"].toInt();
 
     if (actionType == AddPlace) {
-        Place *newPlace = new Place(position.x(), position.y(), 0, this);
+        Place *newPlace = new Place(position, 0, this);
         this->places->append(newPlace);
     }
     else if (actionType == AddTransition) {
-        Transition *newTransition = new Transition(position.x(), position.y(), this);
+        Transition *newTransition = new Transition(position, this);
         this->transitions->append(newTransition);
     }
 }
@@ -103,7 +103,6 @@ void MatejkoCanvas::paintEvent(QPaintEvent *event) {
 
 void MatejkoCanvas::constructArrow(Place *place, Transition *transition, bool fromPlaceToTransition) {
     Arrow *newArrow = NULL;
-    qDebug() << this->tmpArrow.place << this->tmpArrow.transition;
     if (place && transition) {
         this->tmpArrow.place = place;
         this->tmpArrow.transition = transition;

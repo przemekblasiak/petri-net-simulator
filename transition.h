@@ -15,7 +15,7 @@ class Transition : public QFrame
     Q_OBJECT
 
 public:
-    explicit Transition(int x, int y, QWidget *parent = 0);
+    explicit Transition(QPoint &origin, QWidget *parent = 0);
     ~Transition();
     void makeChildrenNotClickable();
 

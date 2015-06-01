@@ -17,7 +17,7 @@ class Place : public QFrame
     Q_OBJECT
 
 public:
-    explicit Place(int x, int y, int liveness, QWidget *parent = 0);
+    explicit Place(QPoint &origin, int liveness, QWidget *parent = 0);
     ~Place();
     void makeChildrenNotClickable();
 

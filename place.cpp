@@ -2,12 +2,12 @@
 #include "ui_place.h"
 #include <QMenu>
 
-Place::Place(int x, int y, int liveness, QWidget *parent) :
+Place::Place(QPoint &origin, int liveness, QWidget *parent) :
     QFrame(parent), liveness(liveness),
     ui(new Ui::Place)
 {
     ui->setupUi(this);
-    this->setGeometry(x - this->width()/2, y - this->height()/2, this->width(), this->height());
+    this->setGeometry(origin.x() - this->width()/2, origin.y() - this->height()/2, this->width(), this->height());
     ui->livenessLabel->setText(QString::number(liveness));
     this->show();
     this->makeChildrenNotClickable();

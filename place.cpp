@@ -6,7 +6,7 @@
 int Place::count = 0;
 
 Place::Place(QPoint &origin, int liveness, QWidget *parent) :
-    QFrame(parent), liveness(liveness),
+    Element(parent), liveness(liveness),
     ui(new Ui::Place)
 {
     ui->setupUi(this);

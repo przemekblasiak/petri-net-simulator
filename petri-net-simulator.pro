@@ -14,7 +14,8 @@ SOURCES += main.cpp \
     json/src/json_writer.cpp \
     place.cpp \
     transition.cpp \
-    arrow.cpp
+    arrow.cpp \
+    element.cpp
 
 # Default rules for deployment.
 include(deployment.pri)
@@ -37,7 +38,8 @@ HEADERS += \
     json/src/json_batchallocator.h \
     place.h \
     transition.h \
-    arrow.h
+    arrow.h \
+    element.h
 
 FORMS += \
     mainwindow.ui \

@@ -6,7 +6,7 @@
 int Transition::count = 0;
 
 Transition::Transition(QPoint &origin, QWidget *parent) :
-    QFrame(parent),
+    Element(parent),
     ui(new Ui::Transition)
 {
     ui->setupUi(this);

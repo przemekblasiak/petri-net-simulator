@@ -1,7 +1,7 @@
 #ifndef PLACE_H
 #define PLACE_H
 
-#include <QFrame>
+#include "element.h"
 #include <QDebug>
 
 const QString PlaceStyleSheet = "border-style: outset;"\
@@ -13,7 +13,7 @@ namespace Ui {
 class Place;
 }
 
-class Place : public QFrame
+class Place : public Element
 {
     Q_OBJECT
 

@@ -102,7 +102,6 @@ void MatejkoCanvas::mousePressEvent(QMouseEvent *event)
 
 void MatejkoCanvas::mouseReleaseEvent(QMouseEvent *event)
 {
-    qDebug() << "release";
     if (event->button() == Qt::LeftButton) {
         QObject *object = childAt(event->pos());
         Place *place = qobject_cast<Place *>(object);

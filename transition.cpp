@@ -95,7 +95,12 @@ void Transition::mouseMoveEvent(QMouseEvent *event)
 {
     if (event->buttons() & Qt::LeftButton){
         this->moving = true;
-        this->move(mapToParent(event->pos() - offset));
+        QPoint mappedToParent = mapToParent(event->pos() - offset);
+        if (mappedToParent.x() < 0 || mappedToParent.y() < 0){
+        }
+        else{
+            this->move(mapToParent(event->pos() - offset));
+        }
         qobject_cast<MatejkoCanvas*>(this->parent())->update();
     }
     event->accept();

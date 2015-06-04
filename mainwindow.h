@@ -21,8 +21,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    QList<Place *> places;
-    QList<Transition *> transitions;
+    QList<Element *> places;
+    QList<Element *> transitions;
     QList<Arrow *> arrows;
 
 

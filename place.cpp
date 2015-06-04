@@ -2,6 +2,7 @@
 #include "ui_place.h"
 #include <QMenu>
 
+// TODO: mozliwe, ze lista places.count bedzie wystarczajace, wtedy to jest zbedne
 int Place::count = 0;
 
 Place::Place(QPoint &origin, int liveness, QWidget *parent) :
@@ -18,10 +19,10 @@ Place::Place(QPoint &origin, int liveness, QWidget *parent) :
     this->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, SIGNAL(customContextMenuRequested(const QPoint &)),
             this, SLOT(showContextMenu(const QPoint &)));
-    connect(this, SIGNAL(removePlaceRequested(Place&)),
-            this->parent(), SLOT(onRemovePlaceRequested(Place&)));
-    connect(this, SIGNAL(modifyPlaceRequested(Place&)),
-            this->parent(), SLOT(onModifyPlaceRequested(Place&)));
+    connect(this, SIGNAL(removePlaceRequested()),
+            this->parent(), SLOT(onRemovePlaceRequested()));
+    connect(this, SIGNAL(modifyPlaceRequested()),
+            this->parent(), SLOT(onModifyPlaceRequested()));
 
     ++Place::count;
     this->setNumber(Place::count);
@@ -87,10 +88,10 @@ void Place::contextActionTriggered(QAction *action)
     ContextActionType actionType = (ContextActionType)actionInfo["Type"].toInt();
 
     if (actionType == Remove) {
-        emit removePlaceRequested(*this);
+        emit removePlaceRequested();
     }
     else if (actionType == Edit) {
-        emit modifyPlaceRequested(*this);
+        emit modifyPlaceRequested();
     }
 }
 
@@ -98,7 +99,7 @@ int Place::number() const {
     return _number;
 }
 
-void Place::setNumber(const int number) {
+void Place::setNumber(int number) {
     _number = number;
     ui->nameLabel->setText("P" + QString::number(this->number()));
 }

@@ -21,7 +21,7 @@ public:
     bool isClicked() const;
     void setClicked(bool clicked);
     int number() const;
-    void setNumber(const int number);
+    void setNumber(int number);
 
     static int count;
 
@@ -40,7 +40,7 @@ private:
     };
 
 signals:
-    void removeTransitionRequested(Transition &transition);
+    void removeTransitionRequested();
 };
 
 #endif // TRANSITION_H

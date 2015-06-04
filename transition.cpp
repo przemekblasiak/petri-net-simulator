@@ -1,6 +1,7 @@
 #include "transition.h"
 #include "ui_transition.h"
 #include <QMenu>
+#include "matejkocanvas.h"
 
 int Transition::count = 0;
 
@@ -17,8 +18,8 @@ Transition::Transition(QPoint &origin, QWidget *parent) :
     this->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, SIGNAL(customContextMenuRequested(const QPoint &)),
             this, SLOT(showContextMenu(const QPoint &)));
-    connect(this, SIGNAL(removeTransitionRequested(Transition&)),
-            this->parent(), SLOT(onRemoveTransitionRequested(Transition&)));
+    connect(this, SIGNAL(removeTransitionRequested()),
+            this->parent(), SLOT(onRemoveTransitionRequested()));
 
     ++Transition::count;
     this->setNumber(Transition::count);
@@ -78,7 +79,7 @@ void Transition::contextActionTriggered(QAction *action)
     ContextActionType actionType = (ContextActionType)actionInfo["Type"].toInt();
 
     if (actionType == Remove) {
-        emit removeTransitionRequested(*this);
+        emit removeTransitionRequested();
     }
 }
 
@@ -86,7 +87,7 @@ int Transition::number() const {
     return _number;
 }
 
-void Transition::setNumber(const int number) {
+void Transition::setNumber(int number) {
     _number = number;
     ui->nameLabel->setText("T" + QString::number(this->number()));
 }

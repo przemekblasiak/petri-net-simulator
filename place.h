@@ -25,7 +25,7 @@ public:
     bool isClicked() const;
     void setClicked(bool clicked);
     int number() const;
-    void setNumber(const int number);
+    void setNumber(int number);
 
     int liveness;
     static int defaultWidth;
@@ -47,8 +47,8 @@ private:
     };
 
 signals:
-    void removePlaceRequested(Place &place);
-    void modifyPlaceRequested(Place &place);
+    void removePlaceRequested();
+    void modifyPlaceRequested();
 };
 
 #endif // PLACE_H

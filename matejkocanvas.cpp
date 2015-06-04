@@ -59,24 +59,40 @@ void MatejkoCanvas::contextActionTriggered(QAction *action) {
     }
 }
 
-void MatejkoCanvas::onRemovePlaceRequested(Place &place)
+void MatejkoCanvas::onRemovePlaceRequested()
 {
-    int removedNumber = place.number();
-    // TODO: Usunąć z listy i z pamięci
-    for (int i = removedNumber; i < Place::count; ++i) {
-        Place *placeToUpdate = (*this->places)[i-1];
-        placeToUpdate->setNumber(i);
+    Place *placeToRemove = qobject_cast<Place*>(QObject::sender());
+    int index = this->places->indexOf(placeToRemove);
+    this->places->removeAt(index);
+
+    // Update numbering
+    for (int i = index; i < this->places->count(); ++i) {
+        Place *placeToUpdate = (*this->places)[i];
+        placeToUpdate->setNumber(i+1);
     }
+
+    QObject::sender()->deleteLater();
 }
 
-void MatejkoCanvas::onModifyPlaceRequested(Place &place)
+void MatejkoCanvas::onModifyPlaceRequested()
 {
-    qDebug() << "onModifyPlaceRequested";
+    Place *placeToModify = qobject_cast<Place*>(QObject::sender());
+    int index = this->places->indexOf(placeToModify);
 }
 
-void MatejkoCanvas::onRemoveTransitionRequested(Transition &transition)
+void MatejkoCanvas::onRemoveTransitionRequested()
 {
-    qDebug() << "onRemoveTransitionRequested";
+    Transition *transitionToRemove = qobject_cast<Transition*>(QObject::sender());
+    int index = this->transitions->indexOf(transitionToRemove);
+    this->transitions->removeAt(index);
+
+    // Update numbering
+    for (int i = index; i <this->transitions->count(); ++i) {
+        Transition *transitionToUpdate = (*this->transitions)[i];
+        transitionToUpdate->setNumber(i+1);
+    }
+
+    QObject::sender()->deleteLater();
 }
 
 void MatejkoCanvas::mousePressEvent(QMouseEvent *event)

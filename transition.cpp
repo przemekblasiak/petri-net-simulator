@@ -2,11 +2,12 @@
 #include "ui_transition.h"
 #include <QMenu>
 #include "matejkocanvas.h"
+#include <QMouseEvent>
 
 int Transition::count = 0;
 
 Transition::Transition(QPoint &origin, QWidget *parent) :
-    QFrame(parent),
+    QFrame(parent), offset(0,0), clicked(false), moving(false),
     ui(new Ui::Transition)
 {
     ui->setupUi(this);
@@ -80,6 +81,34 @@ void Transition::contextActionTriggered(QAction *action)
 
     if (actionType == Remove) {
         emit removeTransitionRequested();
+    }
+}
+
+// TODO: Inheritance. M.D.
+void Transition::mousePressEvent(QMouseEvent *event)
+{
+    this->offset = event->pos();
+    event->accept();
+}
+
+void Transition::mouseMoveEvent(QMouseEvent *event)
+{
+    if (event->buttons() & Qt::LeftButton){
+        this->moving = true;
+        this->move(mapToParent(event->pos() - offset));
+        qobject_cast<MatejkoCanvas*>(this->parent())->update();
+    }
+    event->accept();
+}
+
+void Transition::mouseReleaseEvent(QMouseEvent *event)
+{
+    if (this->moving){
+        event->accept();
+        this->moving = false;
+    }
+    else{
+        event->ignore();
     }
 }
 

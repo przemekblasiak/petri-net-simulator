@@ -1,12 +1,14 @@
 #include "place.h"
 #include "ui_place.h"
 #include <QMenu>
+#include <QMouseEvent>
+#include "matejkocanvas.h"
 
 // TODO: mozliwe, ze lista places.count bedzie wystarczajace, wtedy to jest zbedne
 int Place::count = 0;
 
 Place::Place(QPoint &origin, int liveness, QWidget *parent) :
-    QFrame(parent), liveness(liveness),
+    QFrame(parent), liveness(liveness), offset(0,0), clicked(false), moving(false),
     ui(new Ui::Place)
 {
     ui->setupUi(this);
@@ -92,6 +94,33 @@ void Place::contextActionTriggered(QAction *action)
     }
     else if (actionType == Edit) {
         emit modifyPlaceRequested();
+    }
+}
+// TODO: Inheritance. M.D.
+void Place::mousePressEvent(QMouseEvent *event)
+{
+    this->offset = event->pos();
+    event->accept();
+}
+
+void Place::mouseMoveEvent(QMouseEvent *event)
+{
+    if (event->buttons() & Qt::LeftButton){
+        this->moving = true;
+        this->move(mapToParent(event->pos() - offset));
+        qobject_cast<MatejkoCanvas*>(this->parent())->update();
+    }
+    event->accept();
+}
+
+void Place::mouseReleaseEvent(QMouseEvent *event)
+{
+    if (this->moving){
+        event->accept();
+        this->moving = false;
+    }
+    else{
+        event->ignore();
     }
 }
 

@@ -32,6 +32,7 @@ private:
 
     // Mouse
     void mousePressEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
 
     enum ContextActionType {
         AddPlace,

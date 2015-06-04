@@ -97,6 +97,12 @@ void MatejkoCanvas::onRemoveTransitionRequested()
 
 void MatejkoCanvas::mousePressEvent(QMouseEvent *event)
 {
+    event->accept();
+}
+
+void MatejkoCanvas::mouseReleaseEvent(QMouseEvent *event)
+{
+    qDebug() << "release";
     if (event->button() == Qt::LeftButton) {
         QObject *object = childAt(event->pos());
         Place *place = qobject_cast<Place *>(object);
@@ -105,6 +111,8 @@ void MatejkoCanvas::mousePressEvent(QMouseEvent *event)
     }
     else if (event->button() == Qt::RightButton){
     }
+
+    event->accept();
 }
 
 void MatejkoCanvas::setupPalette() {

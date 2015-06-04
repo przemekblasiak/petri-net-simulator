@@ -32,8 +32,15 @@ public slots:
 
 private:
     Ui::Transition *ui;
+    // TODO: Inheritance, those fields should be a common base. M.D.
     bool clicked;
+    bool moving;
+    QPoint offset;
     int _number;
+
+    void mousePressEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
 
     enum ContextActionType {
         Remove

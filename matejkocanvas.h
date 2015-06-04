@@ -14,8 +14,8 @@ public:
     explicit MatejkoCanvas(QWidget *parent = 0);
     // TODO copy constructor
 
-    QList<Place *> *places;
-    QList<Transition *> *transitions;
+    QList<Element *> *places;
+    QList<Element *> *transitions;
     QList<Arrow *> *arrows;
 
 signals:
@@ -23,9 +23,8 @@ signals:
 public slots:
     void showContextMenu(const QPoint &);
     void contextActionTriggered(QAction *);
-    void onRemovePlaceRequested();
-    void onModifyPlaceRequested();
-    void onRemoveTransitionRequested();
+    void onRemoveElementRequested();
+    void onModifyElementRequested();
 
 private:
     Arrow tmpArrow;

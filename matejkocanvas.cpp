@@ -50,49 +50,41 @@ void MatejkoCanvas::contextActionTriggered(QAction *action) {
     ContextActionType actionType = (ContextActionType)actionInfo["Type"].toInt();
 
     if (actionType == AddPlace) {
-        Place *newPlace = new Place(position, 0, this);
+        Element *newPlace = new Place(position, 0, this);
         this->places->append(newPlace);
     }
     else if (actionType == AddTransition) {
-        Transition *newTransition = new Transition(position, this);
+        Element *newTransition = new Transition(position, this);
         this->transitions->append(newTransition);
     }
 }
 
-void MatejkoCanvas::onRemovePlaceRequested()
+void MatejkoCanvas::onRemoveElementRequested()
 {
-    Place *placeToRemove = qobject_cast<Place*>(QObject::sender());
-    int index = this->places->indexOf(placeToRemove);
-    this->places->removeAt(index);
+    Element *elementToRemove = qobject_cast<Element*>(QObject::sender());
+    QList<Element *> *elements;
+    if (qobject_cast<Place *>(elementToRemove)) {
+        elements = this->places;
+    }
+    else {
+        elements = this->transitions;
+    }
+    int index = elements->indexOf(elementToRemove);
+    elements->removeAt(index);
 
     // Update numbering
-    for (int i = index; i < this->places->count(); ++i) {
-        Place *placeToUpdate = (*this->places)[i];
-        placeToUpdate->setNumber(i+1);
+    for (int i = index; i < elements->count(); ++i) {
+        Element *elementToUpdate = (*elements)[i];
+        elementToUpdate->setNumber(i+1);
     }
 
-    QObject::sender()->deleteLater();
+    elementToRemove->deleteLater();
 }
 
-void MatejkoCanvas::onModifyPlaceRequested()
+void MatejkoCanvas::onModifyElementRequested()
 {
-    Place *placeToModify = qobject_cast<Place*>(QObject::sender());
-    int index = this->places->indexOf(placeToModify);
-}
-
-void MatejkoCanvas::onRemoveTransitionRequested()
-{
-    Transition *transitionToRemove = qobject_cast<Transition*>(QObject::sender());
-    int index = this->transitions->indexOf(transitionToRemove);
-    this->transitions->removeAt(index);
-
-    // Update numbering
-    for (int i = index; i <this->transitions->count(); ++i) {
-        Transition *transitionToUpdate = (*this->transitions)[i];
-        transitionToUpdate->setNumber(i+1);
-    }
-
-    QObject::sender()->deleteLater();
+    Element *elementToModify = qobject_cast<Element *>(QObject::sender());
+    // TODO: Edytowanie elementu
 }
 
 void MatejkoCanvas::mousePressEvent(QMouseEvent *event)

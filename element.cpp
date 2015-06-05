@@ -7,7 +7,7 @@
 #include <QMouseEvent>
 
 Element::Element(QWidget *parent):
-    QFrame(parent), letter(""), basicStyleSheet(""), offset(0, 0), _clicked(false), moving(false)
+    QFrame(parent), letter(""), basicStyleSheet(""), offset(0, 0), _selected(false), moving(false)
 {
     // Context menu
     this->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -31,12 +31,12 @@ void Element::setChildrenClickable(bool clickable) {
     }
 }
 
-bool Element::clicked() const {
-    return _clicked;
+bool Element::selected() const {
+    return _selected;
 }
 
-void Element::setClicked(bool clicked) {
-    if (clicked) {
+void Element::setSelected(bool selected) {
+    if (selected) {
         this->setStyleSheet(this->basicStyleSheet + "border-color: orange;");
     }
     else {

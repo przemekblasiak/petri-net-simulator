@@ -28,6 +28,7 @@ public slots:
 
 private:
     Arrow tmpArrow;
+    Element *_selectedElement;
 
     // Mouse
     void mousePressEvent(QMouseEvent *event);
@@ -40,8 +41,11 @@ private:
     void constructArrow(Element *element);
     void paintEvent(QPaintEvent *event);
     void setupPalette();
-    bool arrowConnectionExists(Arrow *arrow) const;
-    bool buildArrow(Arrow *arrow);
+    bool arrowConnectionExists(Element *place, Element *transition) const;
+    bool buildArrow(Element *place, Element *transition, bool fromPlaceToTransition);
+    void selectElement(Element *);
+    void setSelectedElement(Element *element);
+    Element *selectedElement();
 };
 
 #endif // MATEJKOCANVAS_H

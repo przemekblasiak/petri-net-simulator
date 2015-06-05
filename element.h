@@ -10,8 +10,8 @@ public:
     explicit Element(QWidget *parent = 0);
     virtual ~Element();
 
-    bool clicked() const;
-    void setClicked(bool clicked);
+    bool selected() const;
+    void setSelected(bool clicked);
     int number() const;
     void setNumber(int number);
 
@@ -37,7 +37,7 @@ private:
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
 
-    bool _clicked;
+    bool _selected;
     int _number;
 
     enum ContextActionType {

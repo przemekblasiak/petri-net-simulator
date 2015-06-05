@@ -23,19 +23,6 @@ Arrow::Arrow(const Arrow &arrow)
     this->fromPlaceToTransition = arrow.fromPlaceToTransition;
 }
 
-void Arrow::clear()
-{
-    if (place){
-        place->setClicked(false);
-    }
-    if (transition){
-        transition->setClicked(false);
-    }
-    place = NULL;
-    transition = NULL;
-    fromPlaceToTransition = true;
-}
-
 void Arrow::draw(QPainter &painter) const {
     QPoint placeMiddle = QPoint(this->place->x() + this->place->width()/2, this->place->y() + this->place->height()/2);
     QPoint transitionMiddle = QPoint(this->transition->x() + this->transition->width()/2, this->transition->y() + this->transition->height()/2);

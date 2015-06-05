@@ -7,7 +7,7 @@
 #include <QMenu>
 #include <QIcon>
 
-MatejkoCanvas::MatejkoCanvas(QWidget *parent) : QWidget(parent), selectedElement(0) {
+MatejkoCanvas::MatejkoCanvas(QWidget *parent) : QWidget(parent), _selectedElement(0) {
     this->setupPalette();
 
     // Context menu
@@ -91,9 +91,13 @@ void MatejkoCanvas::mousePressEvent(QMouseEvent *event) {
 void MatejkoCanvas::mouseReleaseEvent(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton) {
         QObject *object = childAt(event->pos());
-        Element *element= qobject_cast<Element *>(object);
-        if (element){
-            this->selectElement(element);
+        if (object) {
+            Element *element= qobject_cast<Element *>(object);
+            if (element){
+                this->selectElement(element);
+            }
+        } else {
+            this->setSelectedElement(0);
         }
     }
     else if (event->button() == Qt::RightButton){
@@ -102,8 +106,39 @@ void MatejkoCanvas::mouseReleaseEvent(QMouseEvent *event) {
     event->accept();
 }
 
-void MatejkoCanvas::selectElement(Element *) {
+void MatejkoCanvas::selectElement(Element *element) {
+    // If there is no selected element, just select one
+    if (!this->selectedElement()) {
+        this->setSelectedElement(element);
+    }
+    // Else try to build an arrow and clear selection
+    else {
+        if (qobject_cast<Place*>(this->selectedElement())){
+            if (qobject_cast<Transition *>(element)){
+                this->buildArrow(this->selectedElement(), element, true);
+            }
+        }
+        else if (qobject_cast<Transition*>(this->selectedElement())){
+            if (qobject_cast<Place *>(element)){
+                this->buildArrow(element, this->selectedElement(), false);
+            }
+        }
+        this->setSelectedElement(0);
+    }
+}
 
+void MatejkoCanvas::setSelectedElement(Element *element) {
+    if (_selectedElement) {
+        _selectedElement->setSelected(false);
+    }
+    if (element) {
+        element->setSelected(true);
+    }
+    _selectedElement = element;
+}
+
+Element * MatejkoCanvas::selectedElement() {
+    return _selectedElement;
 }
 
 void MatejkoCanvas::setupPalette() {
@@ -112,25 +147,26 @@ void MatejkoCanvas::setupPalette() {
     this->setPalette(palette);
 }
 
-bool MatejkoCanvas::arrowConnectionExists(Arrow *arrow) const {
+bool MatejkoCanvas::arrowConnectionExists(Element *place, Element *transition) const {
 
     for (int i = 0; i < this->arrows->size(); ++i){
         Arrow *existingArrow = this->arrows->at(i);
-        if (existingArrow->place == arrow->place && existingArrow->transition == arrow->transition){
+        if (existingArrow->place == place && existingArrow->transition == transition){
             return true;
         }
     }
     return false;
 }
 
-bool MatejkoCanvas::buildArrow(Arrow *arrow)
+bool MatejkoCanvas::buildArrow(Element *place, Element *transition, bool fromPlaceToTransition)
 {
-    if (arrowConnectionExists(arrow)){
+    if (arrowConnectionExists(place, transition)){
         return false;
     }
 
-    Arrow *newArror = new Arrow(arrow);
-    arrows->append(newArror);
+    Arrow *newArrow = new Arrow(place, transition, fromPlaceToTransition);
+    arrows->append(newArrow);
+    this->update();
     return true;
 }
 
@@ -143,35 +179,6 @@ void MatejkoCanvas::paintEvent(QPaintEvent *event) {
     }
 }
 
-bool canPrzemekIntoProgramming(){
-    return false;
-}
-
-void MatejkoCanvas::constructArrow(Element *element) {
-    Arrow *newArrow = NULL;
-
-    if (qobject_cast<Place*>(element)){
-        if (this->tmpArrow.transition){
-            this->tmpArrow.place = element;
-            this->tmpArrow.fromPlaceToTransition = false;
-            this->buildArrow(&this->tmpArrow);
-            this->tmpArrow.clear();
-        }
-        else {
-            if (!this->tmpArrow.place){
-
-            }
-        }
-    }
-    else if (qobject_cast<Transition*>(element)){
-        if (this->tmpArrow.place){
-            this->tmpArrow.transition = element;
-            this->tmpArrow.fromPlaceToTransition = true;
-            this->buildArrow(&this->tmpArrow);
-            this->tmpArrow.clear();
-        }
-        else {
-            this->tmpArrow.clear();
-        }
-    }
+bool canPrzemekIntoProgramming(){ // Mateusz no speak americano
+    return true;
 }

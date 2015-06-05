@@ -7,8 +7,7 @@
 #include <QMenu>
 #include <QIcon>
 
-MatejkoCanvas::MatejkoCanvas(QWidget *parent) : QWidget(parent)
-{
+MatejkoCanvas::MatejkoCanvas(QWidget *parent) : QWidget(parent), selectedElement(0) {
     this->setupPalette();
 
     // Context menu
@@ -24,7 +23,7 @@ void MatejkoCanvas::showContextMenu(const QPoint &position) {
     addPlaceAction.setText("Add place");
     contextMenu.addAction(&addPlaceAction);
 
-    QAction addTransitionAction(this);    
+    QAction addTransitionAction(this);
     addTransitionAction.setText("Add transition");
     contextMenu.addAction(&addTransitionAction);
 
@@ -59,8 +58,7 @@ void MatejkoCanvas::contextActionTriggered(QAction *action) {
     }
 }
 
-void MatejkoCanvas::onRemoveElementRequested()
-{
+void MatejkoCanvas::onRemoveElementRequested() {
     Element *elementToRemove = qobject_cast<Element*>(QObject::sender());
     QList<Element *> *elements;
     if (qobject_cast<Place *>(elementToRemove)) {
@@ -81,24 +79,22 @@ void MatejkoCanvas::onRemoveElementRequested()
     elementToRemove->deleteLater();
 }
 
-void MatejkoCanvas::onModifyElementRequested()
-{
+void MatejkoCanvas::onModifyElementRequested() {
     Element *elementToModify = qobject_cast<Element *>(QObject::sender());
     // TODO: Edytowanie elementu
 }
 
-void MatejkoCanvas::mousePressEvent(QMouseEvent *event)
-{
+void MatejkoCanvas::mousePressEvent(QMouseEvent *event) {
     event->accept();
 }
 
-void MatejkoCanvas::mouseReleaseEvent(QMouseEvent *event)
-{
+void MatejkoCanvas::mouseReleaseEvent(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton) {
         QObject *object = childAt(event->pos());
-        Place *place = qobject_cast<Place *>(object);
-        Transition *transition = qobject_cast<Transition *>(object);
-        this->constructArrow(place, transition);
+        Element *element= qobject_cast<Element *>(object);
+        if (element){
+            this->selectElement(element);
+        }
     }
     else if (event->button() == Qt::RightButton){
     }
@@ -106,10 +102,36 @@ void MatejkoCanvas::mouseReleaseEvent(QMouseEvent *event)
     event->accept();
 }
 
+void MatejkoCanvas::selectElement(Element *) {
+
+}
+
 void MatejkoCanvas::setupPalette() {
     QPalette palette(QApplication::palette());
     palette.setColor(backgroundRole(), Qt::gray);
     this->setPalette(palette);
+}
+
+bool MatejkoCanvas::arrowConnectionExists(Arrow *arrow) const {
+
+    for (int i = 0; i < this->arrows->size(); ++i){
+        Arrow *existingArrow = this->arrows->at(i);
+        if (existingArrow->place == arrow->place && existingArrow->transition == arrow->transition){
+            return true;
+        }
+    }
+    return false;
+}
+
+bool MatejkoCanvas::buildArrow(Arrow *arrow)
+{
+    if (arrowConnectionExists(arrow)){
+        return false;
+    }
+
+    Arrow *newArror = new Arrow(arrow);
+    arrows->append(newArror);
+    return true;
 }
 
 void MatejkoCanvas::paintEvent(QPaintEvent *event) {
@@ -121,48 +143,35 @@ void MatejkoCanvas::paintEvent(QPaintEvent *event) {
     }
 }
 
-void MatejkoCanvas::constructArrow(Place *place, Transition *transition, bool fromPlaceToTransition) {
-    Arrow *newArrow = NULL;
-    if (place && transition) {
-        this->tmpArrow.place = place;
-        this->tmpArrow.transition = transition;
-        this->tmpArrow.fromPlaceToTransition = fromPlaceToTransition;
-        newArrow = new Arrow(this->tmpArrow);
-        this->tmpArrow.clear();
-    }
-    else if (place){
-        if (this->tmpArrow.place){
-            this->tmpArrow.clear();
-        }
-        else if (this->tmpArrow.transition){
-            this->tmpArrow.place = place;
-            newArrow = new Arrow(this->tmpArrow);
-            this->tmpArrow.clear();
-        }
-        else {
-            this->tmpArrow.place = place;
-            this->tmpArrow.place->setClicked(true);
-            this->tmpArrow.fromPlaceToTransition = true;
-        }
-    }
-    else if (transition){
-        if (this->tmpArrow.transition){
-            this->tmpArrow.clear();
-        }
-        else if (this->tmpArrow.place){
-            this->tmpArrow.transition = transition;
-            newArrow = new Arrow(this->tmpArrow);
-            this->tmpArrow.clear();
-        }
-        else {
-            this->tmpArrow.transition = transition;
-            this->tmpArrow.transition->setClicked(true);
-            this->tmpArrow.fromPlaceToTransition = false;
-        }
-    }
+bool canPrzemekIntoProgramming(){
+    return false;
+}
 
-    if (newArrow) {
-        this->arrows->append(newArrow);
-        this->update();
+void MatejkoCanvas::constructArrow(Element *element) {
+    Arrow *newArrow = NULL;
+
+    if (qobject_cast<Place*>(element)){
+        if (this->tmpArrow.transition){
+            this->tmpArrow.place = element;
+            this->tmpArrow.fromPlaceToTransition = false;
+            this->buildArrow(&this->tmpArrow);
+            this->tmpArrow.clear();
+        }
+        else {
+            if (!this->tmpArrow.place){
+
+            }
+        }
+    }
+    else if (qobject_cast<Transition*>(element)){
+        if (this->tmpArrow.place){
+            this->tmpArrow.transition = element;
+            this->tmpArrow.fromPlaceToTransition = true;
+            this->buildArrow(&this->tmpArrow);
+            this->tmpArrow.clear();
+        }
+        else {
+            this->tmpArrow.clear();
+        }
     }
 }

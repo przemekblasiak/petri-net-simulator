@@ -88,6 +88,10 @@ void Element::contextActionTriggered(QAction *action) {
     }
 }
 
+void Element::onDescriptionChanged(QString description) {
+    this->setDescription(description);
+}
+
 void Element::mousePressEvent(QMouseEvent *event) {
     this->offset = event->pos();
     event->accept();

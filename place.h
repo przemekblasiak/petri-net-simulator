@@ -18,7 +18,10 @@ public:
     int liveness;
     static int count;
 
+    virtual QString description() const;
+    virtual QRect innerFrame() const;
 public slots:
+    virtual void setDescription(const QString &description);
 
 private:
     virtual void updateNumber();

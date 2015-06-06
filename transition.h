@@ -14,10 +14,13 @@ class Transition : public Element
 public:
     explicit Transition(QPoint &origin, QWidget *parent = 0);
     virtual ~Transition();
+    virtual QRect innerFrame() const;
+    virtual QString description() const;
 
     static int count;
 
 public slots:
+    virtual void setDescription(const QString &description);
 
 private:
     virtual void updateNumber();

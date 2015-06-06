@@ -14,6 +14,8 @@ public:
     void setSelected(bool clicked);
     int number() const;
     void setNumber(int number);
+    virtual QRect innerFrame() const = 0;
+    virtual QString description() const = 0;
 
 signals:
     void removeElementRequested();
@@ -22,6 +24,8 @@ signals:
 public slots:
     void showContextMenu(const QPoint &position);
     void contextActionTriggered(QAction *action);
+    void onDescriptionChanged(QString description);
+    virtual void setDescription(const QString &description) = 0;
 
 protected:
     virtual void setChildrenClickable(bool clickable);

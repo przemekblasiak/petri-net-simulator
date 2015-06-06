@@ -76,6 +76,9 @@ void MatejkoCanvas::onRemoveElementRequested() {
         elementToUpdate->setNumber(i+1);
     }
 
+    this->removeRelatedArrows(elementToRemove);
+    this->update();
+
     elementToRemove->deleteLater();
 }
 
@@ -139,6 +142,29 @@ void MatejkoCanvas::setSelectedElement(Element *element) {
 
 Element * MatejkoCanvas::selectedElement() {
     return _selectedElement;
+}
+
+int MatejkoCanvas::removeRelatedArrows(Element *element)
+{
+    if (!element){
+        return -1;
+    }
+
+    QList<int> indicesToRemove;
+
+    for (int i = 0; i < this->arrows->count(); ++i){
+        Arrow *arrow = this->arrows->at(i);
+        if (arrow->place == element || arrow->transition == element){
+            indicesToRemove.append(i);
+        }
+    }
+
+    for (int i = indicesToRemove.count()-1; i >= 0; --i) {
+        Arrow *arrow = this->arrows->takeAt(indicesToRemove[i]);
+        delete arrow;
+    }
+
+    return indicesToRemove.count();
 }
 
 void MatejkoCanvas::setupPalette() {

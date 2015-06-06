@@ -24,6 +24,10 @@ Arrow::Arrow(const Arrow &arrow)
 }
 
 void Arrow::draw(QPainter &painter) const {
+    if (this->place == NULL || this->transition == NULL){
+        qWarning("co ty robisz!?");
+        return;
+    }
     QPoint placeMiddle = QPoint(this->place->x() + this->place->width()/2, this->place->y() + this->place->height()/2);
     QPoint transitionMiddle = QPoint(this->transition->x() + this->transition->width()/2, this->transition->y() + this->transition->height()/2);
     QPoint *middle1, *middle2;

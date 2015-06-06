@@ -3,6 +3,7 @@
 #include <QtGui>
 #include <QApplication>
 #include "pnsglobal.h"
+#include "editelementdialog.h"
 
 MatejkoCanvas::MatejkoCanvas(QWidget *parent) : QWidget(parent), _selectedElement(0) {
     this->setupPalette();
@@ -81,7 +82,22 @@ void MatejkoCanvas::onRemoveElementRequested() {
 
 void MatejkoCanvas::onModifyElementRequested() {
     Element *elementToModify = qobject_cast<Element *>(QObject::sender());
+    Place *placeToModify = qobject_cast<Place *>(elementToModify);
+    Transition *TransitionToModify = qobject_cast<Transition *>(elementToModify);
     // TODO: Edytowanie elementu
+
+    EditElementDialog *dialog = new EditElementDialog(this);
+    connect(dialog, SIGNAL(descriptionChanged(QString)), elementToModify, SLOT(onDescriptionChanged(QString)));
+
+    if (placeToModify){
+        dialog->setEditView(EditElementDialog::EditPlace);
+        connect(dialog, SIGNAL(livenessChanged(int)), placeToModify, SLOT(onLivenessChanged(QString)));
+    }
+    else if (TransitionToModify){
+        dialog->setEditView(EditElementDialog::EditTransition);
+    }
+
+    dialog->show();
 }
 
 void MatejkoCanvas::mousePressEvent(QMouseEvent *event) {

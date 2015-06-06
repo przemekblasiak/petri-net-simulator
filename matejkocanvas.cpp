@@ -84,26 +84,13 @@ void MatejkoCanvas::onModifyElementRequested() {
     // TODO: Edytowanie elementu
 }
 
-void MatejkoCanvas::mousePressEvent(QMouseEvent *event) {
-    event->accept();
+void MatejkoCanvas::onElementClicked() {
+    Element *element = qobject_cast<Element *>(this->sender());
+    this->selectElement(element);
 }
 
 void MatejkoCanvas::mouseReleaseEvent(QMouseEvent *event) {
-    if (event->button() == Qt::LeftButton) {
-        QObject *object = childAt(event->pos());
-        if (object) {
-            Element *element= qobject_cast<Element *>(object);
-            if (element){
-                this->selectElement(element);
-            }
-        } else {
-            this->setSelectedElement(0);
-        }
-    }
-    else if (event->button() == Qt::RightButton){
-    }
-
-    event->accept();
+    this->selectElement(0);
 }
 
 void MatejkoCanvas::selectElement(Element *element) {
@@ -200,8 +187,4 @@ void MatejkoCanvas::paintEvent(QPaintEvent *event) {
     for (Arrow *arrow: *(this->arrows)) {
         arrow->draw(painter);
     }
-}
-
-bool canPrzemekIntoProgramming(){ // Mateusz no speak americano
-    return true;
 }

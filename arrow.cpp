@@ -1,6 +1,4 @@
 #include "arrow.h"
-#include <QDebug>
-#include <QRect>
 
 Arrow::Arrow(Element *place, Element *transition, bool fromPlaceToTransition, QObject *parent):
     QObject(parent), place(place), transition(transition), fromPlaceToTransition(fromPlaceToTransition)

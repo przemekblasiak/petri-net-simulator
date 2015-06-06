@@ -1,8 +1,7 @@
 #include "transition.h"
 #include "ui_transition.h"
-#include <QMenu>
 #include "matejkocanvas.h"
-#include <QMouseEvent>
+#include "pnsglobal.h"
 
 int Transition::count = 0;
 

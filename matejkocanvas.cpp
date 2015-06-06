@@ -2,10 +2,7 @@
 
 #include <QtGui>
 #include <QApplication>
-#include <QList>
-#include <QDebug>
-#include <QMenu>
-#include <QIcon>
+#include "pnsglobal.h"
 
 MatejkoCanvas::MatejkoCanvas(QWidget *parent) : QWidget(parent), _selectedElement(0) {
     this->setupPalette();

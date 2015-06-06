@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QFileDialog>
-#include <QDebug>
+#include "pnsglobal.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),

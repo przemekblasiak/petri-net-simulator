@@ -2,10 +2,9 @@
 #define ARROW_H
 
 #include <QObject>
+#include "pnsglobal.h"
 #include "place.h"
 #include "transition.h"
-#include <QPainter>
-#include <QImage>
 
 class Arrow : public QObject
 {

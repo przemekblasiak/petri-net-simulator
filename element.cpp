@@ -1,10 +1,6 @@
 #include "element.h"
-#include <QMap>
-#include <QVariant>
-#include <QAction>
-#include <QMenu>
 #include "matejkocanvas.h"
-#include <QMouseEvent>
+#include "pnsglobal.h"
 
 Element::Element(QWidget *parent):
     QFrame(parent), letter(""), basicStyleSheet(""), offset(0, 0), _selected(false), moving(false)

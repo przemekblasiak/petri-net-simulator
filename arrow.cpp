@@ -1,6 +1,4 @@
 #include "arrow.h"
-#include <QDebug>
-#include <QRect>
 
 Arrow::Arrow(Element *place, Element *transition, bool fromPlaceToTransition, QObject *parent):
     QObject(parent), place(place), transition(transition), fromPlaceToTransition(fromPlaceToTransition)
@@ -28,6 +26,7 @@ void Arrow::draw(QPainter &painter) const {
     QRect transitionFrame = this->transition->innerFrame();
 
     QRect frame1, frame2;
+
     if (this->fromPlaceToTransition) {
         frame1 = placeFrame;
         frame2 = transitionFrame;

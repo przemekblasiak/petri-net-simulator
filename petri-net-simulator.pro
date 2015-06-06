@@ -39,7 +39,8 @@ HEADERS += \
     place.h \
     transition.h \
     arrow.h \
-    element.h
+    element.h \
+    pnsglobal.h
 
 FORMS += \
     mainwindow.ui \

@@ -1,9 +1,7 @@
 #include "place.h"
 #include "ui_place.h"
-#include <QMenu>
-#include <QMouseEvent>
 #include "matejkocanvas.h"
-#include <QRect>
+#include "pnsglobal.h"
 
 int Place::count = 0;
 

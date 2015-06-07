@@ -16,7 +16,8 @@ SOURCES += main.cpp \
     transition.cpp \
     arrow.cpp \
     element.cpp \
-    editelementdialog.cpp
+    editelementdialog.cpp \
+    descriptionlabel.cpp
 
 # Default rules for deployment.
 include(deployment.pri)
@@ -42,13 +43,15 @@ HEADERS += \
     arrow.h \
     element.h \
     pnsglobal.h \
-    editelementdialog.h
+    editelementdialog.h \
+    descriptionlabel.h
 
 FORMS += \
     mainwindow.ui \
     place.ui \
     transition.ui \
-    editelementdialog.ui
+    editelementdialog.ui \
+    descriptionlabel.ui
 
 RESOURCES += \
     resources.qrc

@@ -6,34 +6,35 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>80</width>
-    <height>76</height>
+    <width>25</width>
+    <height>50</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
   <property name="minimumSize">
    <size>
-    <width>0</width>
-    <height>0</height>
+    <width>25</width>
+    <height>50</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>80</width>
-    <height>10000</height>
+    <width>25</width>
+    <height>50</height>
    </size>
   </property>
   <property name="windowTitle">
    <string>Frame</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">border-style: none;
-</string>
+   <string notr="true">border-style: outset;
+border-width: 6 1 6 1;
+background-color: rgb(245, 245, 245);</string>
   </property>
   <property name="frameShape">
    <enum>QFrame::NoFrame</enum>
@@ -42,6 +43,9 @@
    <enum>QFrame::Plain</enum>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>0</number>
+   </property>
    <property name="leftMargin">
     <number>0</number>
    </property>
@@ -54,112 +58,23 @@
    <property name="bottomMargin">
     <number>0</number>
    </property>
-   <item alignment="Qt::AlignHCenter">
-    <widget class="QFrame" name="innerFrame">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>25</width>
-       <height>50</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>25</width>
-       <height>50</height>
-      </size>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-style: outset;
-border-width: 6 1 6 1;
-background-color: rgb(245, 245, 245);</string>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2">
-      <property name="spacing">
-       <number>-1</number>
-      </property>
-      <property name="leftMargin">
-       <number>0</number>
-      </property>
-      <property name="topMargin">
-       <number>0</number>
-      </property>
-      <property name="rightMargin">
-       <number>0</number>
-      </property>
-      <property name="bottomMargin">
-       <number>0</number>
-      </property>
-      <item>
-       <widget class="QLabel" name="nameLabel">
-        <property name="font">
-         <font>
-          <family>Helvetica Neue</family>
-          <pointsize>8</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">border-style: none;
-background-color: none;</string>
-        </property>
-        <property name="text">
-         <string>T1</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
    <item>
-    <widget class="QLabel" name="descriptionLabel">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="MinimumExpanding">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>80</width>
-       <height>0</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>80</width>
-       <height>16777215</height>
-      </size>
-     </property>
+    <widget class="QLabel" name="nameLabel">
      <property name="font">
       <font>
+       <family>Helvetica Neue</family>
        <pointsize>8</pointsize>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(76, 76, 76);</string>
+      <string notr="true">border-style: none;
+background-color: none;</string>
      </property>
      <property name="text">
-      <string>TextLabel</string>
+      <string>T1</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignHCenter|Qt::AlignTop</set>
-     </property>
-     <property name="wordWrap">
-      <bool>true</bool>
+      <set>Qt::AlignBottom|Qt::AlignHCenter</set>
      </property>
     </widget>
    </item>

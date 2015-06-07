@@ -22,8 +22,8 @@ Arrow::Arrow(const Arrow &arrow)
 }
 
 void Arrow::draw(QPainter &painter) const {
-    QRect placeFrame = this->place->innerFrame();
-    QRect transitionFrame = this->transition->innerFrame();
+    QRect placeFrame = this->place->frameGeometry();
+    QRect transitionFrame = this->transition->frameGeometry();
 
     QRect frame1, frame2;
 

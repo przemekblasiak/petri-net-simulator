@@ -3,7 +3,8 @@
 #include "pnsglobal.h"
 
 Element::Element(QWidget *parent):
-    QFrame(parent), letter(""), basicStyleSheet(""), offset(0, 0), _selected(false), moving(false), pressed(false)
+    QFrame(parent),
+    letter(""), basicStyleSheet(""), offset(0, 0), _selected(false), moving(false), pressed(false), descriptionLabel(0)
 {
     // Context menu
     this->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -77,8 +78,13 @@ void Element::contextActionTriggered(QAction *action) {
     }
 }
 
-void Element::onDescriptionChanged(QString description) {
-    this->setDescription(description);
+void Element::setChildrenClickable(bool clickable) {
+    foreach (QObject* child, this->children()) {
+        QWidget *widget = qobject_cast<QWidget *>(child);
+        if (widget) {
+            widget->setAttribute(Qt::WA_TransparentForMouseEvents, !clickable);
+        }
+    }
 }
 
 void Element::mousePressEvent(QMouseEvent *event) {
@@ -86,8 +92,10 @@ void Element::mousePressEvent(QMouseEvent *event) {
     if (pressedInnerFrame) {
         this->pressed = true;
         this->offset = event->pos();
+        event->accept();
+    } else {
+        event->ignore();
     }
-    event->accept();
 }
 
 void Element::mouseMoveEvent(QMouseEvent *event) {
@@ -117,6 +125,33 @@ void Element::mouseReleaseEvent(QMouseEvent *event) {
             emit elementClicked();
         }
         this->pressed = false;
+        event->accept();
     }
-    event->accept();
+    else {
+        event->ignore();
+    }
+}
+
+void Element::paintEvent(QPaintEvent *event) {
+    if (this->descriptionLabel) {
+        QPoint elementCenterRight(this->x() + this->width(), this->y() + this->height()/2);
+        int leftMargin = 2;
+        int topMargin = 4;
+        QPoint insertionPoint(elementCenterRight.x() + leftMargin, elementCenterRight.y() + topMargin);
+        this->descriptionLabel->move(insertionPoint);
+    }
+}
+
+void Element::setDescription(const QString &description) {
+    if (!this->descriptionLabel) {
+        return;
+    }
+    this->descriptionLabel->setText(description);
+}
+
+QString Element::description() {
+    if (!this->descriptionLabel) {
+        return "";
+    }
+    return this->descriptionLabel->text();
 }

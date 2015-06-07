@@ -8,10 +8,10 @@
 #include <QVariant>
 #include <QAction>
 #include <QMenu>
-#include <QMouseEvent>
-#include <QIcon>
-#include <QPainter>
 #include <QFileDialog>
+#include <QtGui>
+#include <QLabel>
+#include <QMouseEvent>
 
 
 #endif // PNSGLOBAL

@@ -25,13 +25,13 @@ public slots:
     void contextActionTriggered(QAction *);
     void onRemoveElementRequested();
     void onModifyElementRequested();
+    void onElementClicked();
 
 private:
     Arrow tmpArrow;
     Element *_selectedElement;
 
     // Mouse
-    void mousePressEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
 
     enum ContextActionType {

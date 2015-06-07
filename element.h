@@ -20,6 +20,7 @@ public:
 signals:
     void removeElementRequested();
     void modifyElementRequested();
+    void elementClicked();
 
 public slots:
     void showContextMenu(const QPoint &position);
@@ -28,12 +29,12 @@ public slots:
     virtual void setDescription(const QString &description) = 0;
 
 protected:
-    virtual void setChildrenClickable(bool clickable);
     virtual void updateNumber() = 0;
 
     QString letter;
     QString basicStyleSheet; // TODO: static?
     bool moving;
+    bool pressed;
     QPoint offset;
 
 private:
@@ -49,5 +50,15 @@ private:
         Remove
     };
 };
+
+// TODO: Co myślisz, Mateo? Może jakieś utility class?
+inline void setChildrenClickable(QWidget *parent, bool clickable) {
+    foreach (QObject* child, parent->children()) {
+        QWidget *widget = qobject_cast<QWidget *>(child);
+        if (widget) {
+            widget->setAttribute(Qt::WA_TransparentForMouseEvents, !clickable);
+        }
+    }
+}
 
 #endif // ELEMENT_H

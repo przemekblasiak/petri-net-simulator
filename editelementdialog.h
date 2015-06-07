@@ -19,6 +19,8 @@ public:
     explicit EditElementDialog(QWidget *parent = 0);
     ~EditElementDialog();
     void setEditView(EditMode mode);
+    void setDescription(const QString &description);
+    void setLiveness(int liveness);
 
 signals:
     void livenessChanged(int liveness);

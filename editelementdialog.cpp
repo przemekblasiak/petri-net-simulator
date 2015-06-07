@@ -8,9 +8,6 @@ EditElementDialog::EditElementDialog(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->livenessLineEdit->setValidator(new QIntValidator(0, 100, this));
-
-    connect(ui->livenessLineEdit, SIGNAL(textEdited(QString)), this, SIGNAL(livenessChanged(QString)));
-    connect(ui->descriptionLineEdit, SIGNAL(textEdited(QString)), this, SIGNAL(descriptionChanged(QString)));
 }
 
 EditElementDialog::~EditElementDialog()
@@ -28,6 +25,18 @@ void EditElementDialog::setEditView(EditElementDialog::EditMode mode)
         ui->livenessLabel->setVisible(false);
         ui->livenessLineEdit->setVisible(false);
     }
+}
+
+void EditElementDialog::setDescription(const QString &description)
+{
+    ui->descriptionLineEdit->setText(description);
+    this->description = description;
+}
+
+void EditElementDialog::setLiveness(int liveness)
+{
+    ui->livenessLineEdit->setText(QString::number(liveness));
+    this->liveness = liveness;
 }
 
 void EditElementDialog::on_livenessLineEdit_textEdited(const QString &liveness)

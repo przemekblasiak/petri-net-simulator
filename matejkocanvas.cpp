@@ -87,11 +87,13 @@ void MatejkoCanvas::onModifyElementRequested() {
     // TODO: Edytowanie elementu
 
     EditElementDialog *dialog = new EditElementDialog(this);
-    connect(dialog, SIGNAL(descriptionChanged(QString)), elementToModify, SLOT(onDescriptionChanged(QString)));
+    connect(dialog, SIGNAL(descriptionChanged(QString)), elementToModify, SLOT(setDescription(QString)));
+    dialog->setDescription(elementToModify->description());
 
     if (placeToModify){
         dialog->setEditView(EditElementDialog::EditPlace);
-        connect(dialog, SIGNAL(livenessChanged(int)), placeToModify, SLOT(onLivenessChanged(QString)));
+        dialog->setLiveness(placeToModify->liveness);
+        connect(dialog, SIGNAL(livenessChanged(int)), placeToModify, SLOT(setLiveness(int)));
     }
     else if (TransitionToModify){
         dialog->setEditView(EditElementDialog::EditTransition);

@@ -42,6 +42,12 @@ void Place::setDescription(const QString &description) {
     this->adjustSize();
 }
 
+void Place::setLiveness(int liveness)
+{
+    ui->livenessLabel->setText(QString::number(liveness));
+    this->liveness = liveness;
+}
+
 QString Place::description() const {
     return ui->descriptionLabel->text();
 }

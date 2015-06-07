@@ -22,6 +22,7 @@ public:
     virtual QRect innerFrame() const;
 public slots:
     virtual void setDescription(const QString &description);
+    virtual void setLiveness(int liveness);
 
 private:
     virtual void updateNumber();

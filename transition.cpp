@@ -10,8 +10,8 @@ Transition::Transition(const QPoint &origin, QWidget *parent) :
     ui(new Ui::Transition)
 {
     ui->setupUi(this);
-    this->setGeometry(origin.x() - this->width()/2, origin.y() - this->height()/2, this->width(), this->height());
     this->setChildrenClickable(false);
+    this->move(origin);
 
     this->letter = "T";
     this->basicStyleSheet = this->styleSheet();

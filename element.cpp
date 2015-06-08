@@ -16,9 +16,14 @@ Element::Element(QWidget *parent):
             this->parent(), SLOT(onModifyElementRequested()));
     connect(this, SIGNAL(elementClicked()),
             this->parent(), SLOT(onElementClicked()));
+    connect(this, SIGNAL(selectedElementDestroyed()),
+            this->parent(), SLOT(onSelectedElementDestroyed()));
 }
 
 Element::~Element() {
+    if (_selected){
+        emit selectedElementDestroyed();
+    }
 }
 
 bool Element::selected() const {
@@ -26,7 +31,8 @@ bool Element::selected() const {
 }
 
 void Element::setSelected(bool selected) {
-    if (selected) {
+    _selected = selected;
+    if (_selected) {
         this->setStyleSheet(this->basicStyleSheet + "border-color: orange;");
     }
     else {

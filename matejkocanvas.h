@@ -18,6 +18,8 @@ public:
     QList<Element *> *transitions;
     QList<Arrow *> *arrows;
 
+    void clear();
+
 signals:
 
 public slots:
@@ -26,6 +28,7 @@ public slots:
     void onRemoveElementRequested();
     void onModifyElementRequested();
     void onElementClicked();
+    void onSelectedElementDestroyed();
 
 private:
     Arrow tmpArrow;
@@ -47,6 +50,7 @@ private:
     void setSelectedElement(Element *element);
     Element *selectedElement();
     int removeRelatedArrows(Element *element);
+    void addElement(Element *newElement);
 };
 
 #endif // MATEJKOCANVAS_H

@@ -22,6 +22,7 @@ signals:
     void removeElementRequested();
     void modifyElementRequested();
     void elementClicked();
+    void selectedElementDestroyed();
 
 public slots:
     void showContextMenu(const QPoint &position);

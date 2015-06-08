@@ -15,6 +15,10 @@ MatejkoCanvas::MatejkoCanvas(QWidget *parent) : QWidget(parent), _selectedElemen
             this, SLOT(showContextMenu(const QPoint &)));
 }
 
+void MatejkoCanvas::clear(){
+    this->selectElement(0);
+}
+
 void MatejkoCanvas::showContextMenu(const QPoint &position) {
     QMenu contextMenu("Context menu", this);
 
@@ -48,17 +52,27 @@ void MatejkoCanvas::contextActionTriggered(QAction *action) {
     ContextActionType actionType = (ContextActionType)actionInfo["Type"].toInt();
 
     if (actionType == AddPlace) {
-        // TODO: addPlace(...), addTransition(...), a moze addElement(...)?
         Element *newPlace = new Place(position, 0, this);
-        DescriptionLabel *descriptionLabel = new DescriptionLabel(this);
-        newPlace->descriptionLabel = descriptionLabel;
-        this->places->append(newPlace);
+        QPoint centeredPosition(position.x() - newPlace->width()/2, position.y() - newPlace->height()/2);
+        newPlace->move(centeredPosition);
+        this->addElement(newPlace);
     }
     else if (actionType == AddTransition) {
         Element *newTransition = new Transition(position, this);
-        DescriptionLabel *descriptionLabel = new DescriptionLabel(this);
-        newTransition->descriptionLabel = descriptionLabel;
-        this->transitions->append(newTransition);
+        QPoint centeredPosition(position.x() - newTransition->width()/2, position.y() - newTransition->height()/2);
+        newTransition->move(centeredPosition);
+        this->addElement(newTransition);
+    }
+}
+
+void MatejkoCanvas::addElement(Element *newElement) {
+    DescriptionLabel *descriptionLabel = new DescriptionLabel(this);
+    newElement->descriptionLabel = descriptionLabel;
+    if (qobject_cast<Place *>(newElement)) {
+        this->places->append(newElement);
+    }
+    else {
+        this->transitions->append(newElement);
     }
 }
 
@@ -113,15 +127,25 @@ void MatejkoCanvas::onElementClicked() {
     this->selectElement(element);
 }
 
+void MatejkoCanvas::onSelectedElementDestroyed() {
+    this->setSelectedElement(0);
+}
+
 void MatejkoCanvas::mouseReleaseEvent(QMouseEvent *event) {
     this->selectElement(0);
 }
 
 void MatejkoCanvas::selectElement(Element *element) {
+    if (!element){
+        this->setSelectedElement(0);
+        return;
+    }
+
     // If there is no selected element, just select one
     if (!this->selectedElement()) {
         this->setSelectedElement(element);
     }
+
     // Else try to build an arrow and clear selection
     else {
         if (qobject_cast<Place*>(this->selectedElement())){

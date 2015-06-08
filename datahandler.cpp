@@ -19,6 +19,7 @@ void DataHandler::save(std::string fileName, const QList<Element *> &places, con
         json_place["x"] = place->x();
         json_place["y"] = place->y();
         json_place["liveness"] = place->liveness;
+        json_place["description"] = place->description().toStdString();
         json_places.append(json_place);
     }
 
@@ -32,6 +33,7 @@ void DataHandler::save(std::string fileName, const QList<Element *> &places, con
         json_transition["number"] = transition->number();
         json_transition["x"] = transition->x();
         json_transition["y"] = transition->y();
+        json_transition["description"] = transition->description().toStdString();
         json_transitions.append(json_transition);
     }
 
@@ -88,11 +90,13 @@ void DataHandler::load(std::string fileName, MatejkoCanvas* matejkoCanvas, QList
         const int x = current["x"].asInt();
         const int y = current["y"].asInt();
         const int liveness = current["liveness"].asInt();
+        const QString description = QString::fromStdString(current["description"].asString());
 
         // creating Place object
         //TODO Add matejkocanvas parent
         Place *newPlace = new Place(QPoint(x, y), liveness, matejkoCanvas);
         newPlace->setNumber(number);
+        newPlace->setDescription(description);
         // adding Place object to Places list
         places.append(newPlace);
     }
@@ -106,11 +110,13 @@ void DataHandler::load(std::string fileName, MatejkoCanvas* matejkoCanvas, QList
         const int number = current["number"].asInt();
         const int x = current["x"].asInt();
         const int y = current["y"].asInt();
+        const QString description = QString::fromStdString(current["description"].asString());
 
         // creating Transition object
         //TODO Add matejkocanvas parent
         Transition *newTransition = new Transition(QPoint(x, y), matejkoCanvas);
         newTransition->setNumber(number);
+        newTransition->setDescription(description);
         // adding Transition object to Transitions list
         transitions.append(newTransition);
     }

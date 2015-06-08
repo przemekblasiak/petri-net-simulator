@@ -9,7 +9,6 @@ class Element : public QFrame
 {
     Q_OBJECT
 public:
-    DescriptionLabel *descriptionLabel;
     explicit Element(QWidget *parent = 0);
     virtual ~Element();
     bool selected() const;
@@ -40,7 +39,9 @@ protected:
 
 private:
     bool _selected;
+    QString _description;
     int _number;
+    DescriptionLabel *_descriptionLabel;
     enum ContextActionType {
         Edit,
         Remove

@@ -4,7 +4,14 @@
 
 Element::Element(QWidget *parent):
     QFrame(parent),
-    letter(""), basicStyleSheet(""), offset(0, 0), _selected(false), moving(false), pressed(false), descriptionLabel(0)
+    letter(""),
+    basicStyleSheet(""),
+    offset(0, 0),
+    _selected(false),
+    moving(false),
+    pressed(false),
+    _descriptionLabel(new DescriptionLabel(parent)),
+    _description("")
 {
     // Context menu
     this->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -21,6 +28,7 @@ Element::Element(QWidget *parent):
 }
 
 Element::~Element() {
+    delete _descriptionLabel;
     if (_selected){
         emit selectedElementDestroyed();
     }
@@ -139,25 +147,23 @@ void Element::mouseReleaseEvent(QMouseEvent *event) {
 }
 
 void Element::paintEvent(QPaintEvent *event) {
-    if (this->descriptionLabel) {
-        QPoint elementCenterRight(this->x() + this->width(), this->y() + this->height()/2);
-        int leftMargin = 2;
-        int topMargin = 4;
-        QPoint insertionPoint(elementCenterRight.x() + leftMargin, elementCenterRight.y() + topMargin);
-        this->descriptionLabel->move(insertionPoint);
-    }
+    QPoint elementCenterRight(this->x() + this->width(), this->y() + this->height()/2);
+    int leftMargin = 2, topMargin = 4;
+    QPoint insertionPoint(elementCenterRight.x() + leftMargin, elementCenterRight.y() + topMargin);
+    _descriptionLabel->move(insertionPoint);
 }
 
 void Element::setDescription(const QString &description) {
-    if (!this->descriptionLabel) {
-        return;
+    _description = description;
+    if (_description == "") {
+        _descriptionLabel->setHidden(true);
     }
-    this->descriptionLabel->setText(description);
+    else {
+        _descriptionLabel->setHidden(false);
+    }
+    _descriptionLabel->setText(description);
 }
 
 QString Element::description() {
-    if (!this->descriptionLabel) {
-        return "";
-    }
-    return this->descriptionLabel->text();
+    return _description;
 }

@@ -4,7 +4,6 @@
 #include <QApplication>
 #include "pnsglobal.h"
 #include "editelementdialog.h"
-#include "descriptionlabel.h"
 
 MatejkoCanvas::MatejkoCanvas(QWidget *parent) : QWidget(parent), _selectedElement(0) {
     this->setupPalette();
@@ -55,24 +54,13 @@ void MatejkoCanvas::contextActionTriggered(QAction *action) {
         Element *newPlace = new Place(position, 0, this);
         QPoint centeredPosition(position.x() - newPlace->width()/2, position.y() - newPlace->height()/2);
         newPlace->move(centeredPosition);
-        this->addElement(newPlace);
+        this->places->append(newPlace);
     }
     else if (actionType == AddTransition) {
         Element *newTransition = new Transition(position, this);
         QPoint centeredPosition(position.x() - newTransition->width()/2, position.y() - newTransition->height()/2);
         newTransition->move(centeredPosition);
-        this->addElement(newTransition);
-    }
-}
-
-void MatejkoCanvas::addElement(Element *newElement) {
-    DescriptionLabel *descriptionLabel = new DescriptionLabel(this);
-    newElement->descriptionLabel = descriptionLabel;
-    if (qobject_cast<Place *>(newElement)) {
-        this->places->append(newElement);
-    }
-    else {
-        this->transitions->append(newElement);
+        this->transitions->append(newTransition);
     }
 }
 

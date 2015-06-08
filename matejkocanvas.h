@@ -50,7 +50,6 @@ private:
     void setSelectedElement(Element *element);
     Element *selectedElement();
     int removeRelatedArrows(Element *element);
-    void addElement(Element *newElement);
 };
 
 #endif // MATEJKOCANVAS_H

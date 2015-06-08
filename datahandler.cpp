@@ -58,81 +58,102 @@ void DataHandler::save(std::string fileName, const QList<Element *> &places, con
 
 void DataHandler::load(std::string fileName, QList<Element *> &places, QList<Element *> &transitions, QList<Arrow *> &arrows)
 {
-//    clearList(places);
-//    clearList(transitions);
-//    clearList(arrows);
+    clearList(places);
+    clearList(transitions);
+    clearList(arrows);
 
-//    Json::Value root;
-//    std::ifstream loadFile(fileName.c_str());
-//    bool parsed = reader.parse(loadFile, root, false);
-//    if (!parsed)
-//    {
-//        // report to the user the failure and their locations in the document.
-//        std::cout  << "Failed to parse configuration\n" << reader.getFormatedErrorMessages();
-//    }
+    Json::Value root;
+    std::ifstream loadFile(fileName.c_str());
+    bool parsed = reader.parse(loadFile, root, false);
+    if (!parsed)
+    {
+        // report to the user the failure and their locations in the document.
+        std::cout  << "Failed to parse configuration\n" << reader.getFormatedErrorMessages();
+    }
 
-//    const int noOfPlaces = (int) root["places"].size();
-//    const Json::Value json_places = root["places"];
-//    for (int i = 0; i < noOfPlaces; ++i)
-//    {
-//        const Json::Value current = json_places[Json::Value::UInt(i)];
-//        const int id = current["id"].asInt();
-//        const int x = current["x"].asInt();
-//        const int y = current["y"].asInt();
-//        const int liveness = current["liveness"].asInt();
+    const int noOfPlaces = (int) root["places"].size();
+    const Json::Value json_places = root["places"];
+    for (int i = 0; i < noOfPlaces; ++i)
+    {
+        const Json::Value current = json_places[Json::Value::UInt(i)];
+        const int number = current["number"].asInt();
+        const int x = current["x"].asInt();
+        const int y = current["y"].asInt();
+        const int liveness = current["liveness"].asInt();
 
-//        Place *tempPlace = new Place(id, x, y, liveness);
-//        places.append(tempPlace);
-//    }
+        Place *newPlace = new Place(QPoint(x, y), liveness);
+        newPlace->setNumber(number);
+        places.append(newPlace);
+    }
 
-//    const int noOfTransitions = (int) root["transitions"].size();
-//    const Json::Value json_transitions = root["transitions"];
-//    for (int i = 0; i < noOfTransitions; ++i)
-//    {
-//        const Json::Value current = json_transitions[Json::Value::UInt(i)];
-//        const int id = current["id"].asInt();
-//        const int x = current["x"].asInt();
-//        const int y = current["y"].asInt();
+    const int noOfTransitions = (int) root["transitions"].size();
+    const Json::Value json_transitions = root["transitions"];
+    for (int i = 0; i < noOfTransitions; ++i)
+    {
+        const Json::Value current = json_transitions[Json::Value::UInt(i)];
+        const int number = current["id"].asInt();
+        const int x = current["x"].asInt();
+        const int y = current["y"].asInt();
 
-//        Transition *temp = new Transition(id, x, y);
-//        transitions.append(temp);
-//    }
+        Transition *newTransition = new Transition(QPoint(x, y));
+        transitions.append(newTransition);
+    }
 
-//    const int noOfArrows = (int) root["arrows"].size();
-//    const Json::Value json_arrows = root["arrows"];
-//    for (int i = 0; i < noOfArrows; ++i)
-//    {
-//        const Json::Value current = json_arrows[Json::Value::UInt(i)];
-//        const int x1 = current["x1"].asInt();
-//        const int x2 = current["x2"].asInt();
-//        const int y1 = current["y1"].asInt();
-//        const int y2 = current["y1"].asInt();
+    const int noOfArrows = (int) root["arrows"].size();
+    const Json::Value json_arrows = root["arrows"];
+    for (int i = 0; i < noOfArrows; ++i)
+    {
+        const Json::Value current = json_arrows[Json::Value::UInt(i)];
+        const bool fromPlaceToTransition = current["fromPlaceToTransition"].asBool();
+        const int placeNumber = current["placeNumber"].asInt();
+        const int transitionNumber = current["transitionNumber"].asInt();
 
-//        Arrow *temp = new Arrow(x1, x2, y1, y2);
-//        arrows.append(temp);
-//    }
+        Place *arrowPlace;
+        for (int j = 0; j < places.size(); ++j)
+        {
+            Place *p = dynamic_cast<Place *>(places.at(j));
+            if (p->number() == placeNumber)
+            {
+                arrowPlace = p;
+            }
+        }
 
-//    //DEBUG INFORMATION
-//    std::cout << "Places:" << std::endl;
-//    std::cout << noOfPlaces << std::endl;
-//    for (int i = 0; i < places.size(); ++i)
-//    {
-//        std::cout << places.at(i)->id << ", " << places.at(i)->x << ", " << places.at(i)->y << ", " << places.at(i)->liveness << std::endl;
-//    }
+        Transition *arrowTransition;
+        for (int j = 0; j < transitions.size(); ++j)
+        {
+            Transition *t = dynamic_cast<Transition *>(transitions.at(j));
+            if (t->number() == transitionNumber)
+            {
+                arrowTransition = t;
+            }
+        }
 
-//    std::cout << std::endl << "Transitions:" << std::endl;
-//    std::cout << noOfTransitions << std::endl;
-//    for (int i = 0; i < transitions.size(); ++i)
-//    {
-//        std::cout << transitions.at(i)->id << ", " << transitions.at(i)->x << ", " << transitions.at(i)->y << std::endl;
-//    }
+        Arrow *newArrow = new Arrow(arrowPlace, arrowTransition, fromPlaceToTransition);
+        arrows.append(newArrow);
+    }
 
-//    std::cout << std::endl << "Arrows:" << std::endl;
-//    std::cout << noOfArrows << std::endl;
-//    for (int i = 0; i < arrows.size(); ++i)
-//    {
-//        std::cout << arrows.at(i)->x1 << ", " << arrows.at(i)->x2 << ", " << arrows.at(i)->y1 << ", " << arrows.at(i)->y2 << std::endl;
-//    }
+    //DEBUG INFORMATION
+    std::cout << "Places:" << std::endl;
+    std::cout << noOfPlaces << std::endl;
+    for (int i = 0; i < places.size(); ++i)
+    {
+        Place *p = dynamic_cast<Place *>(places.at(i));
+        std::cout << p->number() << ", " << p->x() << ", " << p->y() << ", " << p->liveness << std::endl;
+    }
+
+    std::cout << std::endl << "Transitions:" << std::endl;
+    std::cout << noOfTransitions << std::endl;
+    for (int i = 0; i < transitions.size(); ++i)
+    {
+        std::cout << transitions.at(i)->number() << ", " << transitions.at(i)->x() << ", " << transitions.at(i)->y() << std::endl;
+    }
+
+    std::cout << std::endl << "Arrows:" << std::endl;
+    std::cout << noOfArrows << std::endl;
+    for (int i = 0; i < arrows.size(); ++i)
+    {
+        //std::cout << arrows.at(i)->x1 << ", " << arrows.at(i)->x2 << ", " << arrows.at(i)->y1 << ", " << arrows.at(i)->y2 << std::endl;
+    }
 }
 
 template <typename T>

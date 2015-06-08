@@ -103,13 +103,14 @@ void DataHandler::load(std::string fileName, MatejkoCanvas* matejkoCanvas, QList
     for (int i = 0; i < noOfTransitions; ++i)
     {
         const Json::Value current = json_transitions[Json::Value::UInt(i)];
-        const int number = current["id"].asInt();
+        const int number = current["number"].asInt();
         const int x = current["x"].asInt();
         const int y = current["y"].asInt();
 
         // creating Transition object
         //TODO Add matejkocanvas parent
         Transition *newTransition = new Transition(QPoint(x, y), matejkoCanvas);
+        newTransition->setNumber(number);
         // adding Transition object to Transitions list
         transitions.append(newTransition);
     }

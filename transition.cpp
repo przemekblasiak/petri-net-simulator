@@ -5,7 +5,7 @@
 
 int Transition::count = 0;
 
-Transition::Transition(QPoint &origin, QWidget *parent) :
+Transition::Transition(const QPoint &origin, QWidget *parent) :
     Element(parent),
     ui(new Ui::Transition)
 {

@@ -14,7 +14,7 @@ class Place : public Element
 public:
     int liveness;
     static int count;
-    explicit Place(QPoint &origin, int liveness, QWidget *parent = 0);
+    explicit Place(const QPoint &origin, int liveness, QWidget *parent = 0);
     virtual ~Place();
 public slots:
     virtual void setLiveness(int liveness);

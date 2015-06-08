@@ -13,7 +13,7 @@ class Transition : public Element
 
 public:
     static int count;
-    explicit Transition(QPoint &origin, QWidget *parent = 0);
+    explicit Transition(const QPoint &origin, QWidget *parent = 0);
     virtual ~Transition();
 private:
     virtual void updateNumber();

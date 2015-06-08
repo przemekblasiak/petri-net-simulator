@@ -61,7 +61,7 @@ void DataHandler::save(std::string fileName, const QList<Element *> &places, con
     saveFile.close();
 }
 
-void DataHandler::load(std::string fileName, QList<Element *> &places, QList<Element *> &transitions, QList<Arrow *> &arrows)
+void DataHandler::load(std::string fileName, MatejkoCanvas* matejkoCanvas, QList<Element *> &places, QList<Element *> &transitions, QList<Arrow *> &arrows)
 {
     // clearing current lists of Places, Transitions and Arrows
     clearList(places);
@@ -91,7 +91,7 @@ void DataHandler::load(std::string fileName, QList<Element *> &places, QList<Ele
 
         // creating Place object
         //TODO Add matejkocanvas parent
-        Place *newPlace = new Place(QPoint(x, y), liveness);
+        Place *newPlace = new Place(QPoint(x, y), liveness, matejkoCanvas);
         newPlace->setNumber(number);
         // adding Place object to Places list
         places.append(newPlace);
@@ -109,7 +109,7 @@ void DataHandler::load(std::string fileName, QList<Element *> &places, QList<Ele
 
         // creating Transition object
         //TODO Add matejkocanvas parent
-        Transition *newTransition = new Transition(QPoint(x, y));
+        Transition *newTransition = new Transition(QPoint(x, y), matejkoCanvas);
         // adding Transition object to Transitions list
         transitions.append(newTransition);
     }

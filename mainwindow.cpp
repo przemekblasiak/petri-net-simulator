@@ -33,13 +33,13 @@ void MainWindow::on_actionNew_Project_triggered()
 void MainWindow::on_actionOpen_project_triggered()
 {
     QString filename = QFileDialog::getOpenFileName(this, "Open JSON", ".", "JSON Files (*.json)");
-    currentProjectFilePath=filename;
-    //    dataHandler.load(currentProjectFilePath.toStdString(), this->places, this->transitions, this->arrows);
+    currentProjectFilePath = filename;
+    dataHandler.load(currentProjectFilePath.toStdString(), this->places, this->transitions, this->arrows);
 }
 
 void MainWindow::on_actionSave_project_triggered()
 {
-    //    dataHandler.save(currentProjectFilePath.toStdString(), this->places, this->transitions, this->arrows);
+    dataHandler.save(currentProjectFilePath.toStdString(), this->places, this->transitions, this->arrows);
 }
 
 void MainWindow::on_actionNextTransition_triggered()

@@ -1,7 +1,8 @@
 #include "arrow.h"
 
 Arrow::Arrow(Element *place, Element *transition, bool fromPlaceToTransition, QObject *parent):
-    QObject(parent), place(place), transition(transition), fromPlaceToTransition(fromPlaceToTransition)
+    QObject(parent), place(place), transition(transition), fromPlaceToTransition(fromPlaceToTransition),
+    _weight(1)
 {
     arrowheadImage.load(":/images/images/arrowhead.png");
 }

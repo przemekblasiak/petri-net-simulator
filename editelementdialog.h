@@ -20,14 +20,14 @@ public:
     ~EditElementDialog();
     void setEditView(EditMode mode);
     void setDescription(const QString &description);
-    void setLiveness(int liveness);
+    void settoken(int token);
 
 signals:
-    void livenessChanged(int liveness);
+    void tokenChanged(int token);
     void descriptionChanged(QString description);
 
 private slots:
-    void on_livenessLineEdit_textEdited(const QString &liveness);
+    void on_tokenLineEdit_textEdited(const QString &token);
     void on_descriptionLineEdit_textEdited(const QString &description);
 
     void on_buttonBox_accepted();
@@ -35,7 +35,7 @@ private slots:
 private:
     Ui::EditElementDialog *ui;
 
-    int liveness;
+    int token;
     QString description;
 };
 

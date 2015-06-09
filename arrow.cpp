@@ -138,4 +138,14 @@ void Arrow::draw(QPainter &painter) const {
     // Draw arrow
     painter.drawImage(imagePosition, arrowhead);
 }
+int Arrow::weight() const
+{
+    return _weight;
+}
+
+void Arrow::setWeight(int weight)
+{
+    _weight = weight;
+}
+
 

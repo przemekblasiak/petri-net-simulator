@@ -5,8 +5,8 @@
 
 int Place::count = 0;
 
-Place::Place(const QPoint &origin, int liveness, QWidget *parent) :
-    Element(parent), liveness(liveness),
+Place::Place(const QPoint &origin, int token, QWidget *parent) :
+    Element(parent), token(token),
     ui(new Ui::Place)
 {
     ui->setupUi(this);
@@ -15,7 +15,7 @@ Place::Place(const QPoint &origin, int liveness, QWidget *parent) :
 
     this->letter = "P";
     this->basicStyleSheet = this->styleSheet();
-    ui->livenessLabel->setText(QString::number(liveness));
+    ui->tokenLabel->setText(QString::number(token));
 
     ++Place::count;
     this->setNumber(Place::count);
@@ -32,8 +32,8 @@ void Place::updateNumber() {
     ui->nameLabel->setText(this->letter + QString::number(this->number()));
 }
 
-void Place::setLiveness(int liveness)
+void Place::settoken(int token)
 {
-    ui->livenessLabel->setText(QString::number(liveness));
-    this->liveness = liveness;
+    ui->tokenLabel->setText(QString::number(token));
+    this->token = token;
 }

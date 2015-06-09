@@ -7,7 +7,7 @@ EditElementDialog::EditElementDialog(QWidget *parent) :
     ui(new Ui::EditElementDialog)
 {
     ui->setupUi(this);
-    ui->livenessLineEdit->setValidator(new QIntValidator(0, 100, this));
+    ui->tokenLineEdit->setValidator(new QIntValidator(0, 100, this));
 }
 
 EditElementDialog::~EditElementDialog()
@@ -18,12 +18,12 @@ EditElementDialog::~EditElementDialog()
 void EditElementDialog::setEditView(EditElementDialog::EditMode mode)
 {
     if (mode == EditMode::EditPlace){
-        ui->livenessLabel->setVisible(true);
-        ui->livenessLineEdit->setVisible(true);
+        ui->tokenLabel->setVisible(true);
+        ui->tokenLineEdit->setVisible(true);
     }
     else if (mode == EditMode::EditTransition) {
-        ui->livenessLabel->setVisible(false);
-        ui->livenessLineEdit->setVisible(false);
+        ui->tokenLabel->setVisible(false);
+        ui->tokenLineEdit->setVisible(false);
     }
 }
 
@@ -33,15 +33,15 @@ void EditElementDialog::setDescription(const QString &description)
     this->description = description;
 }
 
-void EditElementDialog::setLiveness(int liveness)
+void EditElementDialog::settoken(int token)
 {
-    ui->livenessLineEdit->setText(QString::number(liveness));
-    this->liveness = liveness;
+    ui->tokenLineEdit->setText(QString::number(token));
+    this->token = token;
 }
 
-void EditElementDialog::on_livenessLineEdit_textEdited(const QString &liveness)
+void EditElementDialog::on_tokenLineEdit_textEdited(const QString &token)
 {
-    this->liveness = liveness.toInt();
+    this->token = token.toInt();
 }
 
 void EditElementDialog::on_descriptionLineEdit_textEdited(const QString &description)
@@ -51,6 +51,6 @@ void EditElementDialog::on_descriptionLineEdit_textEdited(const QString &descrip
 
 void EditElementDialog::on_buttonBox_accepted()
 {
-    emit livenessChanged(this->liveness);
+    emit tokenChanged(this->token);
     emit descriptionChanged(this->description);
 }

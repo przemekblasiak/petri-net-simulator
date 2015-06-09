@@ -16,16 +16,19 @@ public:
     void clear();
     Element *place;
     Element *transition;
-
     bool fromPlaceToTransition;
-
     void draw(QPainter &painter) const;
+
+    int weight() const;
+
 signals:
 
 public slots:
+    void setWeight(int weight);
 
 private:
     QImage arrowheadImage;
+    int _weight;
 };
 
 #endif // ARROW_H

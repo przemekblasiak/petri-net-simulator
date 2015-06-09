@@ -77,7 +77,7 @@ padding: 0;</string>
     </spacer>
    </item>
    <item>
-    <widget class="QLabel" name="livenessLabel">
+    <widget class="QLabel" name="tokenLabel">
      <property name="enabled">
       <bool>true</bool>
      </property>

@@ -18,7 +18,7 @@ void DataHandler::save(std::string fileName, const QList<Element *> &places, con
         json_place["number"] = place->number();
         json_place["x"] = place->x();
         json_place["y"] = place->y();
-        json_place["liveness"] = place->liveness;
+        json_place["token"] = place->token;
         json_place["description"] = place->description().toStdString();
         json_places.append(json_place);
     }
@@ -89,12 +89,12 @@ void DataHandler::load(std::string fileName, MatejkoCanvas* matejkoCanvas, QList
         const int number = current["number"].asInt();
         const int x = current["x"].asInt();
         const int y = current["y"].asInt();
-        const int liveness = current["liveness"].asInt();
+        const int token = current["token"].asInt();
         const QString description = QString::fromStdString(current["description"].asString());
 
         // creating Place object
         //TODO Add matejkocanvas parent
-        Place *newPlace = new Place(QPoint(x, y), liveness, matejkoCanvas);
+        Place *newPlace = new Place(QPoint(x, y), token, matejkoCanvas);
         newPlace->setNumber(number);
         newPlace->setDescription(description);
         // adding Place object to Places list
@@ -165,7 +165,7 @@ void DataHandler::load(std::string fileName, MatejkoCanvas* matejkoCanvas, QList
     for (int i = 0; i < places.size(); ++i)
     {
         Place *p = dynamic_cast<Place *>(places.at(i));
-        std::cout << p->number() << ", " << p->x() << ", " << p->y() << ", " << p->liveness << std::endl;
+        std::cout << p->number() << ", " << p->x() << ", " << p->y() << ", " << p->token << std::endl;
     }
 
     std::cout << std::endl << "Transitions:" << std::endl;

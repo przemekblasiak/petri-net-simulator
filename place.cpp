@@ -5,8 +5,8 @@
 
 int Place::count = 0;
 
-Place::Place(const QPoint &origin, int token, QWidget *parent) :
-    Element(parent), token(token),
+Place::Place(const QPoint &origin, int tokenCount, QWidget *parent) :
+    Element(parent), _tokenCount(tokenCount),
     ui(new Ui::Place)
 {
     ui->setupUi(this);
@@ -14,8 +14,7 @@ Place::Place(const QPoint &origin, int token, QWidget *parent) :
     this->move(origin);
 
     this->letter = "P";
-    this->basicStyleSheet = this->styleSheet();
-    ui->tokenLabel->setText(QString::number(token));
+    this->setTokenCount(_tokenCount);
 
     ++Place::count;
     this->setNumber(Place::count);
@@ -28,12 +27,16 @@ Place::~Place() {
     --Place::count;
 }
 
-void Place::updateNumber() {
-    ui->nameLabel->setText(this->letter + QString::number(this->number()));
+int Place::tokenCount()
+{
+    return _tokenCount;
 }
 
-void Place::settoken(int token)
-{
-    ui->tokenLabel->setText(QString::number(token));
-    this->token = token;
+void Place::setTokenCount(int tokenCount) {
+    _tokenCount = tokenCount;
+    ui->tokenCountLabel->setText(QString::number(_tokenCount));
+}
+
+void Place::updateNumber() {
+    ui->nameLabel->setText(this->letter + QString::number(this->number()));
 }

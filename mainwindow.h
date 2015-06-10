@@ -37,6 +37,8 @@ private slots:
 
     void on_actionExecuteTransition_triggered();
 
+    void on_actionToggleSimulationMode_toggled(bool arg1);
+
 private:
     Ui::MainWindow *ui;
     QString currentProjectFilePath;

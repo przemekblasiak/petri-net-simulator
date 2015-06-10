@@ -2,16 +2,19 @@
 #include "matejkocanvas.h"
 #include "pnsglobal.h"
 
+QString Element::selectedAttribute = "border-color: orange;";
+QString Element::activeAttribute = "background-color: rgb(180, 255, 180);";
+
 Element::Element(QWidget *parent):
     QFrame(parent),
     letter(""),
-    basicStyleSheet(""),
     offset(0, 0),
     _selected(false),
     moving(false),
     pressed(false),
     _descriptionLabel(new DescriptionLabel(parent)),
-    _description("")
+    _description(""),
+    _active(false)
 {
     // Context menu
     this->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -41,10 +44,10 @@ bool Element::selected() const {
 void Element::setSelected(bool selected) {
     _selected = selected;
     if (_selected) {
-        this->setStyleSheet(this->basicStyleSheet + "border-color: orange;");
+        this->setStyleSheet(this->styleSheet().append(Element::selectedAttribute));
     }
     else {
-        this->setStyleSheet(this->basicStyleSheet);
+        this->setStyleSheet(this->styleSheet().remove(Element::selectedAttribute));
     }
 }
 
@@ -166,4 +169,19 @@ void Element::setDescription(const QString &description) {
 
 QString Element::description() {
     return _description;
+}
+
+void Element::setActive(bool active) {
+    _active = active;
+    if (_active) {
+        this->setStyleSheet(this->styleSheet().append(Element::activeAttribute));
+    }
+    else {
+        this->setStyleSheet(this->styleSheet().remove(Element::activeAttribute));
+    }
+    this->update();
+}
+
+bool Element::active() {
+    return _active;
 }

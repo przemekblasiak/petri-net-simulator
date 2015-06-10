@@ -15,6 +15,7 @@ public:
     static int count;
     explicit Transition(const QPoint &origin, QWidget *parent = 0);
     virtual ~Transition();
+
 private:
     virtual void updateNumber();
     Ui::Transition *ui;

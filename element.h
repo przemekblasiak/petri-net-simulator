@@ -16,6 +16,8 @@ public:
     int number() const;
     void setNumber(int number);
     virtual QString description();
+    virtual void setActive(bool active);
+    virtual bool active();
 
 signals:
     void removeElementRequested();
@@ -30,7 +32,8 @@ public slots:
 
 protected:
     QString letter;
-    QString basicStyleSheet; // TODO: static?
+    static QString selectedAttribute;
+    static QString activeAttribute;
     bool moving;
     bool pressed;
     QPoint offset;
@@ -41,6 +44,7 @@ private:
     bool _selected;
     QString _description;
     int _number;
+    bool _active;
     DescriptionLabel *_descriptionLabel;
     enum ContextActionType {
         Edit,

@@ -5,7 +5,6 @@ QT += gui widgets
 QMAKE_CXXFLAGS += -std=c++11
 
 SOURCES += main.cpp \
-    engine.cpp \
     mainwindow.cpp \
     matejkocanvas.cpp \
     datahandler.cpp \
@@ -17,7 +16,8 @@ SOURCES += main.cpp \
     arrow.cpp \
     element.cpp \
     editelementdialog.cpp \
-    descriptionlabel.cpp
+    descriptionlabel.cpp \
+    simulationengine.cpp
 
 # Default rules for deployment.
 include(deployment.pri)
@@ -25,7 +25,6 @@ include(deployment.pri)
 INCLUDEPATH += $$PWD/json/include
 
 HEADERS += \
-    engine.h \
     mainwindow.h \
     matejkocanvas.h \
     datahandler.h \
@@ -44,7 +43,8 @@ HEADERS += \
     element.h \
     pnsglobal.h \
     editelementdialog.h \
-    descriptionlabel.h
+    descriptionlabel.h \
+    simulationengine.h
 
 FORMS += \
     mainwindow.ui \

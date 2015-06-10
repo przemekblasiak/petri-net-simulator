@@ -12,15 +12,16 @@ class Place : public Element
     Q_OBJECT
 
 public:
-    int token;
     static int count;
-    explicit Place(const QPoint &origin, int token, QWidget *parent = 0);
+    explicit Place(const QPoint &origin, int tokenCount, QWidget *parent = 0);
     virtual ~Place();
+    int tokenCount();
 public slots:
-    virtual void settoken(int token);
+    void setTokenCount(int tokenCount);
 private:
     Ui::Place *ui;
     virtual void updateNumber();
+    int _tokenCount;
 };
 
 #endif // PLACE_H

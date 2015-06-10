@@ -14,7 +14,6 @@ Transition::Transition(const QPoint &origin, QWidget *parent) :
     this->move(origin);
 
     this->letter = "T";
-    this->basicStyleSheet = this->styleSheet();
 
     ++Transition::count;
     this->setNumber(Transition::count);

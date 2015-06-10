@@ -100,8 +100,8 @@ void MatejkoCanvas::onModifyElementRequested() {
 
     if (placeToModify){
         dialog->setEditView(EditElementDialog::EditPlace);
-        dialog->settoken(placeToModify->token);
-        connect(dialog, SIGNAL(tokenChanged(int)), placeToModify, SLOT(settoken(int)));
+        dialog->setTokenCount(placeToModify->tokenCount());
+        connect(dialog, SIGNAL(tokenChanged(int)), placeToModify, SLOT(setTokenCount(int)));
     }
     else if (TransitionToModify){
         dialog->setEditView(EditElementDialog::EditTransition);

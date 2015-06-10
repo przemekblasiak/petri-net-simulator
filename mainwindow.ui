@@ -59,8 +59,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>1932</width>
-          <height>1092</height>
+          <width>1944</width>
+          <height>1104</height>
          </rect>
         </property>
         <property name="sizePolicy">
@@ -113,7 +113,7 @@
      <x>0</x>
      <y>0</y>
      <width>916</width>
-     <height>30</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
@@ -133,6 +133,7 @@
    <addaction name="actionNew_Project"/>
    <addaction name="actionOpen_project"/>
    <addaction name="actionSave_project"/>
+   <addaction name="actionToggleSimulationMode"/>
   </widget>
   <widget class="QToolBar" name="simulationToolBar">
    <property name="windowTitle">
@@ -212,9 +213,6 @@
    </property>
   </action>
   <action name="actionExecuteTransition">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
    <property name="icon">
     <iconset theme="media-playback-start" resource="resources.qrc">
      <normaloff>:/images/images/play.svg</normaloff>:/images/images/play.svg</iconset>
@@ -224,6 +222,17 @@
    </property>
    <property name="shortcut">
     <string>Space</string>
+   </property>
+  </action>
+  <action name="actionToggleSimulationMode">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>toggleSimulationMode</string>
+   </property>
+   <property name="toolTip">
+    <string>Toggle simulation mode</string>
    </property>
   </action>
  </widget>

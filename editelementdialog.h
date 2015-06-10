@@ -20,10 +20,10 @@ public:
     ~EditElementDialog();
     void setEditView(EditMode mode);
     void setDescription(const QString &description);
-    void settoken(int token);
+    void setTokenCount(int tokenCount);
 
 signals:
-    void tokenChanged(int token);
+    void tokenChanged(int token); // TODO: Refactor token => tokenCount
     void descriptionChanged(QString description);
 
 private slots:

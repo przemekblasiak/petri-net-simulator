@@ -33,10 +33,10 @@ void EditElementDialog::setDescription(const QString &description)
     this->description = description;
 }
 
-void EditElementDialog::settoken(int token)
+void EditElementDialog::setTokenCount(int tokenCount)
 {
+    this->token = tokenCount;
     ui->tokenLineEdit->setText(QString::number(token));
-    this->token = token;
 }
 
 void EditElementDialog::on_tokenLineEdit_textEdited(const QString &token)

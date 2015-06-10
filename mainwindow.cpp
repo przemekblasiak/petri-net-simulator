@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "pnsglobal.h"
+#include "simulationengine.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -11,6 +12,11 @@ MainWindow::MainWindow(QWidget *parent) :
     this->matejkoCanvas->places = &(this->places);
     this->matejkoCanvas->transitions = &(this->transitions);
     this->matejkoCanvas->arrows = &(this->arrows);
+
+    SimulationEngine &engine = SimulationEngine::getInstance();
+    engine.places = &(this->places);
+    engine.transitions = &(this->transitions);
+    engine.arrows = &(this->arrows);
 
     QWidget* leftSpacer = new QWidget(this);
     QWidget* rightSpacer = new QWidget(this);
@@ -35,6 +41,7 @@ void MainWindow::on_actionOpen_project_triggered()
     QString filename = QFileDialog::getOpenFileName(this, "Open JSON", ".", "JSON Files (*.json)");
     currentProjectFilePath = filename;
     dataHandler.load(currentProjectFilePath.toStdString(), this->matejkoCanvas, this->places, this->transitions, this->arrows);
+    this->matejkoCanvas->update();
 }
 
 void MainWindow::on_actionSave_project_triggered()
@@ -50,6 +57,18 @@ void MainWindow::on_actionPreviousTransition_triggered()
 {
 }
 
-void MainWindow::on_actionExecuteTransition_triggered()
-{
+void MainWindow::on_actionExecuteTransition_triggered() {
+    Element *selectedElement = this->matejkoCanvas->selectedElement();
+    if (qobject_cast<Transition *>(selectedElement) && selectedElement->active()) {
+        SimulationEngine::getInstance().executeTransition(this->matejkoCanvas->selectedElement());
+    }
+}
+
+void MainWindow::on_actionToggleSimulationMode_toggled(bool simulationModeOn) {
+    if (simulationModeOn) {
+        SimulationEngine::getInstance().beginSimulation();
+    }
+    else {
+        SimulationEngine::getInstance().endSimulation();
+    }
 }

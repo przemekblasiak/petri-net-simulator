@@ -17,6 +17,7 @@ public:
     QList<Element *> *places;
     QList<Element *> *transitions;
     QList<Arrow *> *arrows;
+    Element *selectedElement();
 
     void clear();
 
@@ -48,7 +49,6 @@ private:
     bool buildArrow(Element *place, Element *transition, bool fromPlaceToTransition);
     void selectElement(Element *);
     void setSelectedElement(Element *element);
-    Element *selectedElement();
     int removeRelatedArrows(Element *element);
 };
 

@@ -21,21 +21,17 @@ public:
     void setEditView(EditMode mode);
     void setDescription(const QString &description);
     void setTokenCount(int tokenCount);
-
+    int tokenCount();
 signals:
-    void tokenChanged(int token); // TODO: Refactor token => tokenCount
+    void tokenCountChanged(int tokenCount);
     void descriptionChanged(QString description);
-
 private slots:
-    void on_tokenLineEdit_textEdited(const QString &token);
     void on_descriptionLineEdit_textEdited(const QString &description);
-
     void on_buttonBox_accepted();
-
+    void on_tokenCountLineEdit_textEdited(const QString &arg1);
 private:
     Ui::EditElementDialog *ui;
-
-    int token;
+    int _tokenCount;
     QString description;
 };
 

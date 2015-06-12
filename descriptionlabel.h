@@ -12,7 +12,7 @@ class DescriptionLabel : public QWidget
     Q_OBJECT
 
 public:
-    explicit DescriptionLabel(QWidget *parent = 0);
+    explicit DescriptionLabel(QWidget *parent);
     ~DescriptionLabel();
 
     void setText(const QString &text);

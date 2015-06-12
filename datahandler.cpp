@@ -154,7 +154,7 @@ void DataHandler::load(std::string fileName, MatejkoCanvas* matejkoCanvas, QList
         }
 
         // creating Arrow object
-        Arrow *newArrow = new Arrow(arrowPlace, arrowTransition, fromPlaceToTransition);
+        Arrow *newArrow = new Arrow(arrowPlace, arrowTransition, fromPlaceToTransition, matejkoCanvas);
         // adding Arrow object to Arrows list
         arrows.append(newArrow);
     }

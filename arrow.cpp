@@ -1,22 +1,20 @@
 #include "arrow.h"
 
-Arrow::Arrow(Element *place, Element *transition, bool fromPlaceToTransition, QObject *parent):
-    QObject(parent), place(place), transition(transition), fromPlaceToTransition(fromPlaceToTransition),
-    _weight(1)
+Arrow::Arrow(Element *place, Element *transition, bool fromPlaceToTransition, QWidget *parent):
+    QWidget(parent),
+    place(place),
+    transition(transition),
+    fromPlaceToTransition(fromPlaceToTransition),
+    _weightLabel(new DescriptionLabel(parent))
 {
     arrowheadImage.load(":/images/images/arrowhead.png");
+    this->setWeight(_weight);
 }
 
-Arrow::Arrow(QObject *parent): QObject(parent), fromPlaceToTransition(true), place(0), transition(0)
-{
-    arrowheadImage.load(":/images/images/arrowhead.png");
-}
-
-Arrow::Arrow(const Arrow &arrow)
-{
+Arrow::Arrow(const Arrow &arrow) {
     arrowheadImage.load(":/images/images/arrowhead.png");
 
-    this->setParent(arrow.parent());
+    this->setParent(this->parentWidget());
     this->place = arrow.place;
     this->transition = arrow.transition;
     this->fromPlaceToTransition = arrow.fromPlaceToTransition;
@@ -27,7 +25,6 @@ void Arrow::draw(QPainter &painter) const {
     QRect transitionFrame = this->transition->frameGeometry();
 
     QRect frame1, frame2;
-
     if (this->fromPlaceToTransition) {
         frame1 = placeFrame;
         frame2 = transitionFrame;
@@ -58,7 +55,7 @@ void Arrow::draw(QPainter &painter) const {
     }
 
     // Identify points
-    QVector<QPoint> checkPoints(6);
+    QVector<QPoint> checkPoints;
     if (vertical) {
         bool overlapsX = middle1.x() >= (middle2.x() - width2/2) && middle1.x() <= (middle2.x() + width2/2);
         if (overlapsX) {
@@ -131,22 +128,27 @@ void Arrow::draw(QPainter &painter) const {
             transformation.rotate(180, Qt::YAxis);
             arrowhead = arrowhead.transformed(transformation);
             imagePosition.setX(imagePosition.x() - arrowhead.width()/2);
-        } else {
+        }
+        else {
             imagePosition.setX(imagePosition.x() + arrowhead.width()/2);
         }
     }
 
-    // Draw arrow
     painter.drawImage(imagePosition, arrowhead);
+
+    // Adjust description label position
+    int topMargin = 4;
+    QPoint insertionPoint(checkPoints[1].x() - _weightLabel->width()/2, checkPoints[1].y() + topMargin);
+    _weightLabel->move(insertionPoint);
 }
-int Arrow::weight() const
-{
+
+int Arrow::weight() const {
     return _weight;
 }
 
-void Arrow::setWeight(int weight)
-{
+void Arrow::setWeight(int weight) {
     _weight = weight;
+    _weightLabel->setText(QString::number(_weight));
 }
 
 

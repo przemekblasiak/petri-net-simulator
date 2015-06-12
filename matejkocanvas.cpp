@@ -14,7 +14,7 @@ MatejkoCanvas::MatejkoCanvas(QWidget *parent) : QWidget(parent), _selectedElemen
             this, SLOT(showContextMenu(const QPoint &)));
 }
 
-void MatejkoCanvas::clear(){
+void MatejkoCanvas::clear() {
     this->selectElement(0);
 }
 
@@ -105,7 +105,7 @@ void MatejkoCanvas::onModifyElementRequested() {
     if (placeToModify){
         dialog->setEditView(EditElementDialog::EditPlace);
         dialog->setTokenCount(placeToModify->tokenCount());
-        connect(dialog, SIGNAL(tokenChanged(int)), placeToModify, SLOT(setTokenCount(int)));
+        connect(dialog, SIGNAL(tokenCountChanged(int)), placeToModify, SLOT(setTokenCount(int)));
     }
     else if (TransitionToModify){
         dialog->setEditView(EditElementDialog::EditTransition);
@@ -131,6 +131,11 @@ void MatejkoCanvas::mousePressEvent(QMouseEvent *event)
 void MatejkoCanvas::mouseMoveEvent(QMouseEvent *event)
 {
     event->accept();
+}
+
+void MatejkoCanvas::mouseReleaseEvent(QMouseEvent *)
+{
+    this->selectElement(0);
 }
 bool MatejkoCanvas::simulationModeOn() const
 {
@@ -168,10 +173,6 @@ void MatejkoCanvas::restoreBoardState()
 
     delete[] _savedTokens;
     _savedTokens = NULL;
-}
-
-void MatejkoCanvas::mouseReleaseEvent(QMouseEvent *event) {
-    this->selectElement(0);
 }
 
 void MatejkoCanvas::selectElement(Element *element) {
@@ -259,19 +260,18 @@ bool MatejkoCanvas::arrowConnectionExists(Element *place, Element *transition) c
     return false;
 }
 
-bool MatejkoCanvas::buildArrow(Element *place, Element *transition, bool fromPlaceToTransition)
-{
+bool MatejkoCanvas::buildArrow(Element *place, Element *transition, bool fromPlaceToTransition) {
     if (arrowConnectionExists(place, transition)){
         return false;
     }
 
-    Arrow *newArrow = new Arrow(place, transition, fromPlaceToTransition);
+    Arrow *newArrow = new Arrow(place, transition, fromPlaceToTransition, this);
     arrows->append(newArrow);
     this->update();
     return true;
 }
 
-void MatejkoCanvas::paintEvent(QPaintEvent *event) {
+void MatejkoCanvas::paintEvent(QPaintEvent *) {
     QPainter painter(this);
     painter.setPen(Qt::black);
 

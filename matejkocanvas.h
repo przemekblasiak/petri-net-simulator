@@ -38,7 +38,6 @@ public slots:
     void onSelectedElementDestroyed();
 
 private:
-    Arrow tmpArrow;
     Element *_selectedElement;
     bool _simulationModeOn;
     int *_savedTokens;

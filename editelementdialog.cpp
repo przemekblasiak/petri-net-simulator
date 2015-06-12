@@ -7,7 +7,7 @@ EditElementDialog::EditElementDialog(QWidget *parent) :
     ui(new Ui::EditElementDialog)
 {
     ui->setupUi(this);
-    ui->tokenLineEdit->setValidator(new QIntValidator(0, 100, this));
+    ui->tokenCountLineEdit->setValidator(new QIntValidator(0, 100, this));
 }
 
 EditElementDialog::~EditElementDialog()
@@ -18,12 +18,12 @@ EditElementDialog::~EditElementDialog()
 void EditElementDialog::setEditView(EditElementDialog::EditMode mode)
 {
     if (mode == EditMode::EditPlace){
-        ui->tokenLabel->setVisible(true);
-        ui->tokenLineEdit->setVisible(true);
+        ui->tokenCountLabel->setVisible(true);
+        ui->tokenCountLineEdit->setVisible(true);
     }
     else if (mode == EditMode::EditTransition) {
-        ui->tokenLabel->setVisible(false);
-        ui->tokenLineEdit->setVisible(false);
+        ui->tokenCountLabel->setVisible(false);
+        ui->tokenCountLineEdit->setVisible(false);
     }
 }
 
@@ -33,15 +33,13 @@ void EditElementDialog::setDescription(const QString &description)
     this->description = description;
 }
 
-void EditElementDialog::setTokenCount(int tokenCount)
-{
-    this->token = tokenCount;
-    ui->tokenLineEdit->setText(QString::number(token));
+void EditElementDialog::setTokenCount(int tokenCount) {
+    _tokenCount = tokenCount;
+    ui->tokenCountLineEdit->setText(QString::number(_tokenCount));
 }
 
-void EditElementDialog::on_tokenLineEdit_textEdited(const QString &token)
-{
-    this->token = token.toInt();
+int EditElementDialog::tokenCount() {
+    return _tokenCount;
 }
 
 void EditElementDialog::on_descriptionLineEdit_textEdited(const QString &description)
@@ -51,6 +49,10 @@ void EditElementDialog::on_descriptionLineEdit_textEdited(const QString &descrip
 
 void EditElementDialog::on_buttonBox_accepted()
 {
-    emit tokenChanged(this->token);
+    emit tokenCountChanged(_tokenCount);
     emit descriptionChanged(this->description);
+}
+
+void EditElementDialog::on_tokenCountLineEdit_textEdited(const QString &tokenCount) {
+    _tokenCount = tokenCount.toInt();
 }

@@ -12,6 +12,8 @@
 #include <QtGui>
 #include <QLabel>
 #include <QMouseEvent>
+#include <QPoint>
+#include <QWidget>
 
 
 #endif // PNSGLOBAL

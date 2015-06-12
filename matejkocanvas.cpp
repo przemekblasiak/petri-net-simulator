@@ -101,7 +101,7 @@ void MatejkoCanvas::onModifyElementRequested() {
     if (placeToModify){
         dialog->setEditView(EditElementDialog::EditPlace);
         dialog->setTokenCount(placeToModify->tokenCount());
-        connect(dialog, SIGNAL(tokenChanged(int)), placeToModify, SLOT(setTokenCount(int)));
+        connect(dialog, SIGNAL(tokenCountChanged(int)), placeToModify, SLOT(setTokenCount(int)));
     }
     else if (TransitionToModify){
         dialog->setEditView(EditElementDialog::EditTransition);
@@ -119,7 +119,7 @@ void MatejkoCanvas::onSelectedElementDestroyed() {
     this->setSelectedElement(0);
 }
 
-void MatejkoCanvas::mouseReleaseEvent(QMouseEvent *event) {
+void MatejkoCanvas::mouseReleaseEvent(QMouseEvent *) {
     this->selectElement(0);
 }
 
@@ -204,8 +204,7 @@ bool MatejkoCanvas::arrowConnectionExists(Element *place, Element *transition) c
     return false;
 }
 
-bool MatejkoCanvas::buildArrow(Element *place, Element *transition, bool fromPlaceToTransition)
-{
+bool MatejkoCanvas::buildArrow(Element *place, Element *transition, bool fromPlaceToTransition) {
     if (arrowConnectionExists(place, transition)){
         return false;
     }
@@ -216,7 +215,7 @@ bool MatejkoCanvas::buildArrow(Element *place, Element *transition, bool fromPla
     return true;
 }
 
-void MatejkoCanvas::paintEvent(QPaintEvent *event) {
+void MatejkoCanvas::paintEvent(QPaintEvent *) {
     QPainter painter(this);
     painter.setPen(Qt::black);
 

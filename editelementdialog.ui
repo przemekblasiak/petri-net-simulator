@@ -17,7 +17,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QLabel" name="tokenLabel">
+      <widget class="QLabel" name="tokenCountLabel">
        <property name="minimumSize">
         <size>
          <width>70</width>
@@ -30,7 +30,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="tokenLineEdit">
+      <widget class="QLineEdit" name="tokenCountLineEdit">
        <property name="inputMethodHints">
         <set>Qt::ImhNone</set>
        </property>

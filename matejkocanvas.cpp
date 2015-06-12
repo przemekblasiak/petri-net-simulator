@@ -5,7 +5,7 @@
 #include "pnsglobal.h"
 #include "editelementdialog.h"
 
-MatejkoCanvas::MatejkoCanvas(QWidget *parent) : QWidget(parent), _selectedElement(0), _simulationModeOn(false) {
+MatejkoCanvas::MatejkoCanvas(QWidget *parent) : QWidget(parent), _selectedElement(0), _simulationModeOn(false), _savedTokens(0) {
     this->setupPalette();
 
     // Context menu
@@ -122,6 +122,16 @@ void MatejkoCanvas::onElementClicked() {
 void MatejkoCanvas::onSelectedElementDestroyed() {
     this->setSelectedElement(0);
 }
+
+void MatejkoCanvas::mousePressEvent(QMouseEvent *event)
+{
+    event->accept();
+}
+
+void MatejkoCanvas::mouseMoveEvent(QMouseEvent *event)
+{
+    event->accept();
+}
 bool MatejkoCanvas::simulationModeOn() const
 {
     return _simulationModeOn;
@@ -133,6 +143,30 @@ void MatejkoCanvas::setSimulationModeOn(bool simulationModeOn)
         _simulationModeOn = simulationModeOn;
         emit simulationModeOnChanged(_simulationModeOn);
     }
+}
+
+void MatejkoCanvas::saveBoardState()
+{
+    if (_savedTokens){
+        delete[] _savedTokens;
+    }
+
+    int size = this->places->count();
+    _savedTokens = new int[size];
+
+    for (int i = 0; i < size; ++i){
+        _savedTokens[i] = ((Place *)(*(this->places))[i])->tokenCount();
+    }
+}
+
+void MatejkoCanvas::restoreBoardState()
+{
+    for (int i = 0; i < this->places->count(); ++i){
+        ((Place *)(*(this->places))[i])->setTokenCount(_savedTokens[i]);
+    }
+
+    delete[] _savedTokens;
+    _savedTokens = NULL;
 }
 
 void MatejkoCanvas::mouseReleaseEvent(QMouseEvent *event) {

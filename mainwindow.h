@@ -44,6 +44,7 @@ private:
     QString currentProjectFilePath;
     DataHandler dataHandler;
     MatejkoCanvas *matejkoCanvas;
+    QLabel *statusBarLabel;
 };
 
 #endif // MAINWINDOW_H

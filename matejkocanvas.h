@@ -23,6 +23,8 @@ public:
 
     bool simulationModeOn() const;
     void setSimulationModeOn(bool simulationModeOn);
+    void saveBoardState();
+    void restoreBoardState();
 
 signals:
     void simulationModeOnChanged(bool simulationModeOn);
@@ -39,8 +41,11 @@ private:
     Arrow tmpArrow;
     Element *_selectedElement;
     bool _simulationModeOn;
+    int *_savedTokens;
 
     // Mouse
+    void mousePressEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
 
     enum ContextActionType {

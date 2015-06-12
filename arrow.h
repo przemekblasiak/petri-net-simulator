@@ -1,17 +1,15 @@
 #ifndef ARROW_H
 #define ARROW_H
 
-#include <QObject>
 #include "pnsglobal.h"
 #include "place.h"
 #include "transition.h"
 
-class Arrow : public QObject
+class Arrow : public QWidget
 {
     Q_OBJECT
 public:
-    explicit Arrow(Element *place, Element *transition, bool fromPlaceToTransition, QObject *parent = 0);
-    explicit Arrow(QObject *parent = 0);
+    explicit Arrow(Element *place, Element *transition, bool fromPlaceToTransition, QWidget *parent);
     Arrow(const Arrow &arrow);
     void clear();
     Element *place;
@@ -29,6 +27,7 @@ public slots:
 private:
     QImage arrowheadImage;
     int _weight;
+    DescriptionLabel *_weightLabel;
 };
 
 #endif // ARROW_H

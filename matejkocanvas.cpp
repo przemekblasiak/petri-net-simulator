@@ -14,7 +14,7 @@ MatejkoCanvas::MatejkoCanvas(QWidget *parent) : QWidget(parent), _selectedElemen
             this, SLOT(showContextMenu(const QPoint &)));
 }
 
-void MatejkoCanvas::clear(){
+void MatejkoCanvas::clear() {
     this->selectElement(0);
 }
 
@@ -209,7 +209,7 @@ bool MatejkoCanvas::buildArrow(Element *place, Element *transition, bool fromPla
         return false;
     }
 
-    Arrow *newArrow = new Arrow(place, transition, fromPlaceToTransition);
+    Arrow *newArrow = new Arrow(place, transition, fromPlaceToTransition, this);
     arrows->append(newArrow);
     this->update();
     return true;

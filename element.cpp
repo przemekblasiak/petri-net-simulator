@@ -149,7 +149,11 @@ void Element::mouseReleaseEvent(QMouseEvent *event) {
     }
 }
 
-void Element::paintEvent(QPaintEvent *event) {
+void Element::paintEvent(QPaintEvent *) {
+    this->adjustDescriptionLabelPosition();
+}
+
+void Element::adjustDescriptionLabelPosition() {
     QPoint elementCenterRight(this->x() + this->width(), this->y() + this->height()/2);
     int leftMargin = 2, topMargin = 4;
     QPoint insertionPoint(elementCenterRight.x() + leftMargin, elementCenterRight.y() + topMargin);

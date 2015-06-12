@@ -141,6 +141,7 @@ void MatejkoCanvas::setSimulationModeOn(bool simulationModeOn)
 {
     if  (_simulationModeOn != simulationModeOn){
         _simulationModeOn = simulationModeOn;
+        this->setSelectedElement(0);
         emit simulationModeOnChanged(_simulationModeOn);
     }
 }

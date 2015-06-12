@@ -21,7 +21,11 @@ public:
 
     void clear();
 
+    bool simulationModeOn() const;
+    void setSimulationModeOn(bool simulationModeOn);
+
 signals:
+    void simulationModeOnChanged(bool simulationModeOn);
 
 public slots:
     void showContextMenu(const QPoint &);
@@ -34,6 +38,7 @@ public slots:
 private:
     Arrow tmpArrow;
     Element *_selectedElement;
+    bool _simulationModeOn;
 
     // Mouse
     void mouseReleaseEvent(QMouseEvent *event);

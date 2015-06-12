@@ -5,7 +5,7 @@
 #include "pnsglobal.h"
 #include "editelementdialog.h"
 
-MatejkoCanvas::MatejkoCanvas(QWidget *parent) : QWidget(parent), _selectedElement(0) {
+MatejkoCanvas::MatejkoCanvas(QWidget *parent) : QWidget(parent), _selectedElement(0), _simulationModeOn(false) {
     this->setupPalette();
 
     // Context menu
@@ -19,6 +19,10 @@ void MatejkoCanvas::clear(){
 }
 
 void MatejkoCanvas::showContextMenu(const QPoint &position) {
+    if (_simulationModeOn){
+        return;
+    }
+
     QMenu contextMenu("Context menu", this);
 
     QAction addPlaceAction(this);
@@ -118,6 +122,18 @@ void MatejkoCanvas::onElementClicked() {
 void MatejkoCanvas::onSelectedElementDestroyed() {
     this->setSelectedElement(0);
 }
+bool MatejkoCanvas::simulationModeOn() const
+{
+    return _simulationModeOn;
+}
+
+void MatejkoCanvas::setSimulationModeOn(bool simulationModeOn)
+{
+    if  (_simulationModeOn != simulationModeOn){
+        _simulationModeOn = simulationModeOn;
+        emit simulationModeOnChanged(_simulationModeOn);
+    }
+}
 
 void MatejkoCanvas::mouseReleaseEvent(QMouseEvent *event) {
     this->selectElement(0);
@@ -132,17 +148,21 @@ void MatejkoCanvas::selectElement(Element *element) {
     // If there is no selected element, just select one
     if (!this->selectedElement()) {
         this->setSelectedElement(element);
+        return;
     }
-
+    else if (_simulationModeOn){
+        this->setSelectedElement(element);
+        return;
+    }
     // Else try to build an arrow and clear selection
     else {
         if (qobject_cast<Place*>(this->selectedElement())){
-            if (qobject_cast<Transition *>(element)){
+            if (qobject_cast<Transition *>(element) && !_simulationModeOn){
                 this->buildArrow(this->selectedElement(), element, true);
             }
         }
         else if (qobject_cast<Transition*>(this->selectedElement())){
-            if (qobject_cast<Place *>(element)){
+            if (qobject_cast<Place *>(element) && !_simulationModeOn){
                 this->buildArrow(element, this->selectedElement(), false);
             }
         }

@@ -24,6 +24,9 @@ MainWindow::MainWindow(QWidget *parent) :
     rightSpacer->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);
     ui->simulationToolBar->insertWidget(ui->actionPreviousTransition, leftSpacer);
     ui->simulationToolBar->addWidget(rightSpacer);
+
+    ui->simulationToolBar->setEnabled(false);
+    ui->statusBar->showMessage("Design mode");
 }
 
 MainWindow::~MainWindow()
@@ -65,10 +68,18 @@ void MainWindow::on_actionExecuteTransition_triggered() {
 }
 
 void MainWindow::on_actionToggleSimulationMode_toggled(bool simulationModeOn) {
+    matejkoCanvas->setSimulationModeOn(simulationModeOn);
+    ui->simulationToolBar->setEnabled(simulationModeOn);
+    ui->actionNew_Project->setEnabled(!simulationModeOn);
+    ui->actionOpen_project->setEnabled(!simulationModeOn);
+    ui->actionSave_project->setEnabled(!simulationModeOn);
+
     if (simulationModeOn) {
+        ui->statusBar->showMessage("Simulation mode");
         SimulationEngine::getInstance().beginSimulation();
     }
     else {
+        ui->statusBar->showMessage("Design mode");
         SimulationEngine::getInstance().endSimulation();
     }
 }

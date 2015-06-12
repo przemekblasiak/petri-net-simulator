@@ -59,8 +59,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>1944</width>
-          <height>1104</height>
+          <width>1932</width>
+          <height>1092</height>
          </rect>
         </property>
         <property name="sizePolicy">
@@ -83,6 +83,9 @@
              <width>1920</width>
              <height>1080</height>
             </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
            </property>
           </widget>
          </item>
@@ -113,7 +116,7 @@
      <x>0</x>
      <y>0</y>
      <width>916</width>
-     <height>22</height>
+     <height>30</height>
     </rect>
    </property>
   </widget>
@@ -133,6 +136,7 @@
    <addaction name="actionNew_Project"/>
    <addaction name="actionOpen_project"/>
    <addaction name="actionSave_project"/>
+   <addaction name="separator"/>
    <addaction name="actionToggleSimulationMode"/>
   </widget>
   <widget class="QToolBar" name="simulationToolBar">
@@ -152,6 +156,7 @@
    <addaction name="actionExecuteTransition"/>
    <addaction name="actionNextTransition"/>
   </widget>
+  <widget class="QStatusBar" name="statusBar"/>
   <action name="actionOpen_project">
    <property name="icon">
     <iconset theme="document-open" resource="resources.qrc">
@@ -196,6 +201,9 @@
    <property name="text">
     <string>NextTransition</string>
    </property>
+   <property name="toolTip">
+    <string>Next transition</string>
+   </property>
    <property name="shortcut">
     <string>Right</string>
    </property>
@@ -207,6 +215,9 @@
    </property>
    <property name="text">
     <string>PreviousTransition</string>
+   </property>
+   <property name="toolTip">
+    <string>Previous transition</string>
    </property>
    <property name="shortcut">
     <string>Left</string>
@@ -220,6 +231,9 @@
    <property name="text">
     <string>ExecuteTransition</string>
    </property>
+   <property name="toolTip">
+    <string>Execute Transition</string>
+   </property>
    <property name="shortcut">
     <string>Space</string>
    </property>
@@ -227,6 +241,11 @@
   <action name="actionToggleSimulationMode">
    <property name="checkable">
     <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset theme="system-run">
+     <normaloff/>
+    </iconset>
    </property>
    <property name="text">
     <string>toggleSimulationMode</string>

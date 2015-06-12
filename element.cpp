@@ -28,6 +28,8 @@ Element::Element(QWidget *parent):
             this->parent(), SLOT(onElementClicked()));
     connect(this, SIGNAL(selectedElementDestroyed()),
             this->parent(), SLOT(onSelectedElementDestroyed()));
+    connect(this->parent(), SIGNAL(simulationModeOnChanged(bool)),
+            this, SLOT(setSimulationModeOn(bool)));
 }
 
 Element::~Element() {
@@ -61,6 +63,9 @@ void Element::setNumber(int number) {
 }
 
 void Element::showContextMenu(const QPoint &position) {
+    if (_simulationModeOn){
+        return;
+    }
     // TODO: Moze wystarczyloby stworzyc jedno statyczne context menu
     QMap<QString, QVariant> actionInfo;
 
@@ -116,6 +121,9 @@ void Element::mousePressEvent(QMouseEvent *event) {
 }
 
 void Element::mouseMoveEvent(QMouseEvent *event) {
+    if (_simulationModeOn){
+        return;
+    }
     if (this->pressed) {
         this->moving = true;
         if (event->buttons() & Qt::LeftButton){
@@ -165,6 +173,11 @@ void Element::setDescription(const QString &description) {
         _descriptionLabel->setHidden(false);
     }
     _descriptionLabel->setText(description);
+}
+
+void Element::setSimulationModeOn(bool on)
+{
+    _simulationModeOn = on;
 }
 
 QString Element::description() {

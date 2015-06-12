@@ -9,7 +9,7 @@ class Element : public QFrame
 {
     Q_OBJECT
 public:
-    explicit Element(QWidget *parent = 0);
+    explicit Element(QWidget *parent);
     virtual ~Element();
     bool selected() const;
     void setSelected(bool clicked);
@@ -29,6 +29,8 @@ public slots:
     void showContextMenu(const QPoint &position);
     void contextActionTriggered(QAction *action);
     virtual void setDescription(const QString &description);
+    virtual void setSimulationModeOn(bool on);
+
 
 protected:
     QString letter;
@@ -46,6 +48,8 @@ private:
     int _number;
     bool _active;
     DescriptionLabel *_descriptionLabel;
+    bool _simulationModeOn;
+
     enum ContextActionType {
         Edit,
         Remove

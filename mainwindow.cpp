@@ -27,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->simulationToolBar->setEnabled(false);
     ui->statusBar->showMessage("Design mode");
+    ui->statusBar->setStyleSheet("background-color: rgb(165,226,224);");
 }
 
 MainWindow::~MainWindow()
@@ -76,10 +77,12 @@ void MainWindow::on_actionToggleSimulationMode_toggled(bool simulationModeOn) {
 
     if (simulationModeOn) {
         ui->statusBar->showMessage("Simulation mode");
+        ui->statusBar->setStyleSheet("background-color: rgb(180, 255, 180);");
         SimulationEngine::getInstance().beginSimulation();
     }
     else {
         ui->statusBar->showMessage("Design mode");
+        ui->statusBar->setStyleSheet("background-color: rgb(165,226,224);");
         SimulationEngine::getInstance().endSimulation();
     }
 }

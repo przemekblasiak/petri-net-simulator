@@ -8,13 +8,15 @@ QString Element::activeAttribute = "background-color: rgb(180, 255, 180);";
 Element::Element(QWidget *parent):
     QFrame(parent),
     letter(""),
-    offset(0, 0),
-    _selected(false),
     moving(false),
     pressed(false),
-    _descriptionLabel(new DescriptionLabel(parent)),
+    offset(0, 0),
+    _selected(false),
     _description(""),
-    _active(false)
+    _number(0),
+    _active(false),
+    _descriptionLabel(new DescriptionLabel(parent)),
+    _simulationModeOn(false)
 {
     // Context menu
     this->setContextMenuPolicy(Qt::CustomContextMenu);

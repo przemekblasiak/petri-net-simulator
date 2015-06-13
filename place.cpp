@@ -6,8 +6,9 @@
 int Place::count = 0;
 
 Place::Place(const QPoint &origin, int tokenCount, QWidget *parent) :
-    Element(parent), _tokenCount(tokenCount),
-    ui(new Ui::Place)
+    Element(parent),
+    ui(new Ui::Place),
+    _tokenCount(tokenCount)
 {
     ui->setupUi(this);
     this->setChildrenClickable(false);

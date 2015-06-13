@@ -96,10 +96,11 @@ void MatejkoCanvas::onModifyElementRequested() {
     Element *elementToModify = qobject_cast<Element *>(QObject::sender());
     Place *placeToModify = qobject_cast<Place *>(elementToModify);
     Transition *TransitionToModify = qobject_cast<Transition *>(elementToModify);
-    // TODO: Edytowanie elementu
 
     EditElementDialog *dialog = new EditElementDialog(this);
     connect(dialog, SIGNAL(descriptionChanged(QString)), elementToModify, SLOT(setDescription(QString)));
+    connect(dialog, SIGNAL(accepted()), dialog, SLOT(deleteLater()));
+    connect(dialog, SIGNAL(rejected()), dialog, SLOT(deleteLater()));
     dialog->setDescription(elementToModify->description());
 
     if (placeToModify){
@@ -111,6 +112,7 @@ void MatejkoCanvas::onModifyElementRequested() {
         dialog->setEditView(EditElementDialog::EditTransition);
     }
 
+    dialog->adjustSize();
     dialog->show();
 }
 

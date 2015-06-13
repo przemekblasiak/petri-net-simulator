@@ -15,6 +15,10 @@
 #include <QPoint>
 #include <QWidget>
 
+enum ContextActionType {
+    Edit,
+    Remove
+};
 
 #endif // PNSGLOBAL
 

@@ -72,11 +72,11 @@ void Element::showContextMenu(const QPoint &position) {
     QMap<QString, QVariant> actionInfo;
 
     QAction editAction("Edit", this);
-    actionInfo["Type"] = QVariant(Edit);
+    actionInfo["Type"] = QVariant(ContextActionType::Edit);
     editAction.setData(actionInfo);
 
     QAction removeAction("Remove", this);
-    actionInfo["Type"] = QVariant(Remove);
+    actionInfo["Type"] = QVariant(ContextActionType::Remove);
     removeAction.setData(actionInfo);
 
     QMenu contextMenu("Context menu");
@@ -94,10 +94,10 @@ void Element::contextActionTriggered(QAction *action) {
     QMap<QString, QVariant> actionInfo = action->data().toMap();
     ContextActionType actionType = (ContextActionType)actionInfo["Type"].toInt();
 
-    if (actionType == Remove) {
+    if (actionType == ContextActionType::Remove) {
         emit removeElementRequested();
     }
-    else if (actionType == Edit) {
+    else if (actionType == ContextActionType::Edit) {
         emit modifyElementRequested();
     }
 }

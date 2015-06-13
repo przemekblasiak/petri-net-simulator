@@ -1,8 +1,0 @@
-<RCC>
-    <qresource prefix="/images">
-        <file>images/new_project.svg</file>
-        <file>images/open_project.svg</file>
-        <file>images/save_project.svg</file>
-        <file>images/run_simulation.svg</file>
-    </qresource>
-</RCC>

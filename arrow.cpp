@@ -5,7 +5,8 @@ Arrow::Arrow(Element *place, Element *transition, bool fromPlaceToTransition, QW
     place(place),
     transition(transition),
     fromPlaceToTransition(fromPlaceToTransition),
-    _weightLabel(new DescriptionLabel(parent))
+    _weightLabel(new DescriptionLabel(parent)),
+    _weight(1)
 {
     arrowheadImage.load(":/images/images/arrowhead.png");
     this->setWeight(_weight);
@@ -53,6 +54,14 @@ void Arrow::draw(QPainter &painter) const {
     if (abs(dx) > abs(dy)) {
         vertical = false;
     }
+
+    //
+    //        bool vertical = (abs(dx) > abs(dy))? false : true ////////////BITTTTTCHHHH
+    //
+    //OROROROROROR
+    //
+    //        bool vertical = !(abs(dx) > abs(dy))
+    //
 
     // Identify points
     QVector<QPoint> checkPoints;

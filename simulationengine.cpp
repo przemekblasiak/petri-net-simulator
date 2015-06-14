@@ -14,54 +14,29 @@ void SimulationEngine::beginSimulation() {
 }
 
 void SimulationEngine::endSimulation() {
-    this->deactiveTransitions();
+    this->deactivateAllTransitions();
 }
 
 void SimulationEngine::activateTransitions() {
-    bool activeTransitionIndices[this->transitions->count()];
-    memset(activeTransitionIndices, true, sizeof(activeTransitionIndices));
-
-    // Set indices of inactive transitions
-    for (int i = 0; i < this->arrows->count(); ++i) {
-        Arrow *arrow = (*this->arrows)[i];
-        Place *place = qobject_cast<Place *>(arrow->place);
-        bool enoughTokens = place->tokenCount() >= arrow->weight();
-        if (arrow->fromPlaceToTransition && !enoughTokens) {
-            activeTransitionIndices[this->transitions->indexOf(arrow->transition)] = false;
-        }
-    }
-    for (int i = 0; i < this->transitions->count(); ++i) {
-        bool active = activeTransitionIndices[i];
-        (*this->transitions)[i]->setActive(active);
-    }
-
-    // TODO: Needs refactoring
-    // Set dangling transition inactive
     for (Element *transition: *this->transitions) {
-        QList<Arrow *> connectedArrows = this->arrowsForElement(transition);
         bool active = true;
-        bool dangling = true;
-
+        QList<Arrow *> connectedArrows = this->arrowsForElement(transition);
         for (Arrow *arrow: connectedArrows) {
-            Place *place = qobject_cast<Place *>(arrow->place);
-            bool enoughTokens = place->tokenCount() >= arrow->weight();
             if (arrow->fromPlaceToTransition) {
-                dangling = false;
-                if (!enoughTokens) {
+                Place *place = (Place *)(arrow->place);
+                bool notEnoughTokens = place->tokenCount() < arrow->weight();
+                if (notEnoughTokens) {
                     active = false;
+                    goto escape;
                 }
             }
         }
-
-        if (dangling) {
-            transition->setActive(false);
-        } else {
-            transition->setActive(active);
-        }
+        escape:
+        transition->setActive(active);
     }
 }
 
-void SimulationEngine::deactiveTransitions() {
+void SimulationEngine::deactivateAllTransitions() {
     for (Element *transition: *this->transitions) {
         transition->setActive(false);
     }

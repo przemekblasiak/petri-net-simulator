@@ -18,7 +18,8 @@ SOURCES += main.cpp \
     editelementdialog.cpp \
     descriptionlabel.cpp \
     simulationengine.cpp \
-    graphdialog.cpp
+    graphdialog.cpp \
+    state.cpp
 
 # Default rules for deployment.
 include(deployment.pri)
@@ -46,7 +47,8 @@ HEADERS += \
     editelementdialog.h \
     descriptionlabel.h \
     simulationengine.h \
-    graphdialog.h
+    graphdialog.h \
+    state.h
 
 FORMS += \
     mainwindow.ui \
@@ -54,7 +56,8 @@ FORMS += \
     transition.ui \
     editelementdialog.ui \
     descriptionlabel.ui \
-    graphdialog.ui
+    graphdialog.ui \
+    state.ui
 
 RESOURCES += \
     resources.qrc

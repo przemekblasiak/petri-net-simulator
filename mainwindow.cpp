@@ -80,12 +80,14 @@ void MainWindow::on_actionToggleSimulationMode_toggled(bool simulationModeOn) {
     if (simulationModeOn) {
         this->statusBarLabel->setText("Simulation mode");
         ui->statusBar->setStyleSheet("background-color: rgb(180, 255, 180);");
+        ui->netAnalysisToolBar->setEnabled(true);
         this->matejkoCanvas->saveBoardState();
         SimulationEngine::getInstance().beginSimulation();
     }
-    else {
+    else{
         this->statusBarLabel->setText("Design mode");
         ui->statusBar->setStyleSheet("background-color: rgb(165,226,224);");
+        ui->netAnalysisToolBar->setEnabled(false);
         this->matejkoCanvas->restoreBoardState();
         SimulationEngine::getInstance().endSimulation();
     }

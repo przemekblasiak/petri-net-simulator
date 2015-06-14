@@ -98,9 +98,9 @@
     </rect>
    </property>
   </widget>
-  <widget class="QToolBar" name="toolBar">
+  <widget class="QToolBar" name="mainToolBar">
    <property name="windowTitle">
-    <string>mainToolBar</string>
+    <string>Main toolbar</string>
    </property>
    <property name="movable">
     <bool>false</bool>
@@ -119,7 +119,7 @@
   </widget>
   <widget class="QToolBar" name="simulationToolBar">
    <property name="windowTitle">
-    <string>simulationToolBar</string>
+    <string>Simulation toolbar</string>
    </property>
    <property name="movable">
     <bool>false</bool>
@@ -135,6 +135,22 @@
    <addaction name="actionNextTransition"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QToolBar" name="netAnalysisToolBar">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="windowTitle">
+    <string>Net analysis toolbar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>LeftToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionCoverabilityGraph"/>
+   <addaction name="actionReachabilityGraph"/>
+  </widget>
   <action name="actionOpen_project">
    <property name="icon">
     <iconset theme="document-open" resource="resources.qrc">
@@ -230,6 +246,22 @@
    </property>
    <property name="toolTip">
     <string>Toggle simulation mode</string>
+   </property>
+  </action>
+  <action name="actionReachabilityGraph">
+   <property name="text">
+    <string>Reachability graph</string>
+   </property>
+   <property name="toolTip">
+    <string>Generate reachability graph</string>
+   </property>
+  </action>
+  <action name="actionCoverabilityGraph">
+   <property name="text">
+    <string>Coverability graph</string>
+   </property>
+   <property name="toolTip">
+    <string>Generate coverability graph</string>
    </property>
   </action>
  </widget>

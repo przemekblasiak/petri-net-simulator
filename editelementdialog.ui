@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>350</width>
-    <height>132</height>
+    <height>163</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -64,6 +64,30 @@
      </item>
      <item>
       <widget class="QLineEdit" name="descriptionLineEdit"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QLabel" name="weightLabel">
+       <property name="minimumSize">
+        <size>
+         <width>70</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>weight:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="w">
+       <property name="inputMethodHints">
+        <set>Qt::ImhNone</set>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

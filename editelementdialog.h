@@ -14,7 +14,8 @@ class EditElementDialog : public QDialog
 public:
     enum EditMode{
         EditPlace,
-        EditTransition
+        EditTransition,
+        EditArrow
     };
     explicit EditElementDialog(QWidget *parent = 0);
     ~EditElementDialog();

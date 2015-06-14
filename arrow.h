@@ -38,7 +38,7 @@ private:
     QVector<QRect> segmentsForArrowPoints(QVector<QPoint> points);
 };
 
-class Arrow::ClickableArea: QWidget {
+class Arrow::ClickableArea: public QWidget {
     Q_OBJECT
 public:
     explicit ClickableArea(QWidget *owner, QWidget *parent): QWidget(parent) {

@@ -22,9 +22,6 @@ Arrow::Arrow(const Arrow &arrow) {
 }
 
 Arrow::~Arrow() {
-    for (ClickableArea *area: _clickableAreas) {
-        delete area;
-    }
     _clickableAreas.clear();
 }
 

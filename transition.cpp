@@ -15,8 +15,8 @@ Transition::Transition(const QPoint &origin, QWidget *parent) :
 
     this->letter = "T";
 
-    ++Transition::count;
     this->setNumber(Transition::count);
+    ++Transition::count;
 
     this->show();
 }

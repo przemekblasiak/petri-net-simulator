@@ -17,8 +17,8 @@ Place::Place(const QPoint &origin, int tokenCount, QWidget *parent) :
     this->letter = "P";
     this->setTokenCount(_tokenCount);
 
-    ++Place::count;
     this->setNumber(Place::count);
+    ++Place::count;
 
     this->show();
 }

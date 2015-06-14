@@ -25,7 +25,7 @@ private:
     SimulationEngine();
     SimulationEngine(const SimulationEngine& engineToCopy);
     void activateTransitions();
-    void deactiveTransitions();
+    void deactivateAllTransitions();
     QList<Arrow *> arrowsForElement(Element *element);
 };
 

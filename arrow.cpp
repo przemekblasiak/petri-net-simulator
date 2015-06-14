@@ -59,6 +59,14 @@ void Arrow::draw(QPainter &painter) {
         vertical = false;
     }
 
+    //
+    //        bool vertical = (abs(dx) > abs(dy))? false : true ////////////BITTTTTCHHHH
+    //
+    //OROROROROROR
+    //
+    //        bool vertical = !(abs(dx) > abs(dy))
+    //
+
     // Identify points
     QVector<QPoint> checkPoints;
     if (vertical) {

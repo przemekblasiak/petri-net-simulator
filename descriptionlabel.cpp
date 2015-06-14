@@ -6,7 +6,10 @@ DescriptionLabel::DescriptionLabel(QWidget *parent) :
     ui(new Ui::DescriptionLabel) {
     ui->setupUi(this);
     this->setText("");
+    this->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
+    this->adjustSize();
     this->show();
+    this->setAttribute(Qt::WA_TransparentForMouseEvents, true);
 }
 
 DescriptionLabel::~DescriptionLabel() {

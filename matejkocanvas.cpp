@@ -125,6 +125,26 @@ void MatejkoCanvas::onSelectedElementDestroyed() {
     this->setSelectedElement(0);
 }
 
+void MatejkoCanvas::onModifyArrowRequested()
+{
+    Arrow *arrow = qobject_cast<Arrow *>(QObject::sender());
+    EditElementDialog *dialog = new EditElementDialog(this);
+    dialog->setEditView(EditElementDialog::EditArrow);
+    connect(dialog, SIGNAL(accepted()), dialog, SLOT(deleteLater()));
+    connect(dialog, SIGNAL(rejected()), dialog, SLOT(deleteLater()));
+    connect(dialog, SIGNAL(weightChanged(int)), arrow, SLOT(setWeight(int)));
+    dialog->adjustSize();
+    dialog->show();
+}
+
+void MatejkoCanvas::onRemoveArrowRequested()
+{
+    Arrow *arrow = qobject_cast<Arrow*>(QObject::sender());
+    this->arrows->removeOne(arrow);
+    arrow->deleteLater();
+    update();
+}
+
 void MatejkoCanvas::mousePressEvent(QMouseEvent *event)
 {
     event->accept();

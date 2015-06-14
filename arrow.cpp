@@ -10,6 +10,9 @@ Arrow::Arrow(Element *place, Element *transition, bool fromPlaceToTransition, QW
 {
     arrowheadImage.load(":/images/images/arrowhead.png");
     this->setWeight(_weight);
+
+    connect(this, SIGNAL(modifyArrowRequested()), parent, SLOT(onModifyArrowRequested()));
+    connect(this, SIGNAL(removeArrowRequested()), parent, SLOT(onRemoveArrowRequested()));
 }
 
 Arrow::Arrow(const Arrow &arrow) {
@@ -22,6 +25,7 @@ Arrow::Arrow(const Arrow &arrow) {
 }
 
 Arrow::~Arrow() {
+    delete _weightLabel;
     _clickableAreas.clear();
 }
 
@@ -207,11 +211,9 @@ void Arrow::onContextActionTriggered(QAction *action) {
 
     if (actionType == ContextActionType::Remove) {
         emit removeArrowRequested();
-        qDebug() << "Remove arrow emitted";
     }
     else if (actionType == ContextActionType::Edit) {
         emit modifyArrowRequested();
-        qDebug() << "Modify arrow emitted";
     }
 }
 

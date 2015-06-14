@@ -36,6 +36,8 @@ public slots:
     void onModifyElementRequested();
     void onElementClicked();
     void onSelectedElementDestroyed();
+    void onModifyArrowRequested();
+    void onRemoveArrowRequested();
 
 private:
     Element *_selectedElement;

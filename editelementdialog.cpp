@@ -8,6 +8,7 @@ EditElementDialog::EditElementDialog(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->tokenCountLineEdit->setValidator(new QIntValidator(0, 100, this));
+    ui->weightLineEdit->setValidator(new QIntValidator(0, 100, this));
 }
 
 EditElementDialog::~EditElementDialog()
@@ -17,20 +18,35 @@ EditElementDialog::~EditElementDialog()
 
 void EditElementDialog::setEditView(EditElementDialog::EditMode mode)
 {
+    ui->tokenCountLabel->setVisible(false);
+    ui->tokenCountLineEdit->setVisible(false);
+    ui->descriptionLabel->setVisible(false);
+    ui->descriptionLineEdit->setVisible(false);
+    ui->weightLabel->setVisible(false);
+    ui->weightLineEdit->setVisible(false);
+
     if (mode == EditMode::EditPlace){
         ui->tokenCountLabel->setVisible(true);
         ui->tokenCountLineEdit->setVisible(true);
+        ui->descriptionLabel->setVisible(true);
+        ui->descriptionLineEdit->setVisible(true);
     }
     else if (mode == EditMode::EditTransition) {
         ui->tokenCountLabel->setVisible(false);
         ui->tokenCountLineEdit->setVisible(false);
+        ui->descriptionLabel->setVisible(true);
+        ui->descriptionLineEdit->setVisible(true);
+    }
+    else if (mode == EditMode::EditArrow){
+        ui->weightLabel->setVisible(true);
+        ui->weightLineEdit->setVisible(true);
     }
 }
 
 void EditElementDialog::setDescription(const QString &description)
 {
     ui->descriptionLineEdit->setText(description);
-    this->description = description;
+    _description = description;
 }
 
 void EditElementDialog::setTokenCount(int tokenCount) {
@@ -44,15 +60,27 @@ int EditElementDialog::tokenCount() {
 
 void EditElementDialog::on_descriptionLineEdit_textEdited(const QString &description)
 {
-    this->description = description;
+    _description = description;
 }
 
 void EditElementDialog::on_buttonBox_accepted()
 {
     emit tokenCountChanged(_tokenCount);
-    emit descriptionChanged(this->description);
+    emit descriptionChanged(_description);
+    emit weightChanged(_weight);
 }
 
 void EditElementDialog::on_tokenCountLineEdit_textEdited(const QString &tokenCount) {
     _tokenCount = tokenCount.toInt();
 }
+
+void EditElementDialog::on_weightLineEdit_textEdited(const QString &weight)
+{
+    _weight = weight.toInt();
+}
+void EditElementDialog::setWeight(int weight)
+{
+    _weight = weight;
+    ui->weightLineEdit->setText(QString::number(weight));
+}
+

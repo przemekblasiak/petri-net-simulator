@@ -238,7 +238,7 @@
     <string>ExecuteTransition</string>
    </property>
    <property name="toolTip">
-    <string>Execute Transition</string>
+    <string>Execute transition</string>
    </property>
    <property name="shortcut">
     <string>Space</string>

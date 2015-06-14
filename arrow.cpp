@@ -74,7 +74,7 @@ void Arrow::draw(QPainter &painter) {
     // Identify points
     QVector<QPoint> checkPoints;
     if (vertical) {
-        bool overlapsX = middle1.x() >= (middle2.x() - width2/2) && middle1.x() <= (middle2.x() + width2/2);
+        bool overlapsX = middle1.x() >= (middle2.x() - width2) && middle1.x() <= (middle2.x() + width2);
         if (overlapsX) {
             int yDistance = dy - y1Offset - y2Offset;
             checkPoints.append(QPoint(middle1.x(), middle1.y() + y1Offset));
@@ -95,7 +95,7 @@ void Arrow::draw(QPainter &painter) {
         }
     }
     else {
-        bool overlapsY = middle1.y() >= (middle2.y() - height2/2) && middle1.y() <= (middle2.y() + height2/2);
+        bool overlapsY = middle1.y() >= (middle2.y() - height2) && middle1.y() <= (middle2.y() + height2);
         if (overlapsY) {
             int xDistance = dx - x1Offset - x2Offset;
             checkPoints.append(QPoint(middle1.x() + x1Offset, middle1.y()));
@@ -117,7 +117,15 @@ void Arrow::draw(QPainter &painter) {
     }
 
     // Draw lines
-    painter.drawLines(checkPoints);
+//    painter.drawLines(checkPoints);
+    QVector<QPoint> bezierPoints = this->bezierPoints(checkPoints);
+    int numberOfBezierPaths = bezierPoints.count() / 3;
+    for (int i = 0; i < numberOfBezierPaths; i += 1) {
+        QPainterPath bezierPath;
+        bezierPath.moveTo(bezierPoints[3*i]);
+        bezierPath.quadTo(bezierPoints[3*i + 1], bezierPoints[3*i+2]);
+        painter.drawPath(bezierPath);
+    }
 
     // Rotate and move arrow
     QPoint secondLast = checkPoints[checkPoints.count() - 2];
@@ -172,6 +180,40 @@ void Arrow::draw(QPainter &painter) {
             ((QWidget *)_clickableAreas[i])->setGeometry(0,0,0,0);
         }
     }
+}
+
+QVector<QPoint> Arrow::bezierPoints(QVector<QPoint> &points) {
+    QVector<QPoint> bezierPoints;
+    // TODO: Make it universal, not only 6 and 4 points
+    if (points.count() == 6) {
+        QPoint secondPoint = points[1];
+        QPoint secondLastPoint = points[points.count() - 2];
+        int midX = (secondPoint.x() + secondLastPoint.x()) / 2;
+        int midY = (secondPoint.y() + secondLastPoint.y()) / 2;
+        QPoint midPoint(midX, midY);
+
+        // 1st path
+        bezierPoints.append(points.first());
+        bezierPoints.append(secondPoint);
+        bezierPoints.append(midPoint);
+
+        // 2nd path
+        bezierPoints.append(midPoint);
+        bezierPoints.append(secondLastPoint);
+        bezierPoints.append(points.last());
+    } else if (points.count() == 4){
+        QPoint secondPoint = points[1];
+        QPoint secondLastPoint = points[points.count() - 2];
+        int midX = (secondPoint.x() + secondLastPoint.x()) / 2;
+        int midY = (secondPoint.y() + secondLastPoint.y()) / 2;
+        QPoint midPoint(midX, midY);
+
+        // 1st path
+        bezierPoints.append(points.first());
+        bezierPoints.append(midPoint);
+        bezierPoints.append(points.last());
+    }
+    return bezierPoints;
 }
 
 int Arrow::weight() const {

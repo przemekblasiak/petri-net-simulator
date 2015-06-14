@@ -36,6 +36,7 @@ private:
     class ClickableArea;
     QVector<ClickableArea *> _clickableAreas;
     QVector<QRect> segmentsForArrowPoints(QVector<QPoint> points);
+    QVector<QPoint> bezierPoints(QVector<QPoint> &points);
 };
 
 class Arrow::ClickableArea: public QWidget {

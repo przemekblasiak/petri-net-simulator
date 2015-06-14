@@ -39,6 +39,10 @@ private slots:
 
     void on_actionToggleSimulationMode_toggled(bool arg1);
 
+    void on_actionCoverabilityGraph_triggered();
+
+    void on_actionReachabilityGraph_triggered();
+
 private:
     Ui::MainWindow *ui;
     QString currentProjectFilePath;

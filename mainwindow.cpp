@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "pnsglobal.h"
 #include "simulationengine.h"
+#include "graphdialog.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -92,3 +93,18 @@ void MainWindow::on_actionToggleSimulationMode_toggled(bool simulationModeOn) {
         SimulationEngine::getInstance().endSimulation();
     }
 }
+
+void MainWindow::on_actionCoverabilityGraph_triggered()
+{
+    GraphDialog *coverabilityGraphDialog = new GraphDialog(this);
+    coverabilityGraphDialog->setWindowTitle("Coverability graph");
+    coverabilityGraphDialog->show();
+}
+
+void MainWindow::on_actionReachabilityGraph_triggered()
+{
+    GraphDialog *reachabilityGraphDialog = new GraphDialog(this);
+    reachabilityGraphDialog->setWindowTitle("Reachability graph");
+    reachabilityGraphDialog->show();
+}
+

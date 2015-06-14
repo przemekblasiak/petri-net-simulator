@@ -21,7 +21,14 @@ Arrow::Arrow(const Arrow &arrow) {
     this->fromPlaceToTransition = arrow.fromPlaceToTransition;
 }
 
-void Arrow::draw(QPainter &painter) const {
+Arrow::~Arrow() {
+    for (ClickableArea *area: _clickableAreas) {
+        delete area;
+    }
+    _clickableAreas.clear();
+}
+
+void Arrow::draw(QPainter &painter) {
     QRect placeFrame = this->place->frameGeometry();
     QRect transitionFrame = this->transition->frameGeometry();
 
@@ -149,6 +156,21 @@ void Arrow::draw(QPainter &painter) const {
     int topMargin = 4;
     QPoint insertionPoint(checkPoints[1].x() - _weightLabel->width()/2, checkPoints[1].y() + topMargin);
     _weightLabel->move(insertionPoint);
+
+    // Adjust clickable areas
+    const int maxNumberOfAreas = 4;
+    QVector<QRect> segments = this->segmentsForArrowPoints(checkPoints);
+    for (int i = 0; i < maxNumberOfAreas; ++i) {
+        if (i >= _clickableAreas.count()) {
+            _clickableAreas.append(new ClickableArea(this, this->parentWidget()));
+        }
+        if (i < segments.count()) {
+            ((QWidget *)_clickableAreas[i])->setGeometry(segments[i]);
+        }
+        else {
+            ((QWidget *)_clickableAreas[i])->setGeometry(0,0,0,0);
+        }
+    }
 }
 
 int Arrow::weight() const {
@@ -160,4 +182,70 @@ void Arrow::setWeight(int weight) {
     _weightLabel->setText(QString::number(_weight));
 }
 
+void Arrow::onContextMenuRequested(const QPoint &position) {
+    QMap<QString, QVariant> actionInfo;
 
+    QAction editAction("Edit", this);
+    actionInfo["Type"] = QVariant(ContextActionType::Edit);
+    editAction.setData(actionInfo);
+
+    QAction removeAction("Remove", this);
+    actionInfo["Type"] = QVariant(ContextActionType::Remove);
+    removeAction.setData(actionInfo);
+
+    QMenu contextMenu("Context menu");
+    contextMenu.addAction(&editAction);
+    contextMenu.addSeparator();
+    contextMenu.addAction(&removeAction);
+
+    connect(&contextMenu, SIGNAL(triggered(QAction *)),
+            this, SLOT(onContextActionTriggered(QAction *)));
+
+    contextMenu.exec(position);
+}
+
+void Arrow::onContextActionTriggered(QAction *action) {
+    QMap<QString, QVariant> actionInfo = action->data().toMap();
+    ContextActionType actionType = (ContextActionType)actionInfo["Type"].toInt();
+
+    if (actionType == ContextActionType::Remove) {
+        emit removeArrowRequested();
+        qDebug() << "Remove arrow emitted";
+    }
+    else if (actionType == ContextActionType::Edit) {
+        emit modifyArrowRequested();
+        qDebug() << "Modify arrow emitted";
+    }
+}
+
+QVector<QRect> Arrow::segmentsForArrowPoints(QVector<QPoint> points) {
+    QVector<QRect> segments;
+    const int margin = 10;
+
+    for (int i = 0; i < points.count() - 1; i += 2) {
+        QPoint pointA = points[i];
+        QPoint pointB = points[i+1];
+        int leftX, rightX, topY, bottomY;
+        if (pointA.x() > pointB.x()) {
+            rightX = pointA.x();
+            leftX = pointB.x();
+        }
+        else {
+            rightX = pointB.x();
+            leftX = pointA.x();
+        }
+        if (pointA.y() > pointB.y()) {
+            bottomY = pointA.y();
+            topY = pointB.y();
+        }
+        else {
+            bottomY = pointB.y();
+            topY = pointA.y();
+        }
+        QPoint topLeft(leftX - margin, topY - margin);
+        QPoint bottomRight(rightX + margin, bottomY + margin);
+        segments.append(QRect(topLeft, bottomRight));
+    }
+
+    return segments;
+}

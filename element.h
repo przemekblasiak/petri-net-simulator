@@ -49,11 +49,6 @@ private:
     bool _active;
     DescriptionLabel *_descriptionLabel;
     bool _simulationModeOn;
-
-    enum ContextActionType {
-        Edit,
-        Remove
-    };
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);

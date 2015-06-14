@@ -129,6 +129,7 @@ void MatejkoCanvas::onModifyArrowRequested()
 {
     Arrow *arrow = qobject_cast<Arrow *>(QObject::sender());
     EditElementDialog *dialog = new EditElementDialog(this);
+    dialog->setWeight(arrow->weight());
     dialog->setEditView(EditElementDialog::EditArrow);
     connect(dialog, SIGNAL(accepted()), dialog, SLOT(deleteLater()));
     connect(dialog, SIGNAL(rejected()), dialog, SLOT(deleteLater()));

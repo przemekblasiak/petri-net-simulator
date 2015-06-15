@@ -117,21 +117,11 @@ void Arrow::draw(QPainter &painter) {
     }
 
     // Draw lines
-//    painter.drawLines(checkPoints);
-    QVector<QPoint> bezierPoints = this->bezierPoints(checkPoints);
-    int numberOfBezierPaths = bezierPoints.count() / 3;
-    for (int i = 0; i < numberOfBezierPaths; i += 1) {
-        QPainterPath bezierPath;
-        bezierPath.moveTo(bezierPoints[3*i]);
-        bezierPath.quadTo(bezierPoints[3*i + 1], bezierPoints[3*i+2]);
-        painter.drawPath(bezierPath);
-    }
+    painter.drawLines(checkPoints);
 
     // Adjust description label position
     int topMargin = 4;
-    int midX = (checkPoints.first().x() + checkPoints.last().x()) / 2;
-    int midY = (checkPoints.first().y() + checkPoints.last().y()) / 2;
-    QPoint insertionPoint(midX - _weightLabel->width()/2, midY + topMargin);
+    QPoint insertionPoint(checkPoints[1].x() - _weightLabel->width()/2, checkPoints[1].y() + topMargin);
     _weightLabel->move(insertionPoint);
 
     // Rotate and move arrow

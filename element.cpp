@@ -179,6 +179,7 @@ void Element::setDescription(const QString &description) {
         _descriptionLabel->setHidden(false);
     }
     _descriptionLabel->setText(description);
+    this->adjustDescriptionLabelPosition();
 }
 
 void Element::setSimulationModeOn(bool on)

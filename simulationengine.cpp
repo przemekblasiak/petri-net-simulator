@@ -84,7 +84,7 @@ QList<State *> SimulationEngine::generateReachabilityStates() {
 void SimulationEngine::attachChildrenStates(State *currentState, QList<State *> *states) { // TODO: Refactor name
     states->append(currentState);
     static int recursionLevel = 0;
-    if (recursionLevel >= 10) {
+    if (recursionLevel >= 50) {
         return;
     }
     ++recursionLevel;

@@ -2,6 +2,7 @@
 #define GRAPHDIALOG_H
 
 #include <QDialog>
+#include "state.h"
 
 namespace Ui {
 class GraphDialog;
@@ -21,6 +22,7 @@ private slots:
 
 private:
     Ui::GraphDialog *ui;
+    void drawState(State *state, int row, int column, QList<State *> &drawnStates);
 };
 
 #endif // GRAPHDIALOG_H

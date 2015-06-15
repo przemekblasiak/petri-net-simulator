@@ -19,7 +19,6 @@ public:
             this->destination = destination;
             this->transition = transition;
         }
-
         State *destination;
         Element *transition;
     };
@@ -30,6 +29,7 @@ public:
     QVector<int> tokenCounts;
     void setupUi(QWidget *parent);
     QList<StateConnection> outgoingConnections;
+    bool operator==(const State &stateToCompareTo);
 private:
     Ui::State *ui;
 };

@@ -20,6 +20,7 @@ Place::Place(const QPoint &origin, int tokenCount, QWidget *parent) :
     this->setNumber(Place::count);
     ++Place::count;
 
+    this->updateNumber();
     this->show();
 }
 

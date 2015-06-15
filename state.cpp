@@ -18,10 +18,21 @@ State::~State() {
     }
 }
 
+bool State::operator==(const State &stateToCompareTo) {
+    return this->tokenCounts == stateToCompareTo.tokenCounts;
+}
+
 void State::setupUi(QWidget *parent)
 {
     this->setParent(parent);
     ui = new Ui::State;
     ui->setupUi(this);
     this->show();
+    QString text = "(";
+    for (int tokenCount: this->tokenCounts) {
+        text += QString::number(tokenCount) + ",";
+    }
+    text += ")";
+    ui->tokenCountsLabel->setText(text);
+    this->adjustSize();
 }

@@ -33,6 +33,9 @@ void State::setupUi(QWidget *parent)
         text += QString::number(tokenCount) + ",";
     }
     text += ")";
+    for (State::StateConnection connection: this->outgoingConnections) {
+        text += "T" + QString::number(connection.transition->number()) + ",";
+    }
     ui->tokenCountsLabel->setText(text);
     this->adjustSize();
 }

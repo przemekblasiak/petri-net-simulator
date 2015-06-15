@@ -2,6 +2,7 @@
 #define TRANSITION_H
 
 #include "element.h"
+#include <QPaintEvent>
 
 namespace Ui {
 class Transition;
@@ -24,6 +25,9 @@ public slots:
 private:
     virtual void updateNumber();
     Ui::Transition *ui;
+    DescriptionLabel *_delayLabel;
+    void paintEvent(QPaintEvent *);
+    void adjustDelayLabelPosition();
 };
 
 #endif // TRANSITION_H

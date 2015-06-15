@@ -41,6 +41,7 @@ protected:
     QPoint offset;
     virtual void updateNumber() = 0;
     void setChildrenClickable(bool clickable);
+    void paintEvent(QPaintEvent *event);
 
 private:
     bool _selected;
@@ -52,7 +53,6 @@ private:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
-    void paintEvent(QPaintEvent *event);
     void adjustDescriptionLabelPosition();
 };
 

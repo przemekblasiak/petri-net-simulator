@@ -96,7 +96,7 @@ void MatejkoCanvas::onRemoveElementRequested() {
 void MatejkoCanvas::onModifyElementRequested() {
     Element *elementToModify = qobject_cast<Element *>(QObject::sender());
     Place *placeToModify = qobject_cast<Place *>(elementToModify);
-    Transition *TransitionToModify = qobject_cast<Transition *>(elementToModify);
+    Transition *transitionToModify = qobject_cast<Transition *>(elementToModify);
 
     EditElementDialog *dialog = new EditElementDialog(this);
     connect(dialog, SIGNAL(descriptionChanged(QString)), elementToModify, SLOT(setDescription(QString)));
@@ -109,8 +109,10 @@ void MatejkoCanvas::onModifyElementRequested() {
         dialog->setTokenCount(placeToModify->tokenCount());
         connect(dialog, SIGNAL(tokenCountChanged(int)), placeToModify, SLOT(setTokenCount(int)));
     }
-    else if (TransitionToModify){
+    else if (transitionToModify){
         dialog->setEditView(EditElementDialog::EditTransition);
+        dialog->setDelay(transitionToModify->delay);
+        connect(dialog, SIGNAL(delayChanged(int)), transitionToModify, SLOT(setDelay(int)));
     }
 
     dialog->adjustSize();

@@ -15,9 +15,11 @@ public:
     static int count;
     explicit Transition(const QPoint &origin, QWidget *parent = 0);
     virtual ~Transition();
+    int delay;
 
 public slots:
     void onTicked();
+    void setDelay(int delay);
 
 private:
     virtual void updateNumber();

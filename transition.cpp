@@ -15,11 +15,12 @@ Transition::Transition(const QPoint &origin, QWidget *parent) :
     this->move(origin);
 
     this->letter = "T";
+    delay = 0;
 
     this->setNumber(Transition::count);
     ++Transition::count;
 
-    connect(&(SimulationEngine::getInstance().timer), SIGNAL(ticked()), this, SLOT(onTicked));
+    connect(&(SimulationEngine::getInstance().timer), SIGNAL(ticked()), this, SLOT(onTicked()));
     this->show();
 }
 
@@ -31,6 +32,11 @@ Transition::~Transition() {
 void Transition::onTicked()
 {
 
+}
+
+void Transition::setDelay(int delay)
+{
+    this->delay = delay;
 }
 
 void Transition::updateNumber() {

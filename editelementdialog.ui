@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>350</width>
-    <height>172</height>
+    <height>212</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -48,6 +48,30 @@
     </layout>
    </item>
    <item>
+    <layout class="QHBoxLayout" name="delayLayout">
+     <item>
+      <widget class="QLabel" name="delayLabel">
+       <property name="minimumSize">
+        <size>
+         <width>70</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>delay:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="delayLineEdit">
+       <property name="inputMethodHints">
+        <set>Qt::ImhNone</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
     <layout class="QHBoxLayout" name="descriptionLayout">
      <item>
       <widget class="QLabel" name="descriptionLabel">
@@ -58,7 +82,7 @@
         </size>
        </property>
        <property name="text">
-        <string>description</string>
+        <string>description:</string>
        </property>
       </widget>
      </item>

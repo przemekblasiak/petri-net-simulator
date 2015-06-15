@@ -24,11 +24,13 @@ public:
     void setTokenCount(int tokenCount);
     int tokenCount();
     void setWeight(int weight);
+    void setDelay(int delay);
 
 signals:
     void tokenCountChanged(int tokenCount);
     void descriptionChanged(QString description);
     void weightChanged(int weight);
+    void delayChanged(int delay);
 
 private slots:
     void on_buttonBox_accepted();
@@ -36,11 +38,14 @@ private slots:
     void on_tokenCountLineEdit_textEdited(const QString &tokenCount);
     void on_weightLineEdit_textEdited(const QString &weight);
 
+    void on_delayLineEdit_textEdited(const QString &delay);
+
 private:
     Ui::EditElementDialog *ui;
     int _tokenCount;
     QString _description;
     int _weight;
+    int _delay;
 };
 
 #endif // EDITELEMENTDIALOG_H

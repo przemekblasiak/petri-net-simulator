@@ -9,6 +9,7 @@ EditElementDialog::EditElementDialog(QWidget *parent) :
     ui->setupUi(this);
     ui->tokenCountLineEdit->setValidator(new QIntValidator(0, 100, this));
     ui->weightLineEdit->setValidator(new QIntValidator(0, 100, this));
+    ui->delayLineEdit->setValidator(new QIntValidator(0, 100, this));
 }
 
 EditElementDialog::~EditElementDialog()
@@ -24,6 +25,8 @@ void EditElementDialog::setEditView(EditElementDialog::EditMode mode)
     ui->descriptionLineEdit->setVisible(false);
     ui->weightLabel->setVisible(false);
     ui->weightLineEdit->setVisible(false);
+    ui->delayLabel->setVisible(false);
+    ui->delayLineEdit->setVisible(false);
 
     if (mode == EditMode::EditPlace){
         ui->tokenCountLabel->setVisible(true);
@@ -34,6 +37,8 @@ void EditElementDialog::setEditView(EditElementDialog::EditMode mode)
     else if (mode == EditMode::EditTransition) {
         ui->tokenCountLabel->setVisible(false);
         ui->tokenCountLineEdit->setVisible(false);
+        ui->delayLabel->setVisible(true);
+        ui->delayLineEdit->setVisible(true);
         ui->descriptionLabel->setVisible(true);
         ui->descriptionLineEdit->setVisible(true);
     }
@@ -68,6 +73,7 @@ void EditElementDialog::on_buttonBox_accepted()
     emit tokenCountChanged(_tokenCount);
     emit descriptionChanged(_description);
     emit weightChanged(_weight);
+    emit delayChanged(_delay);
 }
 
 void EditElementDialog::on_tokenCountLineEdit_textEdited(const QString &tokenCount) {
@@ -84,3 +90,14 @@ void EditElementDialog::setWeight(int weight)
     ui->weightLineEdit->setText(QString::number(weight));
 }
 
+void EditElementDialog::setDelay(int delay)
+{
+    _delay = delay;
+    ui->delayLineEdit->setText(QString::number(delay));
+}
+
+
+void EditElementDialog::on_delayLineEdit_textEdited(const QString &delay)
+{
+    _delay = delay.toInt();
+}

@@ -19,7 +19,8 @@ SOURCES += main.cpp \
     descriptionlabel.cpp \
     simulationengine.cpp \
     graphdialog.cpp \
-    state.cpp
+    state.cpp \
+    timer.cpp
 
 # Default rules for deployment.
 include(deployment.pri)
@@ -48,7 +49,8 @@ HEADERS += \
     descriptionlabel.h \
     simulationengine.h \
     graphdialog.h \
-    state.h
+    state.h \
+    timer.h
 
 FORMS += \
     mainwindow.ui \

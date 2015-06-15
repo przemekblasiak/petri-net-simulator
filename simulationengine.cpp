@@ -6,8 +6,15 @@ SimulationEngine &SimulationEngine::getInstance()
     return instance;
 }
 
-SimulationEngine::SimulationEngine(): QObject(0) {}
+SimulationEngine::SimulationEngine(): QObject(0) {timer.start();}
 SimulationEngine::SimulationEngine(const SimulationEngine &engineToCopy): QObject(0) {Q_UNUSED(engineToCopy)}
+
+SimulationEngine::~SimulationEngine()
+{
+    timer.setRunning(false);
+    timer.quit();
+    timer.wait(10000);
+}
 
 void SimulationEngine::beginSimulation() {
     this->activateTransitions();

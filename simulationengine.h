@@ -6,6 +6,7 @@
 #include "element.h"
 #include "arrow.h"
 #include "state.h"
+#include "timer.h"
 
 class SimulationEngine : public QObject
 {
@@ -24,10 +25,13 @@ public:
     void endSimulation();
     void executeTransition(Element *transition);
     QList<State *> generateReachabilityStates();
+    Timer timer;
+
 
 private:
     SimulationEngine();
     SimulationEngine(const SimulationEngine& engineToCopy);
+    ~SimulationEngine();
     void activateTransitions();
     void deactivateAllTransitions();
     QList<Arrow *> arrowsForElement(Element *element);

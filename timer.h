@@ -9,6 +9,7 @@ class Timer : public QThread
     Q_OBJECT
 public:
     Timer();
+    virtual ~Timer();
     void run();
 
     int interval() const;

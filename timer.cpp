@@ -2,17 +2,21 @@
 #include <QDebug>
 
 Timer::Timer():
-    _interval(500),
+    _interval(100),
     _running(true)
 {
 
+}
+
+Timer::~Timer()
+{
+    _running = false;
 }
 
 void Timer::run()
 {
     while(_running){
         msleep(_interval);
-        qDebug("ss");
         emit ticked();
     }
 }

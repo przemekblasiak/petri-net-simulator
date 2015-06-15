@@ -16,6 +16,9 @@ public:
     explicit Transition(const QPoint &origin, QWidget *parent = 0);
     virtual ~Transition();
 
+public slots:
+    void onTicked();
+
 private:
     virtual void updateNumber();
     Ui::Transition *ui;

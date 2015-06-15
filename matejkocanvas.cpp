@@ -4,6 +4,7 @@
 #include <QApplication>
 #include "pnsglobal.h"
 #include "editelementdialog.h"
+#include "simulationengine.h"
 
 MatejkoCanvas::MatejkoCanvas(QWidget *parent) : QWidget(parent), _selectedElement(0), _simulationModeOn(false), _savedTokens(0) {
     this->setupPalette();

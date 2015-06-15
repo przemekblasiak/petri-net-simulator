@@ -83,7 +83,7 @@ void MatejkoCanvas::onRemoveElementRequested() {
     // Update numbering
     for (int i = index; i < elements->count(); ++i) {
         Element *elementToUpdate = (*elements)[i];
-        elementToUpdate->setNumber(i+1);
+        elementToUpdate->setNumber(i);
     }
 
     this->removeRelatedArrows(elementToRemove);

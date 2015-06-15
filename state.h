@@ -2,19 +2,34 @@
 #define STATE_H
 
 #include "element.h"
+#include "place.h"
+#include "transition.h"
 
 namespace Ui {
 class State;
 }
 
-class State : public Element
+class State : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit State(QWidget *parent = 0);
-    ~State();
+    struct StateConnection {
+        StateConnection(State *destination, Element *transition) {
+            this->destination = destination;
+            this->transition = transition;
+        }
 
+        State *destination;
+        Element *transition;
+    };
+
+    State(QList<Element *> &places);
+    State(const State &state);
+    virtual ~State();
+    QVector<int> tokenCounts;
+    void setupUi(QWidget *parent);
+    QList<StateConnection> outgoingConnections;
 private:
     Ui::State *ui;
 };

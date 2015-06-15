@@ -14,6 +14,7 @@ class GraphDialog : public QDialog
 public:
     explicit GraphDialog(QWidget *parent = 0);
     ~GraphDialog();
+    void prepareReachabilityGraph();
 
 private slots:
     void on_GraphDialog_finished(int result);

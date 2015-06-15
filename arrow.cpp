@@ -127,6 +127,13 @@ void Arrow::draw(QPainter &painter) {
         painter.drawPath(bezierPath);
     }
 
+    // Adjust description label position
+    int topMargin = 4;
+    int midX = (checkPoints.first().x() + checkPoints.last().x()) / 2;
+    int midY = (checkPoints.first().y() + checkPoints.last().y()) / 2;
+    QPoint insertionPoint(midX - _weightLabel->width()/2, midY + topMargin);
+    _weightLabel->move(insertionPoint);
+
     // Rotate and move arrow
     QPoint secondLast = checkPoints[checkPoints.count() - 2];
     QPoint last = checkPoints.last();
@@ -160,11 +167,6 @@ void Arrow::draw(QPainter &painter) {
     }
 
     painter.drawImage(imagePosition, arrowhead);
-
-    // Adjust description label position
-    int topMargin = 4;
-    QPoint insertionPoint(checkPoints[1].x() - _weightLabel->width()/2, checkPoints[1].y() + topMargin);
-    _weightLabel->move(insertionPoint);
 
     // Adjust clickable areas
     const int maxNumberOfAreas = 4;

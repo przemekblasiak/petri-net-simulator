@@ -38,9 +38,20 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::clearLists()
+{
+    qDeleteAll(places);
+    qDeleteAll(transitions);
+    qDeleteAll(arrows);
+    places.clear();
+    transitions.clear();
+    arrows.clear();
+}
+
 void MainWindow::on_actionNew_Project_triggered()
 {
     currentProjectFilePath = QFileDialog::getSaveFileName(this, "Open JSON", ".", "JSON Files (*.json)");
+    clearLists();
 }
 
 void MainWindow::on_actionOpen_project_triggered()

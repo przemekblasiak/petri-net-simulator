@@ -47,6 +47,7 @@ void DataHandler::save(std::string fileName, const QList<Element *> &places, con
         json_arrow["placeNumber"] = arrow->place->number();
         json_arrow["transitionNumber"] = arrow->transition->number();
         json_arrow["fromPlaceToTransition"] = arrow->fromPlaceToTransition;
+        json_arrow["weight"] = arrow->weight();
         json_arrows.append(json_arrow);
     }
 
@@ -130,6 +131,7 @@ void DataHandler::load(std::string fileName, MatejkoCanvas* matejkoCanvas, QList
         const bool fromPlaceToTransition = current["fromPlaceToTransition"].asBool();
         const int placeNumber = current["placeNumber"].asInt();
         const int transitionNumber = current["transitionNumber"].asInt();
+        const int weight = current["weight"].asInt();
 
         // looking for Place to which arrow belongs basing on Place number
         Place *arrowPlace;
@@ -155,6 +157,7 @@ void DataHandler::load(std::string fileName, MatejkoCanvas* matejkoCanvas, QList
 
         // creating Arrow object
         Arrow *newArrow = new Arrow(arrowPlace, arrowTransition, fromPlaceToTransition, matejkoCanvas);
+        newArrow->setWeight(weight);
         // adding Arrow object to Arrows list
         arrows.append(newArrow);
     }

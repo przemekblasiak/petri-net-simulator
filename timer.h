@@ -13,12 +13,13 @@ public:
     void run();
 
     int interval() const;
-    void setInterval(int interval);
+    void setInterval(int seconds);
 
     bool running() const;
     void setRunning(bool running);
 
 signals:
+    // TODO Rename signal
     void ticked();
 
 private:

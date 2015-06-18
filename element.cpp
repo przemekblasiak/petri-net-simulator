@@ -162,6 +162,11 @@ void Element::mouseReleaseEvent(QMouseEvent *event) {
 void Element::paintEvent(QPaintEvent *) {
     this->adjustDescriptionLabelPosition();
 }
+bool Element::simulationModeOn() const
+{
+    return _simulationModeOn;
+}
+
 
 void Element::adjustDescriptionLabelPosition() {
     QPoint elementCenterRight(this->x() + this->width(), this->y() + this->height()/2);

@@ -19,6 +19,8 @@ public:
     virtual void setActive(bool active);
     virtual bool active();
 
+    bool simulationModeOn() const;
+
 signals:
     void removeElementRequested();
     void modifyElementRequested();

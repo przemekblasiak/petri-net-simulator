@@ -38,7 +38,7 @@ private slots:
 
     void on_actionExecuteTransition_triggered();
 
-    void on_actionToggleSimulationMode_toggled(bool arg1);
+    void on_actionToggleSimulationMode_toggled(bool simulationModeOn);
 
     void on_actionCoverabilityGraph_triggered();
 

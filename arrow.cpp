@@ -218,6 +218,9 @@ void Arrow::setWeight(int weight) {
 }
 
 void Arrow::onContextMenuRequested(const QPoint &position) {
+    if (this->place->simulationModeOn()){
+        return;
+    }
     QMap<QString, QVariant> actionInfo;
 
     QAction editAction("Edit", this);

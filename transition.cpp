@@ -9,20 +9,20 @@ int Transition::count = 0;
 Transition::Transition(const QPoint &origin, QWidget *parent) :
     Element(parent),
     ui(new Ui::Transition),
-    _delayLabel(new DescriptionLabel(parent))
+    _delayLabel(new DescriptionLabel(parent)),
+    _delay(0),
+    _elapsedTime(0)
 {
     ui->setupUi(this);
     this->setChildrenClickable(false);
     this->move(origin);
 
     this->letter = "T";
-    this->delay = 0;
-
     this->setNumber(Transition::count);
     ++Transition::count;
 
-    connect(&(SimulationEngine::getInstance().timer), SIGNAL(ticked()), this, SLOT(onTicked()));
-    _delayLabel->setText(QString::number(this->delay));
+    _delayLabel->setText(QString::number(_delay));
+    this->adjustDelayLabelPosition();
     this->show();
 }
 
@@ -30,6 +30,20 @@ Transition::~Transition() {
     delete _delayLabel;
     delete ui;
     --Transition::count;
+}
+
+void Transition::setActive(bool active)
+{
+    Element::setActive(active);
+    SimulationEngine &engine = SimulationEngine::getInstance();
+    // if active and delay > 0
+    if (active && _delay) {
+        connect(&engine.timer, SIGNAL(ticked()), this, SLOT(onTicked()), Qt::UniqueConnection);
+    }
+    else {
+        disconnect(&engine.timer, SIGNAL(ticked()), this, SLOT(onTicked()));
+        _elapsedTime = 0;
+    }
 }
 
 void Transition::paintEvent(QPaintEvent *event) {
@@ -43,15 +57,31 @@ void Transition::adjustDelayLabelPosition() {
     QPoint insertionPoint(elementCenterRight.x() + leftMargin, elementCenterRight.y() + topMargin);
     _delayLabel->move(insertionPoint);
 }
+unsigned Transition::elapsedTime() const
+{
+    return _elapsedTime;
+}
+
+unsigned Transition::delay() const
+{
+    return _delay;
+}
+
 
 void Transition::onTicked()
 {
-
+    ++_elapsedTime;
+    _delayLabel->setText(QString::number(_delay - _elapsedTime));
+    if (_elapsedTime == _delay){
+        SimulationEngine::getInstance().executeTransition(this);
+        _elapsedTime = 0;
+    }
 }
 
 void Transition::setDelay(int delay)
 {
-    this->delay = delay;
+    _delay = delay;
+    _elapsedTime = 0;
     _delayLabel->setText(QString::number(delay));
 }
 

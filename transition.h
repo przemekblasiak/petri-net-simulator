@@ -16,7 +16,10 @@ public:
     static int count;
     explicit Transition(const QPoint &origin, QWidget *parent = 0);
     virtual ~Transition();
-    int delay;
+    virtual void setActive(bool active);
+
+    unsigned delay() const;
+    unsigned elapsedTime() const;
 
 public slots:
     void onTicked();
@@ -28,6 +31,8 @@ private:
     DescriptionLabel *_delayLabel;
     void paintEvent(QPaintEvent *);
     void adjustDelayLabelPosition();
+    unsigned _delay;
+    unsigned _elapsedTime;
 };
 
 #endif // TRANSITION_H

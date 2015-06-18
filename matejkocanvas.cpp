@@ -111,7 +111,7 @@ void MatejkoCanvas::onModifyElementRequested() {
     }
     else if (transitionToModify){
         dialog->setEditView(EditElementDialog::EditTransition);
-        dialog->setDelay(transitionToModify->delay);
+        dialog->setDelay(transitionToModify->delay());
         connect(dialog, SIGNAL(delayChanged(int)), transitionToModify, SLOT(setDelay(int)));
     }
 
@@ -195,6 +195,11 @@ void MatejkoCanvas::restoreBoardState()
 {
     for (int i = 0; i < this->places->count(); ++i){
         ((Place *)(*(this->places))[i])->setTokenCount(_savedTokens[i]);
+    }
+
+    for (int i = 0; i< this->transitions->count(); ++i){
+        Transition *transition = (Transition *)(*(this->transitions))[i];
+        transition->setDelay(transition->delay());
     }
 
     delete[] _savedTokens;

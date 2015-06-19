@@ -26,6 +26,8 @@ public:
     QList<Element *> transitions;
     QList<Arrow *> arrows;
 
+    static const QString DefaultWindowTitle;
+
 
 private slots:
     void on_actionNew_Project_triggered();
@@ -44,12 +46,17 @@ private slots:
 
     void on_actionReachabilityGraph_triggered();
 
+    void on_actionSave_as_triggered();
+
 private:
     Ui::MainWindow *ui;
     QString currentProjectFilePath;
     DataHandler dataHandler;
     MatejkoCanvas *matejkoCanvas;
     QLabel *statusBarLabel;
+
+    inline void setWindowTitleForProject(const QString &projectPath);
+    inline bool resolveIfOverwrite(const QString &projectPath);
 };
 
 #endif // MAINWINDOW_H

@@ -3,10 +3,13 @@
 #include "pnsglobal.h"
 #include "simulationengine.h"
 #include "graphdialog.h"
+#include <QMessageBox>
+const QString MainWindow::DefaultWindowTitle = "Petri-net Simulator";
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    currentProjectFilePath(QString())
 {
     ui->setupUi(this);
     this->matejkoCanvas = ui->matejkoCanvas;
@@ -31,6 +34,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->simulationToolBar->setEnabled(false);
     ui->statusBar->setStyleSheet("background-color: rgb(165,226,224);");
+
+    setWindowTitle(MainWindow::DefaultWindowTitle + " - untitled");
 }
 
 MainWindow::~MainWindow()
@@ -50,25 +55,36 @@ void MainWindow::clearLists()
 
 void MainWindow::on_actionNew_Project_triggered()
 {
-    currentProjectFilePath = QFileDialog::getSaveFileName(this, "Open JSON", ".", "JSON Files (*.json)");
-    clearLists();
+    this->currentProjectFilePath = QFileDialog::getSaveFileName(this, "Create new project", ".", "JSON Files (*.json)");
+    if (!this->currentProjectFilePath.isEmpty() && this->resolveIfOverwrite(this->currentProjectFilePath)){
+        setWindowTitleForProject(this->currentProjectFilePath);
+        clearLists();
+    }
 }
 
 void MainWindow::on_actionOpen_project_triggered()
 {
-    QString filename = QFileDialog::getOpenFileName(this, "Open JSON", ".", "JSON Files (*.json)");
-    currentProjectFilePath = filename;
-    dataHandler.load(currentProjectFilePath.toStdString(), this->matejkoCanvas, this->places, this->transitions, this->arrows);
-    this->matejkoCanvas->update();
+    this->currentProjectFilePath = QFileDialog::getOpenFileName(this, "Open project", ".", "JSON Files (*.json)");
+    if (!this->currentProjectFilePath.isEmpty()){
+        this->setWindowTitleForProject(this->currentProjectFilePath);
+        this->dataHandler.load(this->currentProjectFilePath.toStdString(), this->matejkoCanvas, this->places, this->transitions, this->arrows);
+        this->matejkoCanvas->update();
+    }
 }
 
 void MainWindow::on_actionSave_project_triggered()
 {
-    dataHandler.save(currentProjectFilePath.toStdString(), this->places, this->transitions, this->arrows);
+    if (this->currentProjectFilePath.isEmpty()){
+        on_actionNew_Project_triggered();
+    }
+    else {
+        dataHandler.save(currentProjectFilePath.toStdString(), this->places, this->transitions, this->arrows);
+    }
 }
 
 void MainWindow::on_actionNextTransition_triggered()
 {
+    QMessageBox(QMessageBox::Information, "title", "Question", QMessageBox::Yes|QMessageBox::No).exec();
 }
 
 void MainWindow::on_actionPreviousTransition_triggered()
@@ -88,6 +104,7 @@ void MainWindow::on_actionToggleSimulationMode_toggled(bool simulationModeOn) {
     ui->actionNew_Project->setEnabled(!simulationModeOn);
     ui->actionOpen_project->setEnabled(!simulationModeOn);
     ui->actionSave_project->setEnabled(!simulationModeOn);
+    ui->actionSave_as->setEnabled(!simulationModeOn);
 
     if (simulationModeOn) {
         this->statusBarLabel->setText("Simulation mode");
@@ -120,3 +137,30 @@ void MainWindow::on_actionReachabilityGraph_triggered()
     reachabilityGraphDialog->show();
 }
 
+
+void MainWindow::on_actionSave_as_triggered()
+{
+    QString filename = QFileDialog::getSaveFileName(this, "Save as", ".", "JSON Files (*.json)");
+    if (!filename.isEmpty() && this->resolveIfOverwrite(filename)){
+        this->currentProjectFilePath = filename;
+        setWindowTitleForProject(this->currentProjectFilePath);
+        dataHandler.save(this->currentProjectFilePath.toStdString(), this->places, this->transitions, this->arrows);
+    }
+}
+
+void MainWindow::setWindowTitleForProject(const QString &projectPath)
+{
+    int separatorCount = projectPath.count(QDir::separator());
+    QString projectName = projectPath.section(QDir::separator(), separatorCount, separatorCount).remove(".json");
+    setWindowTitle(MainWindow::DefaultWindowTitle + " - " + projectName);
+}
+
+bool MainWindow::resolveIfOverwrite(const QString &projectPath)
+{
+    if (QFile::exists(projectPath)){
+        if (QMessageBox::Yes == QMessageBox(QMessageBox::Information, "File exists", "Do you want to overwrite it?", QMessageBox::Yes|QMessageBox::No).exec()){
+            return true;
+        }
+    }
+    return false;
+}

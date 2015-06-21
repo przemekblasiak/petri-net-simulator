@@ -59,6 +59,7 @@ void MainWindow::on_actionNew_Project_triggered()
     if (!this->currentProjectFilePath.isEmpty() && this->resolveIfOverwrite(this->currentProjectFilePath)){
         setWindowTitleForProject(this->currentProjectFilePath);
         clearLists();
+        dataHandler.save(this->currentProjectFilePath.toStdString(), this->places, this->transitions, this->arrows);
     }
 }
 
@@ -74,12 +75,16 @@ void MainWindow::on_actionOpen_project_triggered()
 
 void MainWindow::on_actionSave_project_triggered()
 {
-    if (this->currentProjectFilePath.isEmpty()){
-        on_actionNew_Project_triggered();
+    if (this->currentProjectFilePath.isEmpty() || this->currentProjectFilePath.isNull()){
+        this->currentProjectFilePath = QFileDialog::getSaveFileName(this, "Create new project", ".", "JSON Files (*.json)");
+        if (!this->currentProjectFilePath.isEmpty() && this->resolveIfOverwrite(this->currentProjectFilePath)){
+            setWindowTitleForProject(this->currentProjectFilePath);
+        }
+        else{
+            return;
+        }
     }
-    else {
-        dataHandler.save(currentProjectFilePath.toStdString(), this->places, this->transitions, this->arrows);
-    }
+    dataHandler.save(currentProjectFilePath.toStdString(), this->places, this->transitions, this->arrows);
 }
 
 void MainWindow::on_actionNextTransition_triggered()
@@ -161,6 +166,9 @@ bool MainWindow::resolveIfOverwrite(const QString &projectPath)
         if (QMessageBox::Yes == QMessageBox(QMessageBox::Information, "File exists", "Do you want to overwrite it?", QMessageBox::Yes|QMessageBox::No).exec()){
             return true;
         }
+        else {
+            return false;
+        }
     }
-    return false;
+    return true;
 }

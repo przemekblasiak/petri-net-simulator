@@ -14,6 +14,14 @@ class SimulationEngine : public QObject
 
 public:
 
+    enum Liveness{
+        L0_Live,
+        L1_Live,
+        L2_Live,
+        L3_Live,
+        L4_Live
+    };
+
     static SimulationEngine& getInstance();
     void beginSimulation();
 
@@ -26,6 +34,9 @@ public:
     void executeTransition(Element *transition);
     QList<State *> generateReachabilityStates();
     Timer timer;
+
+    QList<State *> getFakeStates();
+    int livenessForTransition(Transition *transition);
 
 
 private:

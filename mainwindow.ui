@@ -151,6 +151,7 @@
    </attribute>
    <addaction name="actionCoverabilityGraph"/>
    <addaction name="actionReachabilityGraph"/>
+   <addaction name="actionLiveness"/>
   </widget>
   <action name="actionOpen_project">
    <property name="icon">
@@ -267,13 +268,23 @@
   </action>
   <action name="actionSave_as">
    <property name="icon">
-    <iconset theme="document-save-as"/>
+    <iconset theme="document-save-as">
+     <normaloff/>
+    </iconset>
    </property>
    <property name="text">
     <string>Save as</string>
    </property>
    <property name="toolTip">
     <string>Save as</string>
+   </property>
+  </action>
+  <action name="actionLiveness">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Liveness</string>
    </property>
   </action>
  </widget>

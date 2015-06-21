@@ -16,7 +16,6 @@ Timer::~Timer()
 void Timer::run()
 {
     while(_running){
-        qDebug()<<"Tick";
         msleep(_interval);
         emit ticked();
     }

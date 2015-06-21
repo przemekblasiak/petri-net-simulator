@@ -20,7 +20,8 @@ SOURCES += main.cpp \
     simulationengine.cpp \
     graphdialog.cpp \
     state.cpp \
-    timer.cpp
+    timer.cpp \
+    reportdialog.cpp
 
 # Default rules for deployment.
 include(deployment.pri)
@@ -50,7 +51,8 @@ HEADERS += \
     simulationengine.h \
     graphdialog.h \
     state.h \
-    timer.h
+    timer.h \
+    reportdialog.h
 
 FORMS += \
     mainwindow.ui \
@@ -59,7 +61,8 @@ FORMS += \
     editelementdialog.ui \
     descriptionlabel.ui \
     graphdialog.ui \
-    state.ui
+    state.ui \
+    reportdialog.ui
 
 RESOURCES += \
     resources.qrc

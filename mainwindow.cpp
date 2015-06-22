@@ -116,7 +116,7 @@ void MainWindow::on_actionReachabilityGraph_triggered()
 {
     GraphDialog *reachabilityGraphDialog = new GraphDialog(this);
     reachabilityGraphDialog->setWindowTitle("Reachability graph");
-    reachabilityGraphDialog->prepareReachabilityGraph();
+    reachabilityGraphDialog->drawReachabilityGraph();
     reachabilityGraphDialog->show();
 }
 

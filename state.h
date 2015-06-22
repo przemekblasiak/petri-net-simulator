@@ -30,7 +30,10 @@ public:
     void setupUi(QWidget *parent);
     QList<StateConnection> outgoingConnections;
     bool operator==(const State &stateToCompareTo);
+    int level;
+    QString description();
 private:
+    State();
     Ui::State *ui;
 };
 

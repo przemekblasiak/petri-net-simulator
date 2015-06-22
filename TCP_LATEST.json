@@ -1,0 +1,415 @@
+{
+   "arrows" : [
+      {
+         "fromPlaceToTransition" : true,
+         "placeNumber" : 0,
+         "transitionNumber" : 0,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : false,
+         "placeNumber" : 0,
+         "transitionNumber" : 1,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : true,
+         "placeNumber" : 1,
+         "transitionNumber" : 1,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : false,
+         "placeNumber" : 1,
+         "transitionNumber" : 0,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : true,
+         "placeNumber" : 1,
+         "transitionNumber" : 2,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : true,
+         "placeNumber" : 1,
+         "transitionNumber" : 3,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : false,
+         "placeNumber" : 2,
+         "transitionNumber" : 2,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : false,
+         "placeNumber" : 3,
+         "transitionNumber" : 3,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : true,
+         "placeNumber" : 3,
+         "transitionNumber" : 4,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : false,
+         "placeNumber" : 2,
+         "transitionNumber" : 4,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : true,
+         "placeNumber" : 2,
+         "transitionNumber" : 5,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : false,
+         "placeNumber" : 4,
+         "transitionNumber" : 5,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : true,
+         "placeNumber" : 2,
+         "transitionNumber" : 6,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : false,
+         "placeNumber" : 5,
+         "transitionNumber" : 6,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : true,
+         "placeNumber" : 5,
+         "transitionNumber" : 7,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : false,
+         "placeNumber" : 6,
+         "transitionNumber" : 7,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : true,
+         "placeNumber" : 6,
+         "transitionNumber" : 8,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : true,
+         "placeNumber" : 5,
+         "transitionNumber" : 9,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : false,
+         "placeNumber" : 8,
+         "transitionNumber" : 9,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : true,
+         "placeNumber" : 8,
+         "transitionNumber" : 10,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : false,
+         "placeNumber" : 7,
+         "transitionNumber" : 10,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : false,
+         "placeNumber" : 7,
+         "transitionNumber" : 8,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : true,
+         "placeNumber" : 4,
+         "transitionNumber" : 13,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : false,
+         "placeNumber" : 5,
+         "transitionNumber" : 13,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : true,
+         "placeNumber" : 7,
+         "transitionNumber" : 14,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : true,
+         "placeNumber" : 10,
+         "transitionNumber" : 12,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : false,
+         "placeNumber" : 9,
+         "transitionNumber" : 12,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : true,
+         "placeNumber" : 9,
+         "transitionNumber" : 11,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : false,
+         "placeNumber" : 10,
+         "transitionNumber" : 15,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : true,
+         "placeNumber" : 4,
+         "transitionNumber" : 15,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : true,
+         "placeNumber" : 3,
+         "transitionNumber" : 16,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : false,
+         "placeNumber" : 4,
+         "transitionNumber" : 16,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : false,
+         "placeNumber" : 0,
+         "transitionNumber" : 14,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : false,
+         "placeNumber" : 0,
+         "transitionNumber" : 11,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : true,
+         "placeNumber" : 0,
+         "transitionNumber" : 17,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : false,
+         "placeNumber" : 3,
+         "transitionNumber" : 17,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : false,
+         "placeNumber" : 8,
+         "transitionNumber" : 7,
+         "weight" : 1
+      }
+   ],
+   "places" : [
+      {
+         "description" : "Zamknięto połączenie",
+         "number" : 0,
+         "tokenCount" : 1,
+         "x" : 1207,
+         "y" : 531
+      },
+      {
+         "description" : "Nasłuchuje",
+         "number" : 1,
+         "tokenCount" : 0,
+         "x" : 550,
+         "y" : 217
+      },
+      {
+         "description" : "Otrzymano SYN",
+         "number" : 2,
+         "tokenCount" : 0,
+         "x" : 355,
+         "y" : 314
+      },
+      {
+         "description" : "Wysłano SYN",
+         "number" : 3,
+         "tokenCount" : 0,
+         "x" : 825,
+         "y" : 326
+      },
+      {
+         "description" : "Ustanowiono połączenie",
+         "number" : 4,
+         "tokenCount" : 0,
+         "x" : 675,
+         "y" : 521
+      },
+      {
+         "description" : "Wysłano FIN",
+         "number" : 5,
+         "tokenCount" : 0,
+         "x" : 258,
+         "y" : 577
+      },
+      {
+         "description" : "Oczekuje na FIN",
+         "number" : 6,
+         "tokenCount" : 0,
+         "x" : 237,
+         "y" : 825
+      },
+      {
+         "description" : "Oczekuje na zamknięcie połączenia",
+         "number" : 7,
+         "tokenCount" : 0,
+         "x" : 660,
+         "y" : 778
+      },
+      {
+         "description" : "Zamyka połączenie",
+         "number" : 8,
+         "tokenCount" : 0,
+         "x" : 553,
+         "y" : 627
+      },
+      {
+         "description" : "Otrzymano FIN, Oczekuje ACK",
+         "number" : 9,
+         "tokenCount" : 0,
+         "x" : 957,
+         "y" : 599
+      },
+      {
+         "description" : "Otrzymano FIN, Wysłano ACK",
+         "number" : 10,
+         "tokenCount" : 0,
+         "x" : 779,
+         "y" : 591
+      }
+   ],
+   "transitions" : [
+      {
+         "description" : "Tworzenie TCB",
+         "number" : 0,
+         "x" : 727,
+         "y" : 5
+      },
+      {
+         "description" : "Usuwanie TCB",
+         "number" : 1,
+         "x" : 807,
+         "y" : 133
+      },
+      {
+         "description" : "Otrzymano SYN, Wysłano SYN i ACK",
+         "number" : 2,
+         "x" : 456,
+         "y" : 257
+      },
+      {
+         "description" : "Wysyłanie SYN",
+         "number" : 3,
+         "x" : 732,
+         "y" : 258
+      },
+      {
+         "description" : "Otrzymanie SYN, Wysłanie ACK",
+         "number" : 4,
+         "x" : 598,
+         "y" : 360
+      },
+      {
+         "description" : "Otrzymanie ACK dla SYN",
+         "number" : 5,
+         "x" : 441,
+         "y" : 405
+      },
+      {
+         "description" : "Wysłanie FIN",
+         "number" : 6,
+         "x" : 219,
+         "y" : 447
+      },
+      {
+         "description" : "Otrzymanie ACK dla FIN",
+         "number" : 7,
+         "x" : 244,
+         "y" : 716
+      },
+      {
+         "description" : "Otrzymanie FIN. Wysłanie ACK",
+         "number" : 8,
+         "x" : 491,
+         "y" : 773
+      },
+      {
+         "description" : "Otrzymanie FIN, Wysłanie ACK",
+         "number" : 9,
+         "x" : 453,
+         "y" : 581
+      },
+      {
+         "description" : "Otrzymanie ACK dla FIN",
+         "number" : 10,
+         "x" : 652,
+         "y" : 687
+      },
+      {
+         "description" : "Otrzymanie ACK i FIN",
+         "number" : 11,
+         "x" : 1109,
+         "y" : 594
+      },
+      {
+         "description" : "Wysyłanie ACK i FIN",
+         "number" : 12,
+         "x" : 889,
+         "y" : 664
+      },
+      {
+         "description" : "Wysłanie FIN",
+         "number" : 13,
+         "x" : 478,
+         "y" : 499
+      },
+      {
+         "description" : "Usuwanie TCB",
+         "number" : 14,
+         "x" : 928,
+         "y" : 773
+      },
+      {
+         "description" : "Otrzymanie FIN, Wysłanie ACK",
+         "number" : 15,
+         "x" : 685,
+         "y" : 612
+      },
+      {
+         "description" : "Wysłanie ACK",
+         "number" : 16,
+         "x" : 832,
+         "y" : 495
+      },
+      {
+         "description" : "Tworzenie TCB, Wysłanie SYN",
+         "number" : 17,
+         "x" : 1037,
+         "y" : 368
+      }
+   ]
+}

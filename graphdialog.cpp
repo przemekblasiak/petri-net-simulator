@@ -3,6 +3,7 @@
 #include <QDebug>
 #include "simulationengine.h"
 #include "state.h"
+#include "PNSKit/graph.h"
 
 GraphDialog::GraphDialog(QWidget *parent) :
     QDialog(parent),
@@ -17,47 +18,28 @@ GraphDialog::~GraphDialog()
     delete ui;
 }
 
-void GraphDialog::prepareReachabilityGraph() { // TODO: Refactor name
-    //    _states = SimulationEngine::getInstance().getReachabilityStates();
+void GraphDialog::drawReachabilityGraph() {
     SimulationEngine &engine = SimulationEngine::getInstance();
-    QList<State *> states = engine.generateReachabilityStates();
+    QList<State *> states = engine.generateReachabilityStates(); // TODO: Use State objects instead of pointers
 
-    // Display states
-    QList<State *> drawnStates;
-    this->drawState(states[0], 0, 0, drawnStates);
-
-    // TODO: Deallocate states (recursively)
-}
-
-void GraphDialog::drawState(State *state, int level, int column, QList<State *> &drawnStates) { // TODO: Refactor arguments
-    static int columnBase = 0;
-
-    // Draw
-    state->setupUi(ui->canvas);
-    state->move(column * state->width() + 5, level * state->height() + 5);
-    drawnStates.append(state);
-
-    bool isLeaf = true;
-    for (int i = 0; i < state->outgoingConnections.count(); ++i) {
-        State::StateConnection &connection = state->outgoingConnections[i];
-        State *nextState = connection.destination;
-        // TODO: Draw connection
-        bool duplicate = false;
-        for (State *drawnState: drawnStates) {
-            if (*drawnState == *nextState) {
-                duplicate = true;
+    Graph graph("ReachabilityGraph");
+    for (State *state: states) {
+        graph.addNode(Graph::Node(state->description(), state->level));
+    }
+    for (State *state: states) {
+        for (State::StateConnection connection: state->outgoingConnections) {
+            QString transitionName = "T" + QString::number(connection.transition->number());
+            Graph::Node *fromNode = graph.nodeNamed(state->description());
+            Graph::Node *toNode = graph.nodeNamed(connection.destination->description());
+            if (fromNode && toNode) {
+                graph.addEdge(Graph::Edge(transitionName, fromNode, toNode));
             }
         }
-        if (!duplicate) {
-            this->drawState(nextState, level+1, columnBase, drawnStates);
-            isLeaf = false;
-        }
     }
-    if (isLeaf) {
-        ++columnBase;
-    }
-    if (level == 0) {
-        columnBase = 0;
+    graph.draw(ui->pixmapLabel);
+
+    for (int i = states.count()-1; i >= 0; --i) {
+        delete states[i];
     }
 }
 

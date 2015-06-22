@@ -20,7 +20,8 @@ SOURCES += main.cpp \
     simulationengine.cpp \
     graphdialog.cpp \
     state.cpp \
-    timer.cpp
+    timer.cpp \
+    PNSKit/graph.cpp
 
 # Default rules for deployment.
 include(deployment.pri)
@@ -50,7 +51,11 @@ HEADERS += \
     simulationengine.h \
     graphdialog.h \
     state.h \
-    timer.h
+    timer.h \
+    graph.h \
+    PNSKit/graph.h \
+    node.h \
+    edge.h
 
 FORMS += \
     mainwindow.ui \

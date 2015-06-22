@@ -83,14 +83,15 @@ QList<State *> SimulationEngine::generateReachabilityStates() {
 
 void SimulationEngine::attachChildrenStates(State *currentState, QList<State *> *states) { // TODO: Refactor name
     states->append(currentState);
-    static int recursionLevel = 0;
-    if (recursionLevel == 50) {
+    static int level = 0;
+    if (level == 50) {
         return;
     }
-    ++recursionLevel;
+    ++level;
     QList<Element *> activeTransitions = this->activeTransitionsForSimulatedState(currentState);
     for (Element *transition: activeTransitions) {
         State *nextState = this->stateAfterTransitionFromState(currentState, transition);
+        nextState->level = level;
         bool duplicate = false;
         for (State *state: *states) {
             if (state->tokenCounts == nextState->tokenCounts) {
@@ -105,7 +106,7 @@ void SimulationEngine::attachChildrenStates(State *currentState, QList<State *> 
             this->attachChildrenStates(nextState, states);
         }
     }
-    --recursionLevel;
+    --level;
 }
 
 State * SimulationEngine::stateAfterTransitionFromState(State *state, Element *transition) {
@@ -147,5 +148,6 @@ QList<Element *> SimulationEngine::activeTransitionsForSimulatedState(State *sta
 
 State * SimulationEngine::getInitialState() {
     State *newState = new State(*this->places);
+    newState->level = 0;
     return newState;
 }

@@ -81,6 +81,26 @@ QList<State *> SimulationEngine::generateReachabilityStates() {
     return states;
 }
 
+QList<State *> SimulationEngine::getFakeStates()
+{
+    return generateReachabilityStates();
+}
+
+// TODO Zmienić wartość zwracaną na coś bardziej przejrzystego
+int SimulationEngine::livenessForTransition(Transition *transition)
+{
+    QList<State *> states = this->getFakeStates();
+    int occurenceNumber = 0;
+    for (State *state: states){
+        for (State::StateConnection stateConnection: state->outgoingConnections){
+            if (transition == stateConnection.transition){
+                ++occurenceNumber;
+            }
+        }
+    }
+    return occurenceNumber;
+}
+
 void SimulationEngine::attachChildrenStates(State *currentState, QList<State *> *states) { // TODO: Refactor name
     states->append(currentState);
     static int level = 0;

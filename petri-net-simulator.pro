@@ -21,7 +21,8 @@ SOURCES += main.cpp \
     graphdialog.cpp \
     state.cpp \
     timer.cpp \
-    PNSKit/graph.cpp
+    PNSKit/graph.cpp \
+    reportdialog.cpp
 
 # Default rules for deployment.
 include(deployment.pri)
@@ -55,7 +56,8 @@ HEADERS += \
     graph.h \
     PNSKit/graph.h \
     node.h \
-    edge.h
+    edge.h \
+    reportdialog.h
 
 FORMS += \
     mainwindow.ui \
@@ -64,7 +66,8 @@ FORMS += \
     editelementdialog.ui \
     descriptionlabel.ui \
     graphdialog.ui \
-    state.ui
+    state.ui \
+    reportdialog.ui
 
 RESOURCES += \
     resources.qrc

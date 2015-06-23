@@ -4,6 +4,8 @@
 #include "simulationengine.h"
 #include "graphdialog.h"
 #include <QMessageBox>
+#include "reportdialog.h"
+
 const QString MainWindow::DefaultWindowTitle = "Petri-net Simulator";
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -171,4 +173,12 @@ bool MainWindow::resolveIfOverwrite(const QString &projectPath)
         }
     }
     return true;
+}
+
+void MainWindow::on_actionLiveness_triggered()
+{
+    ReportDialog *reportDialog = new ReportDialog(this);
+    reportDialog->setWindowTitle("Liveness");
+    reportDialog->transitionLivenesses();
+    reportDialog->show();
 }

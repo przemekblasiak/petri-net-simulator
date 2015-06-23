@@ -71,7 +71,7 @@ void Graph::draw(QLabel *pixmapLabel) {
     system("/usr/local/bin/dot -Tpng file.dot -o graph.png"); // TODO: Adjust the path
 #elif defined(Q_OS_LINUX)
     system(QString("echo '" + dotString + "'>file.dot").toStdString().c_str());
-    system("/usr/local/bin/dot -Tpng file.dot -o graph.png"); // TODO: Adjust the path
+    system("dot -Tpng file.dot -o graph.png"); // TODO: Adjust the path
 #elif defined(Q_OS_WIN32)
     pixmapLabel->setText("Windows does not support the feature yet.");
     return;
@@ -82,6 +82,7 @@ void Graph::draw(QLabel *pixmapLabel) {
     pixmap = scaledToFitScreen(pixmap);
     pixmapLabel->setGeometry(0, 0, pixmap.width(), pixmap.height());
     pixmapLabel->setPixmap(pixmap);
+    qDebug() << pixmap.size();
 }
 
 // TODO: Could be a template function

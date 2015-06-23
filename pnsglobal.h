@@ -23,9 +23,10 @@ enum ContextActionType {
 
 inline QPixmap scaledToFitScreen(QPixmap &pixmap) {
     QRect mainScreenSize = QDesktopWidget().availableGeometry(QDesktopWidget().primaryScreen());
-    const int margin = 100;
-    const int maximumWidth = mainScreenSize.width() - margin;
-    const int maximumHeight = mainScreenSize.height() - margin;
+    const int horizontalMargin = mainScreenSize.width()/10;
+    const int verticalMargin = mainScreenSize.height()/10;
+    const int maximumWidth = mainScreenSize.width() - horizontalMargin;
+    const int maximumHeight = mainScreenSize.height() - verticalMargin;
     if (pixmap.size().width() > maximumWidth) {
         pixmap = pixmap.scaledToWidth(maximumWidth);
     }

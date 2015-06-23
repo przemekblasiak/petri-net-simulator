@@ -52,8 +52,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1932</width>
-         <height>1092</height>
+         <width>1944</width>
+         <height>1104</height>
         </rect>
        </property>
        <property name="sizePolicy">
@@ -94,7 +94,7 @@
      <x>0</x>
      <y>0</y>
      <width>916</width>
-     <height>30</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
@@ -154,8 +154,7 @@
   </widget>
   <action name="actionOpen_project">
    <property name="icon">
-    <iconset theme="document-open" resource="resources.qrc">
-     <normaloff>:/images/images/open_project.svg</normaloff>:/images/images/open_project.svg</iconset>
+    <iconset theme="document-open"/>
    </property>
    <property name="text">
     <string>Open project</string>
@@ -166,8 +165,7 @@
   </action>
   <action name="actionSave_project">
    <property name="icon">
-    <iconset theme="document-save" resource="resources.qrc">
-     <normaloff>:/images/images/save_project.svg</normaloff>:/images/images/save_project.svg</iconset>
+    <iconset theme="document-save"/>
    </property>
    <property name="text">
     <string>Save project</string>
@@ -178,8 +176,7 @@
   </action>
   <action name="actionNew_Project">
    <property name="icon">
-    <iconset theme="document-new" resource="resources.qrc">
-     <normaloff>:/images/images/new_project.svg</normaloff>:/images/images/new_project.svg</iconset>
+    <iconset theme="document-new"/>
    </property>
    <property name="text">
     <string>New Project</string>
@@ -190,8 +187,7 @@
   </action>
   <action name="actionNextTransition">
    <property name="icon">
-    <iconset theme="go-next" resource="resources.qrc">
-     <normaloff>:/images/images/arrow_right.svg</normaloff>:/images/images/arrow_right.svg</iconset>
+    <iconset theme="go-next"/>
    </property>
    <property name="text">
     <string>NextTransition</string>
@@ -205,8 +201,7 @@
   </action>
   <action name="actionPreviousTransition">
    <property name="icon">
-    <iconset theme="go-previous" resource="resources.qrc">
-     <normaloff>:/images/images/arrow_left.svg</normaloff>:/images/images/arrow_left.svg</iconset>
+    <iconset theme="go-previous"/>
    </property>
    <property name="text">
     <string>PreviousTransition</string>
@@ -220,8 +215,7 @@
   </action>
   <action name="actionExecuteTransition">
    <property name="icon">
-    <iconset theme="media-playback-start" resource="resources.qrc">
-     <normaloff>:/images/images/play.svg</normaloff>:/images/images/play.svg</iconset>
+    <iconset theme="media-playback-start"/>
    </property>
    <property name="text">
     <string>ExecuteTransition</string>
@@ -238,9 +232,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset theme="system-run">
-     <normaloff/>
-    </iconset>
+    <iconset theme="system-run"/>
    </property>
    <property name="text">
     <string>toggleSimulationMode</string>
@@ -285,8 +277,6 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

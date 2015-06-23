@@ -56,7 +56,7 @@ private:
     void constructArrow(Element *element);
     void paintEvent(QPaintEvent *event);
     void setupPalette();
-    bool arrowConnectionExists(Element *place, Element *transition) const;
+    bool arrowConnectionExists(Element *place, Element *transition, bool fromPlaceToTransition) const;
     bool buildArrow(Element *place, Element *transition, bool fromPlaceToTransition);
     void selectElement(Element *);
     void setSelectedElement(Element *element);

@@ -215,12 +215,6 @@
          "placeNumber" : 3,
          "transitionNumber" : 17,
          "weight" : 1
-      },
-      {
-         "fromPlaceToTransition" : false,
-         "placeNumber" : 8,
-         "transitionNumber" : 7,
-         "weight" : 1
       }
    ],
    "places" : [

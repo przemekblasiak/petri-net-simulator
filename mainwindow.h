@@ -34,10 +34,6 @@ private slots:
     void on_actionOpen_project_triggered();
     void on_actionSave_project_triggered();
 
-    void on_actionNextTransition_triggered();
-
-    void on_actionPreviousTransition_triggered();
-
     void on_actionExecuteTransition_triggered();
 
     void on_actionToggleSimulationMode_toggled(bool simulationModeOn);

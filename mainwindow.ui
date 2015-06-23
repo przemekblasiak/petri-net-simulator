@@ -131,9 +131,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionPreviousTransition"/>
    <addaction name="actionExecuteTransition"/>
-   <addaction name="actionNextTransition"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <widget class="QToolBar" name="netAnalysisToolBar">
@@ -191,38 +189,6 @@
    </property>
    <property name="toolTip">
     <string>Create new project</string>
-   </property>
-  </action>
-  <action name="actionNextTransition">
-   <property name="icon">
-    <iconset theme="go-next">
-     <normaloff/>
-    </iconset>
-   </property>
-   <property name="text">
-    <string>NextTransition</string>
-   </property>
-   <property name="toolTip">
-    <string>Next transition</string>
-   </property>
-   <property name="shortcut">
-    <string>Right</string>
-   </property>
-  </action>
-  <action name="actionPreviousTransition">
-   <property name="icon">
-    <iconset theme="go-previous">
-     <normaloff/>
-    </iconset>
-   </property>
-   <property name="text">
-    <string>PreviousTransition</string>
-   </property>
-   <property name="toolTip">
-    <string>Previous transition</string>
-   </property>
-   <property name="shortcut">
-    <string>Left</string>
    </property>
   </action>
   <action name="actionExecuteTransition">

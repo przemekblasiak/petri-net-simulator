@@ -153,7 +153,7 @@ QString SimulationEngine::generateConservationReport()
 void SimulationEngine::attachChildrenStates(State *currentState, QList<State *> *states) { // TODO: Refactor name
     states->append(currentState);
     static int level = 0;
-    if (level == 10) {
+    if (level == 50) {
         return;
     }
     ++level;

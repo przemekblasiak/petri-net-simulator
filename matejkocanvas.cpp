@@ -280,11 +280,11 @@ void MatejkoCanvas::setupPalette() {
     this->setPalette(palette);
 }
 
-bool MatejkoCanvas::arrowConnectionExists(Element *place, Element *transition) const {
-
+bool MatejkoCanvas::arrowConnectionExists(Element *place, Element *transition, bool fromPlaceToTransition) const {
     for (int i = 0; i < this->arrows->size(); ++i){
         Arrow *existingArrow = this->arrows->at(i);
-        if (existingArrow->place == place && existingArrow->transition == transition){
+        bool exists = (existingArrow->place == place && existingArrow->transition == transition && existingArrow->fromPlaceToTransition == fromPlaceToTransition);
+        if (exists) {
             return true;
         }
     }
@@ -292,7 +292,7 @@ bool MatejkoCanvas::arrowConnectionExists(Element *place, Element *transition) c
 }
 
 bool MatejkoCanvas::buildArrow(Element *place, Element *transition, bool fromPlaceToTransition) {
-    if (arrowConnectionExists(place, transition)){
+    if (arrowConnectionExists(place, transition, fromPlaceToTransition)){
         return false;
     }
 

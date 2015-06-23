@@ -217,7 +217,7 @@
     </iconset>
    </property>
    <property name="text">
-    <string>toggleSimulationMode</string>
+    <string>Toggle simulation mode</string>
    </property>
    <property name="toolTip">
     <string>Toggle simulation mode</string>

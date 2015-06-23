@@ -81,15 +81,10 @@ QList<State *> SimulationEngine::generateReachabilityStates() {
     return states;
 }
 
-QList<State *> SimulationEngine::getFakeStates()
-{
-    return generateReachabilityStates();
-}
-
 // TODO Zmienić wartość zwracaną na coś bardziej przejrzystego
 int SimulationEngine::livenessForTransition(Transition *transition)
 {
-    QList<State *> states = this->getFakeStates();
+    QList<State *> states = this->generateReachabilityStates();
     int occurenceNumber = 0;
     for (State *state: states){
         for (State::StateConnection stateConnection: state->outgoingConnections){
@@ -101,12 +96,14 @@ int SimulationEngine::livenessForTransition(Transition *transition)
     return occurenceNumber;
 }
 
-int SimulationEngine::tokenSumForState(State *state) const
+int SimulationEngine::tokenSumForState(State *state, QVector<int> weights) const
 {
     int sum = 0;
-    for (int tokens : state->tokenCounts) {
-        sum += tokens;
+
+    for (int i = 0; i < state->tokenCounts.count(); ++i){
+        sum += (weights[i] * state->tokenCounts[i]);
     }
+
     return sum;
 }
 
@@ -134,12 +131,12 @@ QStringList SimulationEngine::generateLivenessReport()
 
 QString SimulationEngine::generateConservationReport()
 {
-    QList<State *> states = this->getFakeStates();
+    QList<State *> states = this->generateReachabilityStates();
     bool conservative = true;
-    int tokenSum = this->tokenSumForState(states.first());
+    int tokenSum = this->tokenSumForState(states.first(), QVector<int>(places->count(), 1));
 
     for (State *state: states){
-        int sumForState = this->tokenSumForState(state);
+        int sumForState = this->tokenSumForState(state, QVector<int>(places->count(), 1));
         if (tokenSum != sumForState){
             conservative = false;
             break;
@@ -148,6 +145,25 @@ QString SimulationEngine::generateConservationReport()
     QString conservativeString = conservative? "Conservative" : "Non-conservative";
     QString conservativeReport = "<b>Net conservation:</b> "+ conservativeString;
     return conservativeReport;
+}
+
+QString SimulationEngine::generateConservationReportRespectToVector(QVector<int> weights)
+{
+    QList<State *> states = this->generateReachabilityStates();
+    if (weights.count() != places->count()){
+        return "Invalid weight vector size";
+    }
+    bool conservative = true;
+    int tokenSum = this->tokenSumForState(states.first(), weights);
+
+    for (State *state: states){
+        int sumForState = this->tokenSumForState(state, weights);
+        if (tokenSum != sumForState){
+            conservative = false;
+            break;
+        }
+    }
+    return conservative? "Conservative" : "Non-conservative";
 }
 
 void SimulationEngine::attachChildrenStates(State *currentState, QList<State *> *states) { // TODO: Refactor name

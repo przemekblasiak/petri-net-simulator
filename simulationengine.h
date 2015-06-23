@@ -35,11 +35,10 @@ public:
     QList<State *> generateReachabilityStates();
     Timer timer;
 
-    QList<State *> getFakeStates();
     int livenessForTransition(Transition *transition);
-    int tokenSumForState(State *state)const;
     QStringList generateLivenessReport();
     QString generateConservationReport();
+    QString generateConservationReportRespectToVector(QVector<int> weights);
 
 
 private:
@@ -53,6 +52,8 @@ private:
     QList<Element *> activeTransitionsForSimulatedState(State *state);
     State *stateAfterTransitionFromState(State *state, Element *transition);
     void attachChildrenStates(State *currentState, QList<State *> *states);
+    // This function requires state.count() and weights.count() to be equal
+    int tokenSumForState(State *state, QVector<int> weights = QVector<int>())const;
 
 };
 

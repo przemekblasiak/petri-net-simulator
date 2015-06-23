@@ -169,7 +169,7 @@ bool MainWindow::resolveIfOverwrite(const QString &projectPath)
 
 void MainWindow::on_actionLiveness_triggered()
 {
-    ReportDialog *reportDialog = new ReportDialog(this);
+    ReportDialog *reportDialog = new ReportDialog(this, ReportDialog::NormalView);
     reportDialog->setWindowTitle("Liveness");
     reportDialog->transitionLivenesses();
     reportDialog->show();
@@ -177,7 +177,7 @@ void MainWindow::on_actionLiveness_triggered()
 
 void MainWindow::on_actionConservation_triggered()
 {
-    ReportDialog *reportDialog = new ReportDialog(this);
+    ReportDialog *reportDialog = new ReportDialog(this, ReportDialog::ConservationView);
     reportDialog->setWindowTitle("Conservation");
     reportDialog->netConservation();
     reportDialog->show();

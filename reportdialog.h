@@ -2,6 +2,7 @@
 #define REPORTDIALOG_H
 
 #include <QDialog>
+#include <QSpacerItem>
 
 namespace Ui {
 class ReportDialog;
@@ -12,10 +13,22 @@ class ReportDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit ReportDialog(QWidget *parent = 0);
+
+    enum ViewType{
+        NormalView,
+        ConservationView
+    };
+
+    explicit ReportDialog(QWidget *parent = 0, ViewType viewType = ViewType::NormalView);
     ~ReportDialog();
     void transitionLivenesses();
     void netConservation();
+    void setView(ViewType viewType);
+
+private slots:
+    void on_acceptButton_clicked();
+
+    void on_vectorButton_clicked();
 
 private:
     Ui::ReportDialog *ui;

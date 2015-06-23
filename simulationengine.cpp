@@ -104,7 +104,7 @@ int SimulationEngine::livenessForTransition(Transition *transition)
 void SimulationEngine::attachChildrenStates(State *currentState, QList<State *> *states) { // TODO: Refactor name
     states->append(currentState);
     static int level = 0;
-    if (level == 50) {
+    if (level == 10) {
         return;
     }
     ++level;

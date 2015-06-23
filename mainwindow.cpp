@@ -62,6 +62,7 @@ void MainWindow::on_actionNew_Project_triggered()
         setWindowTitleForProject(this->currentProjectFilePath);
         clearLists();
         dataHandler.save(this->currentProjectFilePath.toStdString(), this->places, this->transitions, this->arrows);
+        this->matejkoCanvas->update();
     }
 }
 

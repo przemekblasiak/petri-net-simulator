@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>131</width>
-    <height>69</height>
+    <width>168</width>
+    <height>99</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -38,28 +38,53 @@
    <property name="bottomMargin">
     <number>5</number>
    </property>
-   <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-    <widget class="QLabel" name="pixmapLabel">
+   <item>
+    <widget class="QScrollArea" name="scrollArea">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>0</height>
-      </size>
+     <property name="widgetResizable">
+      <bool>true</bool>
      </property>
-     <property name="styleSheet">
-      <string notr="true">border-style: outset;
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>154</width>
+        <height>44</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QLabel" name="pixmapLabel">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-style: outset;
 border-width: 2px;
 border-color: rgb(76, 76, 76);</string>
-     </property>
-     <property name="text">
-      <string>The graph is empty</string>
-     </property>
+         </property>
+         <property name="text">
+          <string>The graph is empty</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
    <item>

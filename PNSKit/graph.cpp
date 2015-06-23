@@ -79,10 +79,7 @@ void Graph::draw(QLabel *pixmapLabel) {
 
     // Display
     QPixmap pixmap("graph.png");
-    pixmap = scaledToFitScreen(pixmap);
-    pixmapLabel->setGeometry(0, 0, pixmap.width(), pixmap.height());
     pixmapLabel->setPixmap(pixmap);
-    qDebug() << pixmap.size();
 }
 
 // TODO: Could be a template function

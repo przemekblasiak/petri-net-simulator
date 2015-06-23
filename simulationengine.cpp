@@ -101,6 +101,55 @@ int SimulationEngine::livenessForTransition(Transition *transition)
     return occurenceNumber;
 }
 
+int SimulationEngine::tokenSumForState(State *state) const
+{
+    int sum = 0;
+    for (int tokens : state->tokenCounts) {
+        sum += tokens;
+    }
+    return sum;
+}
+
+QStringList SimulationEngine::generateLivenessReport()
+{
+    QStringList reportList;
+    bool alive = true;
+    reportList << "<b>Transitions:</b>";
+
+    for (Element *transition: *(this->transitions)){
+        Transition *examinedTransition = qobject_cast<Transition *>(transition);
+        int occurenceNumber = this->livenessForTransition(examinedTransition);
+        QString transitionNumber = "T"+QString::number(transition->number());
+        QString liveness = occurenceNumber? "Alive" : "Dead";
+        if (!occurenceNumber){
+            alive = false;
+        }
+        reportList << QString(transitionNumber + " : " + liveness);
+    }
+
+    QString liveness = alive? "Alive" : "Dead";
+    reportList << QString("<b>Net liveness:</b> " + liveness);
+    return reportList;
+}
+
+QString SimulationEngine::generateConservationReport()
+{
+    QList<State *> states = this->getFakeStates();
+    bool conservative = true;
+    int tokenSum = this->tokenSumForState(states.first());
+
+    for (State *state: states){
+        int sumForState = this->tokenSumForState(state);
+        if (tokenSum != sumForState){
+            conservative = false;
+            break;
+        }
+    }
+    QString conservativeString = conservative? "Conservative" : "Non-conservative";
+    QString conservativeReport = "<b>Net conservation:</b> "+ conservativeString;
+    return conservativeReport;
+}
+
 void SimulationEngine::attachChildrenStates(State *currentState, QList<State *> *states) { // TODO: Refactor name
     states->append(currentState);
     static int level = 0;

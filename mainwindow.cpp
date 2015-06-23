@@ -183,3 +183,11 @@ void MainWindow::on_actionLiveness_triggered()
     reportDialog->transitionLivenesses();
     reportDialog->show();
 }
+
+void MainWindow::on_actionConservation_triggered()
+{
+    ReportDialog *reportDialog = new ReportDialog(this);
+    reportDialog->setWindowTitle("Conservation");
+    reportDialog->netConservation();
+    reportDialog->show();
+}

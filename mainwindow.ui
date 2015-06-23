@@ -52,8 +52,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1944</width>
-         <height>1104</height>
+         <width>1932</width>
+         <height>1092</height>
         </rect>
        </property>
        <property name="sizePolicy">
@@ -94,7 +94,7 @@
      <x>0</x>
      <y>0</y>
      <width>916</width>
-     <height>22</height>
+     <height>30</height>
     </rect>
    </property>
   </widget>
@@ -152,10 +152,13 @@
    <addaction name="actionCoverabilityGraph"/>
    <addaction name="actionReachabilityGraph"/>
    <addaction name="actionLiveness"/>
+   <addaction name="actionConservation"/>
   </widget>
   <action name="actionOpen_project">
    <property name="icon">
-    <iconset theme="document-open"/>
+    <iconset theme="document-open">
+     <normaloff/>
+    </iconset>
    </property>
    <property name="text">
     <string>Open project</string>
@@ -166,7 +169,9 @@
   </action>
   <action name="actionSave_project">
    <property name="icon">
-    <iconset theme="document-save"/>
+    <iconset theme="document-save">
+     <normaloff/>
+    </iconset>
    </property>
    <property name="text">
     <string>Save project</string>
@@ -177,7 +182,9 @@
   </action>
   <action name="actionNew_Project">
    <property name="icon">
-    <iconset theme="document-new"/>
+    <iconset theme="document-new">
+     <normaloff/>
+    </iconset>
    </property>
    <property name="text">
     <string>New Project</string>
@@ -188,7 +195,9 @@
   </action>
   <action name="actionNextTransition">
    <property name="icon">
-    <iconset theme="go-next"/>
+    <iconset theme="go-next">
+     <normaloff/>
+    </iconset>
    </property>
    <property name="text">
     <string>NextTransition</string>
@@ -202,7 +211,9 @@
   </action>
   <action name="actionPreviousTransition">
    <property name="icon">
-    <iconset theme="go-previous"/>
+    <iconset theme="go-previous">
+     <normaloff/>
+    </iconset>
    </property>
    <property name="text">
     <string>PreviousTransition</string>
@@ -216,7 +227,9 @@
   </action>
   <action name="actionExecuteTransition">
    <property name="icon">
-    <iconset theme="media-playback-start"/>
+    <iconset theme="media-playback-start">
+     <normaloff/>
+    </iconset>
    </property>
    <property name="text">
     <string>ExecuteTransition</string>
@@ -233,7 +246,9 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset theme="system-run"/>
+    <iconset theme="system-run">
+     <normaloff/>
+    </iconset>
    </property>
    <property name="text">
     <string>toggleSimulationMode</string>
@@ -277,6 +292,14 @@
    </property>
    <property name="text">
     <string>Liveness</string>
+   </property>
+  </action>
+  <action name="actionConservation">
+   <property name="text">
+    <string>Conservation</string>
+   </property>
+   <property name="toolTip">
+    <string>Check if the net is conservative</string>
    </property>
   </action>
  </widget>

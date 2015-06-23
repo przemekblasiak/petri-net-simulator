@@ -37,6 +37,9 @@ public:
 
     QList<State *> getFakeStates();
     int livenessForTransition(Transition *transition);
+    int tokenSumForState(State *state)const;
+    QStringList generateLivenessReport();
+    QString generateConservationReport();
 
 
 private:

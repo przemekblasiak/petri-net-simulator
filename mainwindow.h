@@ -50,6 +50,8 @@ private slots:
 
     void on_actionLiveness_triggered();
 
+    void on_actionConservation_triggered();
+
 private:
     Ui::MainWindow *ui;
     QString currentProjectFilePath;

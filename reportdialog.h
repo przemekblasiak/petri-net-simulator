@@ -15,6 +15,7 @@ public:
     explicit ReportDialog(QWidget *parent = 0);
     ~ReportDialog();
     void transitionLivenesses();
+    void netConservation();
 
 private:
     Ui::ReportDialog *ui;

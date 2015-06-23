@@ -28,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QWidget* rightSpacer = new QWidget(this);
     leftSpacer->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);
     rightSpacer->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);
-    ui->simulationToolBar->insertWidget(ui->actionPreviousTransition, leftSpacer);
+    ui->simulationToolBar->insertWidget(ui->actionExecuteTransition, leftSpacer);
     ui->simulationToolBar->addWidget(rightSpacer);
 
     statusBarLabel = new QLabel("Design mode", this);
@@ -88,15 +88,6 @@ void MainWindow::on_actionSave_project_triggered()
         }
     }
     dataHandler.save(currentProjectFilePath.toStdString(), this->places, this->transitions, this->arrows);
-}
-
-void MainWindow::on_actionNextTransition_triggered()
-{
-    QMessageBox(QMessageBox::Information, "title", "Question", QMessageBox::Yes|QMessageBox::No).exec();
-}
-
-void MainWindow::on_actionPreviousTransition_triggered()
-{
 }
 
 void MainWindow::on_actionExecuteTransition_triggered() {

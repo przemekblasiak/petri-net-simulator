@@ -156,6 +156,7 @@
    <addaction name="actionConservation"/>
    <addaction name="actionBoundedness"/>
    <addaction name="actionIncidence"/>
+   <addaction name="actionReversability"/>
   </widget>
   <action name="actionOpen_project">
    <property name="icon">
@@ -287,6 +288,14 @@
    </property>
    <property name="toolTip">
     <string>Generate incidence matrix</string>
+   </property>
+  </action>
+  <action name="actionReversability">
+   <property name="text">
+    <string>Reversability</string>
+   </property>
+   <property name="toolTip">
+    <string>Generate reversability report</string>
    </property>
   </action>
  </widget>

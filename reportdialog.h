@@ -27,6 +27,7 @@ public:
     void netIncidence();
 
     void reportBoundedness();
+    void reportReversability();
 private slots:
     void on_acceptButton_clicked();
 

@@ -52,6 +52,8 @@ private slots:
 
     void on_actionIncidence_triggered();
 
+    void on_actionReversability_triggered();
+
 private:
     Ui::MainWindow *ui;
     QString currentProjectFilePath;

@@ -194,11 +194,17 @@ void MainWindow::on_actionBoundedness_triggered() {
     reportDialog->show();
 }
 
-void MainWindow::on_actionIncidence_triggered()
-{
+void MainWindow::on_actionIncidence_triggered() {
     ReportDialog *reportDialog = new ReportDialog(this);
     connect(reportDialog, SIGNAL(accepted()), reportDialog, SLOT(deleteLater()));
     reportDialog->setWindowTitle("Incidence");
     reportDialog->netIncidence();
+    reportDialog->show();
+}
+
+void MainWindow::on_actionReversability_triggered() {
+    ReportDialog *reportDialog = new ReportDialog(this);
+    reportDialog->setWindowTitle("Reversability");
+    reportDialog->reportReversability();
     reportDialog->show();
 }

@@ -43,8 +43,32 @@ void GraphDialog::drawReachabilityGraph() {
     }
 }
 
-void GraphDialog::on_GraphDialog_finished(int result)
-{
-    Q_UNUSED(result);
+// TODO: Refactor versus drawReachabilityGraph (e.g. graph drawing)
+void GraphDialog::drawCoverabilityGraph() {
+    SimulationEngine &engine = SimulationEngine::getInstance();
+    QList<State *> states = engine.generateCoverabilityStates(); // TODO: Use State objects instead of pointers
+
+    Graph graph("CoverabilityGraph");
+    for (State *state: states) {
+        graph.addNode(Graph::Node(state->description(), state->level));
+    }
+    for (State *state: states) {
+        for (State::StateConnection connection: state->outgoingConnections) {
+            QString transitionName = "T" + QString::number(connection.transition->number());
+            Graph::Node *fromNode = graph.nodeNamed(state->description());
+            Graph::Node *toNode = graph.nodeNamed(connection.destination->description());
+            if (fromNode && toNode) {
+                graph.addEdge(Graph::Edge(transitionName, fromNode, toNode));
+            }
+        }
+    }
+    graph.draw(ui->pixmapLabel);
+
+    for (int i = states.count()-1; i >= 0; --i) {
+        delete states[i];
+    }
+}
+
+void GraphDialog::on_GraphDialog_finished(int) {
     deleteLater();
 }

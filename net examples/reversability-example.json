@@ -1,0 +1,58 @@
+{
+   "arrows" : [
+      {
+         "fromPlaceToTransition" : true,
+         "placeNumber" : 0,
+         "transitionNumber" : 0,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : false,
+         "placeNumber" : 1,
+         "transitionNumber" : 0,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : true,
+         "placeNumber" : 1,
+         "transitionNumber" : 1,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : false,
+         "placeNumber" : 0,
+         "transitionNumber" : 1,
+         "weight" : 1
+      }
+   ],
+   "places" : [
+      {
+         "description" : "",
+         "number" : 0,
+         "tokenCount" : 2,
+         "x" : 966,
+         "y" : 108
+      },
+      {
+         "description" : "",
+         "number" : 1,
+         "tokenCount" : 0,
+         "x" : 1155,
+         "y" : 236
+      }
+   ],
+   "transitions" : [
+      {
+         "description" : "",
+         "number" : 0,
+         "x" : 979,
+         "y" : 225
+      },
+      {
+         "description" : "",
+         "number" : 1,
+         "x" : 1168,
+         "y" : 119
+      }
+   ]
+}

@@ -1,0 +1,101 @@
+{
+   "arrows" : [
+      {
+         "fromPlaceToTransition" : true,
+         "placeNumber" : 0,
+         "transitionNumber" : 0,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : false,
+         "placeNumber" : 1,
+         "transitionNumber" : 0,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : true,
+         "placeNumber" : 1,
+         "transitionNumber" : 1,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : false,
+         "placeNumber" : 0,
+         "transitionNumber" : 1,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : true,
+         "placeNumber" : 1,
+         "transitionNumber" : 2,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : false,
+         "placeNumber" : 0,
+         "transitionNumber" : 2,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : true,
+         "placeNumber" : 1,
+         "transitionNumber" : 3,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : false,
+         "placeNumber" : 2,
+         "transitionNumber" : 3,
+         "weight" : 1
+      }
+   ],
+   "places" : [
+      {
+         "description" : "",
+         "number" : 0,
+         "tokenCount" : 1,
+         "x" : 723,
+         "y" : 211
+      },
+      {
+         "description" : "",
+         "number" : 1,
+         "tokenCount" : 0,
+         "x" : 1122,
+         "y" : 319
+      },
+      {
+         "description" : "",
+         "number" : 2,
+         "tokenCount" : 0,
+         "x" : 1273,
+         "y" : 103
+      }
+   ],
+   "transitions" : [
+      {
+         "description" : "",
+         "number" : 0,
+         "x" : 731,
+         "y" : 452
+      },
+      {
+         "description" : "",
+         "number" : 1,
+         "x" : 1079,
+         "y" : 69
+      },
+      {
+         "description" : "",
+         "number" : 2,
+         "x" : 978,
+         "y" : 207
+      },
+      {
+         "description" : "",
+         "number" : 3,
+         "x" : 1278,
+         "y" : 235
+      }
+   ]
+}

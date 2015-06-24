@@ -227,9 +227,57 @@ QString SimulationEngine::generateConservationReport()
 
 QString SimulationEngine::generateBoundednessReport() {
     QString report;
-    report = "";
-    return report;
 
+    // Boundedness of places
+    QVector<int> boundedness(this->places->count(), 0);
+    QList<State *> coverabilityStates = this->generateCoverabilityStates();
+    for (State *state: coverabilityStates) {
+        for (int i = 0; i < state->tokenCounts.count(); ++i) {
+            int tokenCount = state->tokenCounts[i];
+            if (tokenCount == -1) {
+                boundedness[i] = -1;
+            }
+            else if (boundedness[i] < tokenCount && boundedness[i] != -1) {
+                boundedness[i] = tokenCount;
+            }
+        }
+    }
+    report += "<b>Places:</b>";
+    for (int i = 0; i < this->places->count(); ++i) {
+        Element *place = (*this->places)[i];
+        report += "<br/>P" + QString::number(place->number()) + ": ";
+        if (boundedness[i] != -1) {
+            report += QString::number(boundedness[i]);
+        }
+        else {
+            report += "inf";
+        }
+    }
+
+    // Net safety
+    report += "<br/><b>Net safety: </b>";
+    int boundary = 0;
+    for (int i = 0; i < boundedness.count(); ++i) {
+        if (boundedness[i] == -1) {
+            boundary = -1;
+            report += "Unbounded";
+            break;
+        }
+        else if (boundedness[i] > boundary) {
+            boundary = boundedness[i];
+        }
+    }
+    if (boundary == 1) {
+        report += "Safe";
+    }
+    else if (boundary != -1) {
+        report += QString::number(boundary) + "-bounded";
+    }
+
+    for (State *state: coverabilityStates) {
+        delete state;
+    }
+    return report;
 }
 
 QString SimulationEngine::generateConservationReportRespectToVector(QVector<int> weights)

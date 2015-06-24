@@ -225,6 +225,13 @@ QString SimulationEngine::generateConservationReport()
     return conservativeReport;
 }
 
+QString SimulationEngine::generateBoundednessReport() {
+    QString report;
+    report = "";
+    return report;
+
+}
+
 QString SimulationEngine::generateConservationReportRespectToVector(QVector<int> weights)
 {
     QList<State *> states = this->generateReachabilityStates();

@@ -38,6 +38,7 @@ public:
     int livenessForTransition(Transition *transition);
     QStringList generateLivenessReport();
     QString generateConservationReport();
+    QString generateBoundednessReport();
     QString generateConservationReportRespectToVector(QVector<int> weights);
 
 

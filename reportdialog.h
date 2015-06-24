@@ -25,6 +25,7 @@ public:
     void netConservation();
     void setView(ViewType viewType);
 
+    void reportBoundedness();
 private slots:
     void on_acceptButton_clicked();
 

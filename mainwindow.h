@@ -48,6 +48,8 @@ private slots:
 
     void on_actionConservation_triggered();
 
+    void on_actionBoundedness_triggered();
+
 private:
     Ui::MainWindow *ui;
     QString currentProjectFilePath;

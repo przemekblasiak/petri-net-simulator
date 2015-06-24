@@ -52,8 +52,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1932</width>
-         <height>1092</height>
+         <width>1944</width>
+         <height>1104</height>
         </rect>
        </property>
        <property name="sizePolicy">
@@ -94,7 +94,7 @@
      <x>0</x>
      <y>0</y>
      <width>916</width>
-     <height>30</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
@@ -151,6 +151,7 @@
    <addaction name="actionReachabilityGraph"/>
    <addaction name="actionLiveness"/>
    <addaction name="actionConservation"/>
+   <addaction name="actionBoundedness"/>
   </widget>
   <action name="actionOpen_project">
    <property name="icon">
@@ -266,6 +267,14 @@
    </property>
    <property name="toolTip">
     <string>Check if the net is conservative</string>
+   </property>
+  </action>
+  <action name="actionBoundedness">
+   <property name="text">
+    <string>Boundedness</string>
+   </property>
+   <property name="toolTip">
+    <string>Generate boundedness report</string>
    </property>
   </action>
  </widget>

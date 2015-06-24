@@ -25,11 +25,16 @@ void ReportDialog::transitionLivenesses()
     }
 }
 
-void ReportDialog::netConservation()
-{
+void ReportDialog::netConservation() {
     SimulationEngine &simulationEngine = SimulationEngine::getInstance();
     QString conservationReport = simulationEngine.generateConservationReport();
     ui->reportTextEdit->append(conservationReport);
+}
+
+void ReportDialog::reportBoundedness() {
+    SimulationEngine &simulationEngine = SimulationEngine::getInstance();
+    QString report = simulationEngine.generateBoundednessReport();
+    ui->reportTextEdit->append(report);
 }
 
 void ReportDialog::setView(ReportDialog::ViewType viewType)

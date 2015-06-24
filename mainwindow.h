@@ -50,6 +50,8 @@ private slots:
 
     void on_actionBoundedness_triggered();
 
+    void on_actionReversability_triggered();
+
 private:
     Ui::MainWindow *ui;
     QString currentProjectFilePath;

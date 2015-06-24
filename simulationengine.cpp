@@ -89,7 +89,7 @@ QList<State *> SimulationEngine::generateCoverabilityStates() {
 }
 
 void SimulationEngine::constructCoverabilityStates(State *M0, State *Mi, QList<State *> *coverabilityStates) {
-    coverabilityStates->append(Mi); // TODO: Przypadek pojedynczej pętelki
+    coverabilityStates->append(Mi);
     const int infinityMarker = -1;
     static int level = 0;
     if (level == 10) return;
@@ -277,6 +277,43 @@ QString SimulationEngine::generateBoundednessReport() {
         delete state;
     }
     return report;
+}
+
+QString SimulationEngine::generateReversabilityReport() {
+    QString report = "<b>Net reversibility: </b>";
+    QList<State *> coverabilityStates = this->generateCoverabilityStates();
+    QList<State *> reversibleStates, statesToCheck;
+
+    State *rootState = coverabilityStates[0];
+    this->constructReversibleStates(rootState, &reversibleStates, coverabilityStates);
+
+    bool reversible = coverabilityStates.count() == reversibleStates.count();
+    if (reversible) {
+        report += "Reversible";
+    } else {
+        report += "Not reversible";
+    }
+
+    return report;
+}
+
+void SimulationEngine::constructReversibleStates(State *currentState, QList<State *> *reversibleStates, QList<State *> coverabilityStates){
+    reversibleStates->append(currentState);
+
+    for (int i = 0; i < coverabilityStates.count(); ++i) {
+        State *state = coverabilityStates[i];
+        if (reversibleStates->contains(state)) {
+            continue;
+        }
+        for (int j = 0; j < state->outgoingConnections.count(); ++j) {
+            State::StateConnection connection = state->outgoingConnections[j];
+            if (connection.destination == currentState) {
+                constructReversibleStates(state, reversibleStates, coverabilityStates);
+                break;
+            }
+        }
+    }
+
 }
 
 QString SimulationEngine::generateConservationReportRespectToVector(QVector<int> weights)

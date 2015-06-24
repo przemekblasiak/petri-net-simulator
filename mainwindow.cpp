@@ -190,3 +190,10 @@ void MainWindow::on_actionBoundedness_triggered() {
     reportDialog->reportBoundedness();
     reportDialog->show();
 }
+
+void MainWindow::on_actionReversability_triggered() {
+    ReportDialog *reportDialog = new ReportDialog(this);
+    reportDialog->setWindowTitle("Reversability");
+    reportDialog->reportReversability();
+    reportDialog->show();
+}

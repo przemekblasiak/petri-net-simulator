@@ -28,7 +28,12 @@ bool State::operator==(const State &stateToCompareTo) {
 
 QString State::description() {
     QString description = "(";
-    description += QString::number(this->tokenCounts[0]);
+    if (this->tokenCounts[0] != -1) {
+        description += QString::number(this->tokenCounts[0]);
+    }
+    else {
+        description += "inf";
+    }
     for (int i = 1; i < this->tokenCounts.count(); ++i) {
         description += ",";
         int tokenCount = this->tokenCounts[i];

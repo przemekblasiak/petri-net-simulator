@@ -43,6 +43,7 @@ public:
 
 
     QList<State *> generateCoverabilityStates();
+    QString generateReversabilityReport();
 private:
     SimulationEngine();
     SimulationEngine(const SimulationEngine& engineToCopy);
@@ -58,6 +59,7 @@ private:
     // This function requires state.count() and weights.count() to be equal
     int tokenSumForState(State *state, QVector<int> weights = QVector<int>())const;
     void constructCoverabilityStates(State *M0, State *Mi, QList<State *> *coverabilityStates);
+    void constructReversibleStates(State *currentState, QList<State *> *reversibleStates, QList<State *> coverabilityStates);
 };
 
 #endif // ENGINE_H

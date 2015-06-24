@@ -37,6 +37,12 @@ void ReportDialog::reportBoundedness() {
     ui->reportTextEdit->append(report);
 }
 
+void ReportDialog::reportReversability() {
+    SimulationEngine &simulationEngine = SimulationEngine::getInstance();
+    QString report = simulationEngine.generateReversabilityReport();
+    ui->reportTextEdit->append(report);
+}
+
 void ReportDialog::setView(ReportDialog::ViewType viewType)
 {
     if (viewType == ViewType::ConservationView){

@@ -28,20 +28,22 @@ bool State::operator==(const State &stateToCompareTo) {
 
 QString State::description() {
     QString description = "(";
-    if (this->tokenCounts[0] != -1) {
-        description += QString::number(this->tokenCounts[0]);
-    }
-    else {
-        description += "inf";
-    }
-    for (int i = 1; i < this->tokenCounts.count(); ++i) {
-        description += ",";
-        int tokenCount = this->tokenCounts[i];
-        if (tokenCount != -1) {
-            description += QString::number(tokenCount);
+    if (this->tokenCounts.count() != 0) {
+        if (this->tokenCounts[0] != -1) {
+            description += QString::number(this->tokenCounts[0]);
         }
         else {
             description += "inf";
+        }
+        for (int i = 1; i < this->tokenCounts.count(); ++i) {
+            description += ",";
+            int tokenCount = this->tokenCounts[i];
+            if (tokenCount != -1) {
+                description += QString::number(tokenCount);
+            }
+            else {
+                description += "inf";
+            }
         }
     }
     description += ")";

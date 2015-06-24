@@ -171,6 +171,7 @@ bool MainWindow::resolveIfOverwrite(const QString &projectPath)
 void MainWindow::on_actionLiveness_triggered()
 {
     ReportDialog *reportDialog = new ReportDialog(this);
+    connect(reportDialog, SIGNAL(accepted()), reportDialog, SLOT(deleteLater()));
     reportDialog->setWindowTitle("Liveness");
     reportDialog->transitionLivenesses();
     reportDialog->show();
@@ -179,6 +180,7 @@ void MainWindow::on_actionLiveness_triggered()
 void MainWindow::on_actionConservation_triggered()
 {
     ReportDialog *reportDialog = new ReportDialog(this, ReportDialog::ConservationView);
+    connect(reportDialog, SIGNAL(accepted()), reportDialog, SLOT(deleteLater()));
     reportDialog->setWindowTitle("Conservation");
     reportDialog->netConservation();
     reportDialog->show();
@@ -186,6 +188,7 @@ void MainWindow::on_actionConservation_triggered()
 
 void MainWindow::on_actionBoundedness_triggered() {
     ReportDialog *reportDialog = new ReportDialog(this);
+    connect(reportDialog, SIGNAL(accepted()), reportDialog, SLOT(deleteLater()));
     reportDialog->setWindowTitle("Boundedness");
     reportDialog->reportBoundedness();
     reportDialog->show();
@@ -194,6 +197,7 @@ void MainWindow::on_actionBoundedness_triggered() {
 void MainWindow::on_actionIncidence_triggered()
 {
     ReportDialog *reportDialog = new ReportDialog(this);
+    connect(reportDialog, SIGNAL(accepted()), reportDialog, SLOT(deleteLater()));
     reportDialog->setWindowTitle("Incidence");
     reportDialog->netIncidence();
     reportDialog->show();

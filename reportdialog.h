@@ -24,6 +24,7 @@ public:
     void transitionLivenesses();
     void netConservation();
     void setView(ViewType viewType);
+    void netIncidence();
 
     void reportBoundedness();
 private slots:
@@ -33,6 +34,8 @@ private slots:
 
 private:
     Ui::ReportDialog *ui;
+
+    void printMatrix(const QVector<QVector<int> > &matrix);
 };
 
 #endif // REPORTDIALOG_H

@@ -33,7 +33,14 @@
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
-        <widget class="QTextEdit" name="reportTextEdit"/>
+        <widget class="QTextEdit" name="reportTextEdit">
+         <property name="lineWrapMode">
+          <enum>QTextEdit::NoWrap</enum>
+         </property>
+         <property name="tabStopWidth">
+          <number>40</number>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>

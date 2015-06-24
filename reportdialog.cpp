@@ -47,6 +47,24 @@ void ReportDialog::setView(ReportDialog::ViewType viewType)
     }
 }
 
+void ReportDialog::netIncidence()
+{
+    SimulationEngine &simulationEngine = SimulationEngine::getInstance();
+    ui->reportTextEdit->append("<b> In matrix:</b>");
+    QVector<QVector<int> > inMatrix = simulationEngine.generateInMatrix();
+    printMatrix(inMatrix);
+
+    ui->reportTextEdit->append("");
+    ui->reportTextEdit->append("<b> Out matrix:</b>");
+    QVector<QVector<int> > outMatrix = simulationEngine.generateOutMatrix();
+    printMatrix(outMatrix);
+
+    ui->reportTextEdit->append("");
+    ui->reportTextEdit->append("<b> Incidence matrix:</b>");
+    QVector<QVector<int> > incidenceMatrix = simulationEngine.generateIndicenceMatrix();
+    printMatrix(incidenceMatrix);
+}
+
 void ReportDialog::on_acceptButton_clicked()
 {
     accept();
@@ -79,5 +97,26 @@ void ReportDialog::on_vectorButton_clicked()
         QString conservationReport = "<b>Net conservation for a given vector: " + vectorElementsString.join('\n') + "</b>";
         ui->reportTextEdit->append(conservationReport);
         ui->reportTextEdit->append(conservation);
+    }
+}
+
+void ReportDialog::printMatrix(const QVector<QVector<int> > &matrix)
+{
+    QString row;
+    SimulationEngine &simulationEngine = SimulationEngine::getInstance();
+
+    QString columnNames = "";
+    for (int i = 0; i < simulationEngine.transitions->count(); ++i){
+        columnNames += "\tT"+QString::number(i);
+    }
+
+    ui->reportTextEdit->append(columnNames);
+
+    for (int i = 0 ; i < simulationEngine.places->count(); ++i){
+        for (int j = 0 ; j < simulationEngine.transitions->count(); ++j){
+            row += (QString::number(matrix[i][j]) + "\t");
+        }
+        ui->reportTextEdit->append("P"+QString::number(i)+"\t" + row);
+        row = "";
     }
 }

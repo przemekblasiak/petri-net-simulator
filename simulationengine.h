@@ -40,6 +40,9 @@ public:
     QString generateConservationReport();
     QString generateBoundednessReport();
     QString generateConservationReportRespectToVector(QVector<int> weights);
+    QVector<QVector<int>> generateInMatrix();
+    QVector<QVector<int>> generateOutMatrix();
+    QVector<QVector<int>> generateIndicenceMatrix();
 
 
     QList<State *> generateCoverabilityStates();

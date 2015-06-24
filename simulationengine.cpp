@@ -299,6 +299,54 @@ QString SimulationEngine::generateConservationReportRespectToVector(QVector<int>
     return conservative? "Conservative" : "Non-conservative";
 }
 
+QVector<QVector<int> > SimulationEngine::generateInMatrix()
+{
+    QVector<QVector<int> > inMatrix(this->places->count(), QVector<int>(this->transitions->count(), 0));
+    for (int i = 0; i < this->places->count(); ++i){
+        for (int j = 0; j < this->transitions->count(); ++j){
+            for (Arrow *arrow : *this->arrows){
+                Element *transitionJ = (*(this->transitions))[j];
+                Element *placeI = (*(this->places))[i];
+                if (((arrow->transition == transitionJ) && (arrow->place == placeI)) && (!arrow->fromPlaceToTransition)){
+                    inMatrix[i][j] += arrow->weight();
+                }
+            }
+        }
+    }
+    return inMatrix;
+}
+
+QVector<QVector<int> > SimulationEngine::generateOutMatrix()
+{
+    QVector<QVector<int> > inMatrix(this->places->count(), QVector<int>(this->transitions->count(), 0));
+    for (int i = 0; i < this->places->count(); ++i){
+        for (int j = 0; j < this->transitions->count(); ++j){
+            for (Arrow *arrow : *this->arrows){
+                Element *transitionJ = (*(this->transitions))[j];
+                Element *placeI = (*(this->places))[i];
+                if (((arrow->transition == transitionJ) && (arrow->place == placeI)) && (arrow->fromPlaceToTransition)){
+                    inMatrix[i][j] += arrow->weight();
+                }
+            }
+        }
+    }
+    return inMatrix;
+}
+
+QVector<QVector<int> > SimulationEngine::generateIndicenceMatrix()
+{
+    QVector<QVector<int> > incidenceMatrix(this->places->count(), QVector<int>(this->transitions->count(), 0));
+    QVector<QVector<int> > inMatrix = this->generateInMatrix();
+    QVector<QVector<int> > outMatrix = this->generateOutMatrix();
+
+    for(int i = 0; i < this->places->count(); i++){
+        for(int j = 0; j < this->transitions->count(); j++){
+            incidenceMatrix[i][j] = inMatrix[i][j] - outMatrix[i][j];
+        }
+    }
+    return incidenceMatrix;
+}
+
 void SimulationEngine::attachChildrenStates(State *currentState, QList<State *> *states) { // TODO: Refactor name
     states->append(currentState);
     static int level = 0;

@@ -190,3 +190,11 @@ void MainWindow::on_actionBoundedness_triggered() {
     reportDialog->reportBoundedness();
     reportDialog->show();
 }
+
+void MainWindow::on_actionIncidence_triggered()
+{
+    ReportDialog *reportDialog = new ReportDialog(this);
+    reportDialog->setWindowTitle("Incidence");
+    reportDialog->netIncidence();
+    reportDialog->show();
+}

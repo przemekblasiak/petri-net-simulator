@@ -152,7 +152,6 @@ void SimulationEngine::constructCoverabilityStates(State *M0, State *Mi, QList<S
         if (!duplicate && !coverable) {
             Mi->outgoingConnections.append(State::StateConnection(Mj, transition));
             this->constructCoverabilityStates(M0, Mj, coverabilityStates);
-            qDebug() << "normal";
         }
     }
 

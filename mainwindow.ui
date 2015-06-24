@@ -165,10 +165,10 @@
     </iconset>
    </property>
    <property name="text">
-    <string>Open project</string>
+    <string>Open</string>
    </property>
    <property name="toolTip">
-    <string>Open project</string>
+    <string>Open an existing project</string>
    </property>
   </action>
   <action name="actionSave_project">
@@ -178,10 +178,10 @@
     </iconset>
    </property>
    <property name="text">
-    <string>Save project</string>
+    <string>Save</string>
    </property>
    <property name="toolTip">
-    <string>Save current project</string>
+    <string>Save the current project</string>
    </property>
   </action>
   <action name="actionNew_Project">
@@ -191,10 +191,10 @@
     </iconset>
    </property>
    <property name="text">
-    <string>New Project</string>
+    <string>New</string>
    </property>
    <property name="toolTip">
-    <string>Create new project</string>
+    <string>Create a new project</string>
    </property>
   </action>
   <action name="actionExecuteTransition">
@@ -204,10 +204,10 @@
     </iconset>
    </property>
    <property name="text">
-    <string>ExecuteTransition</string>
+    <string>Fire Transition</string>
    </property>
    <property name="toolTip">
-    <string>Execute transition</string>
+    <string>Fire the selected transition</string>
    </property>
    <property name="shortcut">
     <string>Space</string>
@@ -223,26 +223,26 @@
     </iconset>
    </property>
    <property name="text">
-    <string>Toggle simulation mode</string>
+    <string>Simulation mode</string>
    </property>
    <property name="toolTip">
-    <string>Toggle simulation mode</string>
+    <string>Turn the simulation mode on/off</string>
    </property>
   </action>
   <action name="actionReachabilityGraph">
    <property name="text">
-    <string>Reachability graph</string>
+    <string>Reachability Graph</string>
    </property>
    <property name="toolTip">
-    <string>Generate reachability graph</string>
+    <string>Generate the reachability graph</string>
    </property>
   </action>
   <action name="actionCoverabilityGraph">
    <property name="text">
-    <string>Coverability graph</string>
+    <string>Coverability Graph</string>
    </property>
    <property name="toolTip">
-    <string>Generate coverability graph</string>
+    <string>Generate the coverability graph</string>
    </property>
   </action>
   <action name="actionSave_as">
@@ -252,10 +252,10 @@
     </iconset>
    </property>
    <property name="text">
-    <string>Save as</string>
+    <string>Save As...</string>
    </property>
    <property name="toolTip">
-    <string>Save as</string>
+    <string>Save the project as a new file</string>
    </property>
   </action>
   <action name="actionLiveness">
@@ -265,13 +265,16 @@
    <property name="text">
     <string>Liveness</string>
    </property>
+   <property name="toolTip">
+    <string>Generate the liveness report</string>
+   </property>
   </action>
   <action name="actionConservation">
    <property name="text">
     <string>Conservation</string>
    </property>
    <property name="toolTip">
-    <string>Check if the net is conservative</string>
+    <string>Generate the conservation report</string>
    </property>
   </action>
   <action name="actionBoundedness">
@@ -279,15 +282,15 @@
     <string>Boundedness</string>
    </property>
    <property name="toolTip">
-    <string>Generate boundedness report</string>
-    </property>
-    </action>
+    <string>Generate the boundedness report</string>
+   </property>
+  </action>
   <action name="actionIncidence">
    <property name="text">
     <string>Incidence</string>
    </property>
    <property name="toolTip">
-    <string>Generate incidence matrix</string>
+    <string>Generate the incidence matrix</string>
    </property>
   </action>
   <action name="actionReversability">
@@ -295,7 +298,7 @@
     <string>Reversability</string>
    </property>
    <property name="toolTip">
-    <string>Generate reversability report</string>
+    <string>Generate the reversability report</string>
    </property>
   </action>
  </widget>

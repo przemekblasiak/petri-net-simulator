@@ -32,6 +32,7 @@ public:
     bool operator==(const State &stateToCompareTo);
     int level;
     QString description();
+    State *parentState;
 private:
     State();
     Ui::State *ui;

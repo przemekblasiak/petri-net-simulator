@@ -2,6 +2,7 @@
 #include "ui_state.h"
 
 State::State(): QWidget(0), ui(0), level(0) {
+    this->parentState = 0;
 }
 
 State::State(QList<Element *> &places): State() {
@@ -27,8 +28,16 @@ bool State::operator==(const State &stateToCompareTo) {
 
 QString State::description() {
     QString description = "(";
-    for (int tokenCount: this->tokenCounts) {
-        description += QString::number(tokenCount) + ",";
+    description += QString::number(this->tokenCounts[0]);
+    for (int i = 1; i < this->tokenCounts.count(); ++i) {
+        description += ",";
+        int tokenCount = this->tokenCounts[i];
+        if (tokenCount != -1) {
+            description += QString::number(tokenCount);
+        }
+        else {
+            description += "inf";
+        }
     }
     description += ")";
     return description;

@@ -125,6 +125,7 @@ void MainWindow::on_actionCoverabilityGraph_triggered()
 {
     GraphDialog *coverabilityGraphDialog = new GraphDialog(this);
     coverabilityGraphDialog->setWindowTitle("Coverability graph");
+    coverabilityGraphDialog->drawCoverabilityGraph();
     coverabilityGraphDialog->show();
 }
 

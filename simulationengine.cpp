@@ -81,6 +81,84 @@ QList<State *> SimulationEngine::generateReachabilityStates() {
     return states;
 }
 
+QList<State *> SimulationEngine::generateCoverabilityStates() {
+    QList<State *> coverabilityStates;
+    State *initialState = this->getInitialState();
+    this->constructCoverabilityStates(initialState, initialState, &coverabilityStates);
+    return coverabilityStates;
+}
+
+void SimulationEngine::constructCoverabilityStates(State *M0, State *Mi, QList<State *> *coverabilityStates) {
+    coverabilityStates->append(Mi); // TODO: Przypadek pojedynczej pętelki
+    const int infinityMarker = -1;
+    static int level = 0;
+    if (level == 10) return;
+    ++level;
+
+    QList<Element *> activeTransitions = this->activeTransitionsForSimulatedState(Mi);
+    for (int i = 0; i < activeTransitions.count(); ++i) {
+        Element *transition = activeTransitions[i];
+        State *Mj = this->stateAfterTransitionFromState(Mi, transition);
+        Mj->parentState = Mi;
+
+        // Check if duplicate
+        bool duplicate = false;
+        for (int j = 0; j < coverabilityStates->count(); ++j) {
+            State *existingState = (*coverabilityStates)[j];
+            if (Mj->tokenCounts == existingState->tokenCounts) {
+                duplicate = true;
+                delete Mj;
+                State::StateConnection connection(existingState, transition);
+                Mi->outgoingConnections.append(connection);
+                break;
+            }
+        }
+
+        // Check if coverable
+        bool coverable = false;
+        if (!duplicate) {
+            State *Mk = Mj;
+            while (Mk->parentState != 0) {
+                Mk = Mk->parentState;
+                bool shouldAdd = true;
+                if (Mk->tokenCounts == Mj->tokenCounts) {
+                    shouldAdd = false;
+                }
+                else {
+                    for (int k = 0; k < Mk->tokenCounts.count(); ++k) {
+                        if (Mk->tokenCounts[k] > Mj->tokenCounts[k]) {
+                            shouldAdd = false;
+                        }
+                    }
+                }
+                if (shouldAdd) {
+                    coverable = true;
+                    State *MPj = new State(*Mj); // TODO: Ustawic parent itp.
+                    MPj->parentState = Mi;
+                    for (int k = 0; k < Mk->tokenCounts.count(); ++k) {
+                        if (Mk->tokenCounts[k] < MPj->tokenCounts[k]) {
+                            MPj->tokenCounts[k] = infinityMarker;
+                        }
+                    }
+                    Mi->outgoingConnections.append(State::StateConnection(MPj, transition));
+                    delete Mj;
+                    this->constructCoverabilityStates(M0, MPj, coverabilityStates);
+                    break;
+                }
+            }
+        }
+
+        // Normal State
+        if (!duplicate && !coverable) {
+            Mi->outgoingConnections.append(State::StateConnection(Mj, transition));
+            this->constructCoverabilityStates(M0, Mj, coverabilityStates);
+            qDebug() << "normal";
+        }
+    }
+
+    --level;
+}
+
 // TODO Zmienić wartość zwracaną na coś bardziej przejrzystego
 int SimulationEngine::livenessForTransition(Transition *transition)
 {
@@ -200,10 +278,14 @@ State * SimulationEngine::stateAfterTransitionFromState(State *state, Element *t
     for (Arrow *arrow: connectedArrows) {
         int placeNumber = arrow->place->number();
         if (arrow->fromPlaceToTransition) {
-            newState->tokenCounts[placeNumber] -= arrow->weight();
+            if (newState->tokenCounts[placeNumber] != -1) {
+                newState->tokenCounts[placeNumber] -= arrow->weight();
+            }
         }
         else {
-            newState->tokenCounts[placeNumber] += arrow->weight();
+            if (newState->tokenCounts[placeNumber] != -1) {
+                newState->tokenCounts[placeNumber] += arrow->weight();
+            }
         }
     }
     return newState;
@@ -217,10 +299,12 @@ QList<Element *> SimulationEngine::activeTransitionsForSimulatedState(State *sta
         for (Arrow *arrow: connectedArrows) {
             if (arrow->fromPlaceToTransition) {
                 int placeTokenCount = state->tokenCounts[arrow->place->number()];
-                bool notEnoughTokens = placeTokenCount < arrow->weight();
-                if (notEnoughTokens) {
-                    active = false;
-                    break;
+                if (placeTokenCount != -1) {
+                    bool notEnoughTokens = placeTokenCount < arrow->weight();
+                    if (notEnoughTokens) {
+                        active = false;
+                        break;
+                    }
                 }
             }
         }

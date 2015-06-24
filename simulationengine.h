@@ -41,6 +41,7 @@ public:
     QString generateConservationReportRespectToVector(QVector<int> weights);
 
 
+    QList<State *> generateCoverabilityStates();
 private:
     SimulationEngine();
     SimulationEngine(const SimulationEngine& engineToCopy);
@@ -52,9 +53,10 @@ private:
     QList<Element *> activeTransitionsForSimulatedState(State *state);
     State *stateAfterTransitionFromState(State *state, Element *transition);
     void attachChildrenStates(State *currentState, QList<State *> *states);
+
     // This function requires state.count() and weights.count() to be equal
     int tokenSumForState(State *state, QVector<int> weights = QVector<int>())const;
-
+    void constructCoverabilityStates(State *M0, State *Mi, QList<State *> *coverabilityStates);
 };
 
 #endif // ENGINE_H

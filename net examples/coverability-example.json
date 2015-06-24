@@ -1,0 +1,113 @@
+{
+   "arrows" : [
+      {
+         "fromPlaceToTransition" : true,
+         "placeNumber" : 0,
+         "transitionNumber" : 0,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : true,
+         "placeNumber" : 2,
+         "transitionNumber" : 0,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : false,
+         "placeNumber" : 2,
+         "transitionNumber" : 1,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : true,
+         "placeNumber" : 0,
+         "transitionNumber" : 1,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : false,
+         "placeNumber" : 0,
+         "transitionNumber" : 3,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : true,
+         "placeNumber" : 0,
+         "transitionNumber" : 3,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : false,
+         "placeNumber" : 2,
+         "transitionNumber" : 2,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : true,
+         "placeNumber" : 2,
+         "transitionNumber" : 2,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : false,
+         "placeNumber" : 1,
+         "transitionNumber" : 3,
+         "weight" : 1
+      },
+      {
+         "fromPlaceToTransition" : true,
+         "placeNumber" : 1,
+         "transitionNumber" : 2,
+         "weight" : 1
+      }
+   ],
+   "places" : [
+      {
+         "description" : "",
+         "number" : 0,
+         "tokenCount" : 1,
+         "x" : 254,
+         "y" : 48
+      },
+      {
+         "description" : "",
+         "number" : 1,
+         "tokenCount" : 0,
+         "x" : 187,
+         "y" : 206
+      },
+      {
+         "description" : "",
+         "number" : 2,
+         "tokenCount" : 0,
+         "x" : 259,
+         "y" : 364
+      }
+   ],
+   "transitions" : [
+      {
+         "description" : "",
+         "number" : 0,
+         "x" : 450,
+         "y" : 201
+      },
+      {
+         "description" : "",
+         "number" : 1,
+         "x" : 296,
+         "y" : 183
+      },
+      {
+         "description" : "",
+         "number" : 2,
+         "x" : 218,
+         "y" : 307
+      },
+      {
+         "description" : "",
+         "number" : 3,
+         "x" : 209,
+         "y" : 96
+      }
+   ]
+}

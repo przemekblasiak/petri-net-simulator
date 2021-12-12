@@ -1,6 +1,7 @@
 #include "editelementdialog.h"
 #include "ui_editelementdialog.h"
 #include <QDebug>
+#include <QIntValidator>
 
 EditElementDialog::EditElementDialog(QWidget *parent) :
     QDialog(parent),

@@ -5,8 +5,9 @@
 #include "place.h"
 #include "transition.h"
 #include <QApplication>
-#include <QDesktopWidget>
 #include <QScreen>
+
+class ClickableArea;
 
 class Arrow : public QWidget
 {
@@ -33,31 +34,21 @@ private:
     QImage arrowheadImage;
     int _weight;
     DescriptionLabel *_weightLabel;
-    class ClickableArea;
     QVector<ClickableArea *> _clickableAreas;
     QVector<QRect> segmentsForArrowPoints(QVector<QPoint> points);
     QVector<QPoint> bezierPoints(QVector<QPoint> &points);
 };
 
-class Arrow::ClickableArea: public QWidget {
+class ClickableArea: public QWidget {
     Q_OBJECT
 public:
-    explicit ClickableArea(QWidget *owner, QWidget *parent): QWidget(parent) {
-        this->lower();
-        this->setContextMenuPolicy(Qt::CustomContextMenu);
-        connect(this, SIGNAL(customContextMenuRequested(const QPoint &)),
-                this, SLOT(onContextMenuRequested(const QPoint &)));
-        connect(this, SIGNAL(contextMenuRequested(const QPoint &)),
-                owner, SLOT(onContextMenuRequested(const QPoint &)));
-        this->show();
-    }
+    explicit ClickableArea(QWidget *owner, QWidget *parent = nullptr);
+
 signals:
     void contextMenuRequested(const QPoint &position);
+
 private slots:
-    void onContextMenuRequested(const QPoint &position) {
-        QPoint mappedPosition(mapToGlobal(position));
-        emit contextMenuRequested(mappedPosition);
-    }
+    void onContextMenuRequested(const QPoint &position);
 };
 
 #endif // ARROW_H

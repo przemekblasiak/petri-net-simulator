@@ -285,3 +285,18 @@ QVector<QRect> Arrow::segmentsForArrowPoints(QVector<QPoint> points) {
 
     return segments;
 }
+
+ClickableArea::ClickableArea(QWidget *owner, QWidget *parent): QWidget(parent) {
+    this->lower();
+    this->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(this, SIGNAL(customContextMenuRequested(const QPoint &)),
+            this, SLOT(onContextMenuRequested(const QPoint &)));
+    connect(this, SIGNAL(contextMenuRequested(const QPoint &)),
+            owner, SLOT(onContextMenuRequested(const QPoint &)));
+    this->show();
+}
+
+void ClickableArea::onContextMenuRequested(const QPoint &position) {
+    QPoint mappedPosition(mapToGlobal(position));
+    emit contextMenuRequested(mappedPosition);
+}

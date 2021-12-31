@@ -14,7 +14,7 @@
 #include <QMouseEvent>
 #include <QPoint>
 #include <QWidget>
-#include <QDesktopWidget>
+#include <QScreen>
 
 enum ContextActionType {
     Edit,
